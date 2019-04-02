@@ -6,17 +6,6 @@
 **/
 var sw = jQuery(window).width();
 
-// DISMISS WIP MESSAGE
-// var Mbox = jQuery('#wip');
-// Mbox.find('.close').on('click',function(){
-// 	Mbox.css( 'height', Mbox.height()+'px' );
-// 	Mbox.css( 'opacity', '0');
-// 	setTimeout(function(){
-// 		Mbox.css( 'height', '0');
-// 		Mbox.css( 'margin-bottom', '0');
-// 	},600);
-// });
-
 // MENU ARTWORKS
 var asaid = jQuery('aside.artworks-navi');
 var series = jQuery('aside .series');
@@ -227,7 +216,16 @@ jQuery(document).ready( function() {
 	}
 
 
+
+	jQuery('.archive-posts').infiniteScroll({
+	  // options
+	  path: '.nav-previous a',
+	  history: false,
+	  status: '.page-load-status'
+	});
+
 });
+
 
 
 
