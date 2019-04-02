@@ -115,6 +115,14 @@ VMbtn.on('click',function(){
 var SForm = jQuery('#rc_searchform');
 SForm.find('.search-field').attr('placeholder','');
 
+
+var archiveCont = jQuery('.archive-posts').infiniteScroll({
+  // options
+  path: '.nav-previous a',
+  history: false,
+  status: '.page-load-status'
+});
+
 // HOMEPAGE SWIPER:
 // var home_swiper_activator = jQuery('#home-media-gallery');
 // if (home_swiper_activator.length !== 0) { // populate & init swiper.js
@@ -215,14 +223,6 @@ jQuery(document).ready( function() {
 		});
 	}
 
-
-
-	jQuery('#main').infiniteScroll({
-	  // options
-	  path: '.nav-previous a',
-	  history: false,
-	  status: '.page-load-status'
-	});
 
 });
 
