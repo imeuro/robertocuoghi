@@ -1,0 +1,95 @@
+body * { box-sizing: border-box; outline: none; }
+*:focus { outline: none; }
+body {
+	background: #fff;
+	font-weight: 400;
+	color: #2f2f2f;
+	font-size: 16px;
+	margin: 0;
+	overflow: hidden;
+}
+
+
+.container-full {
+	width: 100vw;
+	height: 100vh;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: row;
+	align-items: center; /* vertical:center */
+	justify-content:  center; /* horizontal:center */
+	overflow: hidden;
+	opacity: 0;
+	transition: opacity 150ms ease-in-out;
+}
+
+.container-full a.enter {
+	position: relative;
+  height: 100%;
+  width: 100%;
+  display: inline-block;
+  padding: 60px;
+}
+
+.onecol {
+	width: 434px;
+	position:absolute;
+	left: 0;
+}
+
+.slick.marquee {
+	height: 100vh;
+	width: 100%;
+	position: relative;
+	left: 0;
+}
+.slick.marquee.upward {
+	transform: rotate(180deg);
+}
+.slick-list {
+	height: 100vh;
+	width: 100%;
+	position: absolute;
+	overflow: visible;
+}
+.slick-slide {
+	width: 100%;
+	height: 600px;
+	display: block;
+	background: url('../../../../themes/rcuoghi_public/icons/lil_fellows.svg') repeat-x center center transparent;
+	background-size: 434px 600px;
+	outline: none;
+}
+.slick.marquee.upward .slick-slide {
+	background-position: left center;
+}
+.slick.marquee.downward .slick-slide {
+	background-position: right center;
+}
+.slick-slide img { opacity: 0; height: 600px;}
+
+
+@media all and (min-width: 768px) {
+}
+
+@media all and (min-width: 1280px) {
+	.onecol {
+		width: 651px;
+		position:absolute;
+		left: 0;
+	}
+	.slick-slide {
+		background-size: 651px 900px;
+	}
+	.slick-slide img { height: 900px; }
+}
+
+div#heading {
+    position: fixed;
+    top: -50vh;
+}
+footer#colophon {
+    position: fixed;
+    top: 150vh;
+}
