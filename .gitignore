@@ -6,6 +6,7 @@ wp-content/backups/
 wp-content/blogs.dir/
 wp-content/cache/
 wp-content/dbs/
+wp-content/languages/
 wp-content/upgrade/
 wp-content/uploads/
 wp-content/mu-plugins/
