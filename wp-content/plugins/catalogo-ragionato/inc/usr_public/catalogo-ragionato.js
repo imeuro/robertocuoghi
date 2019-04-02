@@ -217,7 +217,7 @@ jQuery(document).ready( function() {
 
 
 
-	jQuery('.archive-posts').infiniteScroll({
+	jQuery('#main').infiniteScroll({
 	  // options
 	  path: '.nav-previous a',
 	  history: false,
