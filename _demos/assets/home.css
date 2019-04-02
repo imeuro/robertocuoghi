@@ -1,0 +1,43 @@
+body *{ box-sizing: border-box; }
+body {
+	background: #fdfdfd;
+	font-weight: 400;
+	color: #2f2f2f;
+	font-size: 16px;
+}
+
+
+.container-full {
+	width: 100vw;
+	height: 100vh;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: row;
+	align-items: center; /* vertical:center */
+	justify-content:  center; /* horizontal:center */
+	overflow: hidden;
+}
+
+.onecol { width: 100%; position:absolute; left: 0;}
+.slick.marquee {
+	height: 100vh;
+	width: 100%;
+	position: relative;
+	left: 0;
+}
+.slick.marquee.upward {
+	transform: rotate(180deg);
+}
+.slick-list {
+	height: 100vh;
+	width: 100%;
+}
+.slick-slide {
+	width: 100%;
+	height: 600px;
+	display: block;
+	background: url('lil_fellows.svg') repeat-x center center transparent;
+	background-size: 434px 600px;
+}
+.slick-slide img { opacity: 0; }

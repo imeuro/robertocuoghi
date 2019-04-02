@@ -1,0 +1,119 @@
+body *{ box-sizing: border-box; }
+body {
+	background: #fdfdfd;
+	font-weight: 400;
+	color: #2f2f2f;
+	font-size: 16px;
+}
+
+.WorkSans { font-family: 'Work Sans', sans-serif; }
+.SpaceMono { font-family: 'Space Mono', monospace; }
+.bold { font-weight: 700; }
+
+.container {
+	width: calc(100vw - 30px);
+	height: calc(100vh - 30px);
+	margin: 15px;
+	padding: 0;
+	border: 1px solid #e0e0e0;
+	display: flex;
+	flex-direction: row;
+	align-items: center; /* vertical:center */
+	justify-content:  center; /* horizontal:center */
+	overflow: hidden;
+}
+.container .halfdx,
+.container .halfsx {
+	width: 100%;
+	height: auto;
+	position: absolute;
+}
+@media all and (min-width: 800px) {
+	.container .halfdx,
+	.container .halfsx {
+		width: 50%;
+		height: auto;
+		position: initial;
+	}
+}
+.maintitle {
+    margin-left: 30px;
+		margin-bottom: 10px;
+    font-size: 64px;
+    width: auto;
+    padding: 0 15px;
+}
+.maindesc {
+    margin-left: 25px;
+    padding: 0 20px;
+    color: #2f2f2f;
+		font-size: 16px;
+		line-height: 25px;
+}
+.maindesc span,
+.maintitle span {
+	display: inline;
+	background: rgba(255,255,255,0.66);
+	padding: 0 5px;
+	-webkit-box-decoration-break: clone;
+	-ms-box-decoration-break: clone;
+	-o-box-decoration-break: clone;
+	box-decoration-break: clone;
+}
+.maintitle span {
+	background: rgba(255, 239, 100, 0.85);
+	padding: 0 10px;
+	line-height: 78px;
+}
+
+ul#menu {
+    display: inline-block;
+    position: absolute;
+		right: 25px;
+		top: 15px;
+    padding: 0;
+    margin: 0;
+		z-index: 10;
+}
+#menu li { display: block;text-align: right; }
+#menu li a {
+	display: inline-block;
+  margin: 5px;
+  padding: 2px 3px;
+  text-decoration: none;
+  /* border-bottom: 4px solid rgba(255, 239, 100, 0.85); */
+  color: #2f2f2f;
+  font-size: 18px;
+  background: rgba(255,255,255,0.66);
+  padding: 0 5px;
+}
+@media all and (min-width: 800px) {
+	#menu li a {
+		border-bottom: 4px solid rgba(255, 239, 100, 0.85);
+		background: none;
+	}
+}
+
+
+.swiper-container {
+	width: 100%;
+	height: 100%;
+}
+.swiper-slide {
+	text-align: center;
+	font-size: 18px;
+	background: #fff;
+	/* Center slide text vertically */
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	align-items: center;
+}

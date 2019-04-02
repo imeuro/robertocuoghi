@@ -1,0 +1,27 @@
+<?php /* Template Name: Home Sito */  get_header(); ?>
+
+
+
+
+<?php
+
+	// public homepage content (webcam feed?)
+	$feedURL = 'http://nas.imeuro.io:333/media/?action=stream&user=none&pwd=';
+	$file_headers = @get_headers($feedURL);
+	if(!$file_headers || $file_headers[0] == 'HTTP/1.1 404 Not Found') {
+	    $feed = false;
+	}
+	else {
+	    $feed = true;
+	}
+
+	if ($feed == true) :
+		echo '<div id="vstream_home"></div>';
+	else :
+
+		echo display_images_from_media_library(15);
+
+	endif;
+?>
+
+<?php get_footer(); ?>
