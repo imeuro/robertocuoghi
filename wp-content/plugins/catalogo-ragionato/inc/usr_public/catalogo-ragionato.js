@@ -195,6 +195,7 @@ jQuery(document).ready( function() {
 			spaceBetween: 100,
 			centeredSlides: true,
 			loop: true,
+			autoHeight: true,
 			pagination: {
 				el: '.swiper-pagination',
 				type: 'bullets',

@@ -541,7 +541,7 @@ aside.artworks-navi li a:hover {
 	max-width: 100%;
 }
 .single .artworks .rc-artwork-photos figure img {
-max-height: 75vh;
+max-height: 70vh;
 width: auto;
 }
 .single .artworks h1.entry-title,
@@ -726,7 +726,7 @@ a#fl_close:before {
 #fl_swipercontainer .swiper-slide,
 #fl_swipercontainer .swiper-slide img {
     text-align: center;
-    max-height: calc(973px / 2);
+    max-height: 70vh;
 }
 
 @media all and (min-width: 1680px) {
