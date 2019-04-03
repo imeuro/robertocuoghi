@@ -264,7 +264,7 @@ a.backhome:hover + span {
 	width: 100%;
 	order: 3;
 }
-@media all and (min-width:1000px) {
+@media all and (min-width:960px) {
 	.page-load-status {
 		width: calc(100% - 330px);
 	}
@@ -729,7 +729,7 @@ a#fl_close:before {
     max-height: calc(973px / 2);
 }
 
-@media all and (min-width: 1920px) {
+@media all and (min-width: 1680px) {
 	#fl_swipercontainer .swiper-slide,
 	#fl_swipercontainer .swiper-slide img {
 	    max-height: 72.5vh;
@@ -964,4 +964,31 @@ img.rc-lazyload.rc-lazyloaded {
 .wp-block-column:nth-child(2n) { margin-left: 0;}
 .wp-block-column:not(:last-child),
 .wp-block-column:nth-child(odd) { margin-right: 0; }
+}
+
+
+
+
+
+@media (min-width: 1280px) {
+	.single-artworks .hentry {
+		margin: 0 0 1.5em;
+    display: flex;
+    flex: 0 0 100%;
+    flex-flow: row wrap;
+    align-items: center;
+	}
+	.single .artworks .rc-artwork-photos {
+		width: 50%;
+    max-width: 50%;
+    display: inline-block;
+	}
+	.single .artworks .rc-artwork-photos figure {
+    flex: 0 0 100%;
+  }
+  .single .artworks .entry-content {
+    text-align: left;
+    width: 50%;
+    max-width: 50%;
+	}
 }
