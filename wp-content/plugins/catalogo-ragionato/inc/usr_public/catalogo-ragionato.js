@@ -123,6 +123,7 @@ if (jQuery('.archive-posts') && jQuery('.archive-posts').length !== 0) {
 	});
 }
 
+
 // HOMEPAGE SWIPER:
 // var home_swiper_activator = jQuery('#home-media-gallery');
 // if (home_swiper_activator.length !== 0) { // populate & init swiper.js
