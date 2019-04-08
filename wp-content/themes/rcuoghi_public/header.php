@@ -37,14 +37,22 @@
 
 				<?php the_custom_logo(); ?>
 
-				<p class="site-title">
+				
 					<?php if ( is_post_type_archive('artworks') ) : ?>
-						<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+						<h1 class="site-title">
+							<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+								<img class="shake" src="<?php echo get_template_directory_uri()."/icons/icon-192x192.png"; ?>" alt="<?php bloginfo( 'name' ); ?>" />
+							</a>
+						</h1>
 					<?php else: ?>
-						<a href="<?php echo esc_url( home_url( '/artworks/' ) ); ?>" rel="prev">
+						<h2 class="site-title">
+							<a href="<?php echo esc_url( home_url( '/artworks/' ) ); ?>" rel="prev">
+								<span><img class="shake" src="<?php echo get_template_directory_uri()."/icons/icon-192x192.png"; ?>" alt="<?php bloginfo( 'name' ); ?>" /></span>
+							</a>
+						</h2>
 					<?php endif; ?>
-					<span><img class="shake" src="<?php echo get_template_directory_uri()."/icons/icon-192x192.png"; ?>" alt="<?php bloginfo( 'name' ); ?>" /></span></a>
-				</p>
+					
+				
 
 
 				<nav id="site-navigation" class="main-navigation">

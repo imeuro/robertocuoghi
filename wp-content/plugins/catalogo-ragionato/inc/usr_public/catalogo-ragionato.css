@@ -409,11 +409,12 @@ aside.artworks-navi #cat-filter> li {
   text-align: center;
 }
 
-aside.artworks-navi h4 {
+aside.artworks-navi h2 {
 	margin: 15px 0 0 0;
 	padding-right: 0;
 	padding-bottom: 15px;
 	line-height: 18px;
+	font-size: 1em;
 	text-transform: uppercase;
 	cursor: pointer;
 	display: inline-block;
@@ -422,8 +423,8 @@ aside.artworks-navi h4 {
 	color: #929394;
 	transition: color 150ms ease-in-out
 }
-aside.artworks-navi h4.open,
-aside.artworks-navi h4.highlight {
+aside.artworks-navi h2.open,
+aside.artworks-navi h2.highlight {
 	color: #222;
 	font-weight: 700;
 }
@@ -503,7 +504,7 @@ aside.artworks-navi li a:hover {
 	  padding: 0;
 	  text-align: left;
 	}
-	aside.artworks-navi h4 {
+	aside.artworks-navi h2 {
 		padding-bottom: 0;
 		padding-right: 30px;
 	}

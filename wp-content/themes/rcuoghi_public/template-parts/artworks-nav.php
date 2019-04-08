@@ -2,7 +2,7 @@
 
 $list_series_args = array(
 	'taxonomy' 	=> 'series',
-	'title_li' 	=> '<h4>ARTWORKS</h4>',
+	'title_li' 	=> '<h2>ARTWORKS</h2>',
 	'hierarchical' => true,
 	'orderby'		=> 'slug',
 	'exclude_tree'		=> 	430	// childs of 'non-categories'
@@ -17,13 +17,13 @@ $list_series_noncats_args = array(
 
 $list_media_args = array(
 	'taxonomy' => 'media_type',
-	'title_li' => '<h4>MEDIA</h4>',
+	'title_li' => '<h2>MEDIA</h2>',
 	'hierarchical' => true,
 );
 
 $list_year_args = array(
 	'taxonomy' => 'artwork_year',
-	'title_li' => '<h4>YEARS</h4>',
+	'title_li' => '<h2>YEARS</h2>',
 	'hierarchical' => false,
 );
 wp_list_categories( $list_series_args );

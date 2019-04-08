@@ -645,7 +645,7 @@ p.site-title {
     position: relative;
     text-align: right;
 }
-.site-title span {
+.site-title img {
     position: absolute;
 		top: -40px;
     z-index: 2;
@@ -655,7 +655,7 @@ p.site-title {
 		opacity: .6;
 		transition: opacity 300ms ease-in-out;
 }
-.site-title span:hover {
+.site-title img:hover {
 		opacity: 1;
 }
 

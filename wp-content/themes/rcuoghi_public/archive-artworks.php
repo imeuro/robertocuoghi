@@ -19,13 +19,6 @@ get_header();
 
 	<div id="primary" class="content-area">
 
-
-		<header class="page-header">
-			<h1 class="page-title">Artworks</h1>
-		</header>
-		<!-- .page-header -->
-
-
 		<main id="main" class="archive-main <?php echo 'render-'.$pcls; ?>">
 
 		<?php if ( have_posts() ) { ?>

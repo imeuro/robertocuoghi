@@ -10,7 +10,7 @@ var sw = jQuery(window).width();
 var asaid = jQuery('aside.artworks-navi');
 var series = jQuery('aside .series');
 var secondseries = series.eq(1).find('ul');
-var tituli = jQuery('aside.artworks-navi > ul li h4');
+var tituli = jQuery('aside.artworks-navi > ul li h2');
 var cunteiners = jQuery('aside.artworks-navi > ul li ul');
 var mein = jQuery('#main');
 
