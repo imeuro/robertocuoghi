@@ -68,10 +68,10 @@
 
 			$public_fields = array(
 				"art_dimensions",
+				"art_materials",
 				"art_weight",
 				"art_photo_credits",
 				"art_edition",
-				//"art_number_elements",
 				"art_unlocated",
 				"art_notes",
 				"art_exhibitions",
