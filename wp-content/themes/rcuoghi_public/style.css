@@ -637,7 +637,7 @@ textarea {
     background: rgba(255, 255, 255, 0.95);
 }
 h1.site-title,
-p.site-title {
+h2.site-title {
     margin: 0;
     font-weight: 300;
     font-size: 18px;
