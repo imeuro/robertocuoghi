@@ -44,6 +44,11 @@ body {
 	font-family: "Lato", sans-serif;
 	text-align: center;
 }
+.onecol h1 img {
+    width: 75%;
+    max-width: 75%;
+    margin: 0 auto;
+}
 .onecol a {
  text-decoration: none;
  color: #2f2f2f;
