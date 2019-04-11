@@ -74,7 +74,7 @@ get_header();
 			<span class="loader-ellips__dot"></span>
 		</div>
 		<p class="infinite-scroll-last">* * *</p>
-		<p class="infinite-scroll-error">whopsie!</p>
+		<p class="infinite-scroll-error">- - -</p>
 	</div>
 
 </div><!-- #primary -->
