@@ -115,28 +115,37 @@ VMbtn.on('click',function(){
 var SForm = jQuery('#rc_searchform');
 SForm.find('.search-field').attr('placeholder','');
 
-if (jQuery('.archive-posts') && jQuery('.archive-posts').length !== 0) {
-	var archiveCont = jQuery('.archive-posts').infiniteScroll({
-	  path: '.nav-previous a',
-	  history: true,
-	  status: '.page-load-status'
-	});
+
+
+// INIT F***ing INFINITE SCROLL
+var initinfscroll = function() {
+	if (jQuery('.archive-posts') && jQuery('.archive-posts').length !== 0) {
+		var archiveCont = jQuery('.archive-posts').infiniteScroll({
+		  path: '.nav-links a',
+		  hideNav: '.posts-navigation',
+		  history: true,
+		  status: '.page-load-status',
+		  debug: true,
+		  append: 'article',
+		});
+
+		archiveCont.on( 'append.infiniteScroll', function() { 
+			initlazyload() 
+		});
+
+	}
 }
 
-
-// HOMEPAGE SWIPER:
-// var home_swiper_activator = jQuery('#home-media-gallery');
-// if (home_swiper_activator.length !== 0) { // populate & init swiper.js
-// 	var HOMEswiper = new Swiper('.swiper-container', {
-// 		spaceBetween: 30,
-// 		effect: 'fade',
-// 		centeredSlides: true,
-// 		autoplay: {
-// 			delay: 5000,
-// 			disableOnInteraction: false,
-// 		},
-// 	});
-// }
+// INIT LAZYLOAD:
+var initlazyload = function() {
+	if (jQuery('.rc-lazyload').length !== 0) {
+		var RC_LazyLoad = new LazyLoad({
+			elements_selector: ".rc-lazyload",
+			class_loaded: "rc-lazyloaded",
+			threshold: 0
+		});
+	}
+}
 
 
 
@@ -167,15 +176,9 @@ jQuery(document).ready( function() {
   //   	console.log(e.target.nodeName);
   // });
 
-
-	// INIT LAZYLOAD:
-	if (jQuery('.rc-lazyload').length !== 0) {
-		var RC_LazyLoad = new LazyLoad({
-			elements_selector: ".rc-lazyload",
-			class_loaded: "rc-lazyloaded",
-			threshold: 0
-		});
-	}
+  initinfscroll()
+  initlazyload();
+	
 
 	// IN PAGE SWIPER:
 	var swiper_activator = jQuery('figure[data-mode="swiper"]');
