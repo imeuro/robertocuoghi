@@ -35,11 +35,6 @@ if ( ! function_exists( 'rcuoghi_public_setup' ) ) :
 		 */
 		add_theme_support( 'title-tag' );
 
-		/*
-		 * Enable support for Post Thumbnails on posts and pages.
-		 *
-		 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
-		 */
 		add_theme_support( 'post-thumbnails' );
 
 		/*
@@ -54,26 +49,6 @@ if ( ! function_exists( 'rcuoghi_public_setup' ) ) :
 			'caption',
 		) );
 
-		// Set up the WordPress core custom background feature.
-		// add_theme_support( 'custom-background', apply_filters( 'rcuoghi_public_custom_background_args', array(
-		// 	'default-color' => 'f8f8f8',
-		// 	'default-image' => '',
-		// ) ) );
-
-		// Add theme support for selective refresh for widgets.
-		// add_theme_support( 'customize-selective-refresh-widgets' );
-
-		/**
-		 * Add support for core custom logo.
-		 *
-		 * @link https://codex.wordpress.org/Theme_Logo
-		 */
-		// add_theme_support( 'custom-logo', array(
-		// 	'height'      => 250,
-		// 	'width'       => 250,
-		// 	'flex-width'  => true,
-		// 	'flex-height' => true,
-		// ) );
 
 		add_theme_support('nav-menus');
 	}
@@ -97,58 +72,11 @@ function rcuoghi_public_content_width() {
 }
 add_action( 'after_setup_theme', 'rcuoghi_public_content_width', 0 );
 
-/**
- * Register widget area.
- *
- * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
- */
-// function rcuoghi_public_widgets_init() {
-// 	register_sidebar( array(
-// 		'name'          => esc_html__( 'Sidebar', 'rcuoghi_public' ),
-// 		'id'            => 'sidebar-1',
-// 		'description'   => esc_html__( 'Add widgets here.', 'rcuoghi_public' ),
-// 		'before_widget' => '<section id="%1$s" class="widget %2$s">',
-// 		'after_widget'  => '</section>',
-// 		'before_title'  => '<h2 class="widget-title">',
-// 		'after_title'   => '</h2>',
-// 	) );
-// }
-// add_action( 'widgets_init', 'rcuoghi_public_widgets_init' );
-
-
-
-// add_action('pre_get_posts','change_postNumLimit');
-
-// function change_postNumLimit($query){
-//   $new_limit = 6;
-// 	set_query_var('posts_per_page',$new_limit);
-// }
-
 
 /**
  * Custom template tags for this theme.
  */
 require get_template_directory() . '/inc/template-tags.php';
-
-/**
- * Functions which enhance the theme by hooking into WordPress.
- */
-// require get_template_directory() . '/inc/template-functions.php';
-
-/**
- * Customizer additions.
- */
-// require get_template_directory() . '/inc/customizer.php';
-
-/**
- * Load Jetpack compatibility file.
- */
-// if ( defined( 'JETPACK__VERSION' ) ) {
-// 	require get_template_directory() . '/inc/jetpack.php';
-// }
-
-
-
 
 
 //
@@ -159,7 +87,7 @@ function wpse176347_pre_get_posts( $q ) {
         && $q->is_main_query()
         && ( $q->is_post_type_archive( 'artworks' ) || $q->is_archive() || $q->is_search() )
     ) {
-        $q->set( 'posts_per_page', 100 );
+        $q->set( 'posts_per_page', 999 );
 				$q->set( 'post_status', 'publish' );
 				$q->set( 'meta_key', 'art_code' );
 				$q->set( 'orderby', 'meta_value' );
