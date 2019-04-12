@@ -81,19 +81,19 @@ require get_template_directory() . '/inc/template-tags.php';
 
 //
 // https://wordpress.stackexchange.com/questions/176347/pagination-returns-404-after-page-20
-// add_action( 'pre_get_posts', 'wpse176347_pre_get_posts' );
-// function wpse176347_pre_get_posts( $q ) {
-//     if(    !is_admin()
-//         && $q->is_main_query()
-//         && ( $q->is_post_type_archive( 'artworks' ) || $q->is_archive() || $q->is_search() )
-//     ) {
-//         $q->set( 'posts_per_page', 5 );
-// 				$q->set( 'post_status', 'publish' );
-// 				$q->set( 'meta_key', 'art_code' );
-// 				$q->set( 'orderby', 'meta_value' );
-// 				$q->set( 'order', 'DESC' );
-//     }
-// }
+add_action( 'pre_get_posts', 'wpse176347_pre_get_posts' );
+function wpse176347_pre_get_posts( $q ) {
+    if(    !is_admin()
+        && $q->is_main_query()
+        && ( $q->is_post_type_archive( 'artworks' ) || $q->is_archive() || $q->is_search() )
+    ) {
+        $q->set( 'posts_per_page', 5 );
+				$q->set( 'post_status', 'publish' );
+				$q->set( 'meta_key', 'art_code' );
+				$q->set( 'orderby', 'meta_value' );
+				$q->set( 'order', 'DESC' );
+    }
+}
 
 
 
