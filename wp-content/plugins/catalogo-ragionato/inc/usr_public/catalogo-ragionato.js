@@ -35,7 +35,7 @@ if ( asaid.attr('data-term') && asaid.attr('data-term').length !== 0 ) {
 	console.log('siamo in una tax');
 	var curtax = asaid.attr('data-tax');
 	var curterm = asaid.attr('data-term');
-	asaid.children('ul').children('li.'+curtax).children('H4').addClass('highlight').html(curterm);
+	asaid.children('ul').children('li.'+curtax).children('H2').addClass('highlight').html(curterm);
 }
 
 
