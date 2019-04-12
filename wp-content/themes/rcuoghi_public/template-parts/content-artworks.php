@@ -20,9 +20,9 @@
 
 		$post_thumbnail_id = get_post_thumbnail_id( get_the_ID() );
 
+		// altre foto
 		$otherphotos = get_field('art_additional_images', get_the_ID());
 		$otherphotos_check = get_field('art_additional_images', get_the_ID())[0]['art_attached_images'];
-
 		$otherpics_code = '';
 		$otherpics_big_code = '';
 		if ($otherphotos_check && $otherphotos_check != '') {
@@ -32,11 +32,22 @@
 				$otherpics_big_code.= wp_get_attachment_image_src($pic_id,'full')[0].',';
 			}
 		}
+		// video
+		$videos = get_field('art_additional_video', get_the_ID());
+		$videos_check = get_field('art_additional_video', get_the_ID())[0]['art_attached_video'];
+		// print_r($videos_check);
+		$videos_code = '';
+		if ($videos_check && $videos_check != '') {
+			foreach ($videos as $video) {
+				$videos_code.= $video['art_attached_video']['url'].',';
+			}
+		}
+		// print_r($videos_code);
 
 		?>
 		<figure <?php if (!empty($otherpics_code)) :
-			echo 'data-otherpics="'. substr($otherpics_code, 0, -1).'"';
-			echo 'data-otherpics-big="'. substr($otherpics_big_code, 0, -1).'"';
+			echo 'data-otherpics="'. substr($otherpics_code, 0, -1).substr($videos_code, 0, -1).'"';
+			echo ' data-otherpics-big="'. substr($otherpics_big_code, 0, -1).'"';
 		endif; ?> data-mode="swiper">
 		<a href="<?php echo wp_get_attachment_image_src($post_thumbnail_id,'medium_large')[0]; ?>"  data-lity data-big-pic="<?php echo wp_get_attachment_image_src($post_thumbnail_id,'full')[0]; ?>">
 			<?php

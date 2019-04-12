@@ -189,7 +189,28 @@ jQuery(document).ready( function() {
 		var SWslides = '<div class="swiper-slide">'+swiper_first.html()+'</div>';
 		picArr.forEach(
 		function (item, index) {
-			SWslides += '<div class="swiper-slide"><a href="'+item+'" data-lity data-big-pic="'+bigpicArr[index]+'"><img src="'+item+'" /></a></div>';
+			console.log(item);
+			if (item.endsWith(".mp4")) {
+				// <link href="https://vjs.zencdn.net/7.4.1/video-js.css" rel="stylesheet">
+				// <script src='https://vjs.zencdn.net/7.4.1/video.js'></script>
+				var pjs = document.createElement('script');
+				pjs.src = 'https://vjs.zencdn.net/7.4.1/video.js';
+				pjs.async = 'true';
+				document.body.appendChild(pjs);
+
+				var pcss = document.createElement('link');
+				pcss.href = 'https://vjs.zencdn.net/7.4.1/video-js.css';
+				pcss.rel = 'stylesheet';
+				document.head.appendChild(pcss);
+
+				var psettings = {
+					'fluid': true,
+				}
+
+				SWslides += '<div class="swiper-slide"><img src="'+item+'" /><video id="RCvideo-'+index+'" class="video-js" controls preload="auto" width="640" height="264" data-setup="'+psettings+'"> <source src='+item+' type="video/mp4"></div>';
+			} else {
+				SWslides += '<div class="swiper-slide"><a href="'+item+'" data-lity data-big-pic="'+bigpicArr[index]+'"><img src="'+item+'" /></a></div>';
+			}
 		});
 		swiper_activator.empty().append('<div class="swiper-container" id="fl_swipercontainer"><div class="swiper-wrapper">'+SWslides+'</div><div class="swiper-pagination"></div></div>');
 
