@@ -203,11 +203,9 @@ jQuery(document).ready( function() {
 				pcss.rel = 'stylesheet';
 				document.head.appendChild(pcss);
 
-				var psettings = {
-					'fluid': true,
-				}
+				var psettings = '"controls": true, "autoplay": false, "preload": "auto", "fluid": true';
 
-				SWslides += '<div class="swiper-slide"><img src="'+item+'" /><video id="RCvideo-'+index+'" class="video-js" controls preload="auto" width="640" height="264" data-setup="'+psettings+'"> <source src='+item+' type="video/mp4"></div>';
+				SWslides += '<div class="swiper-slide"><video id="RCvideo-'+index+'" class="video-js" controls preload="auto" width="640" height="264" data-setup=\'{'+psettings+'}\'> <source src='+item+' type="video/mp4"></div>';
 			} else {
 				SWslides += '<div class="swiper-slide"><a href="'+item+'" data-lity data-big-pic="'+bigpicArr[index]+'"><img src="'+item+'" /></a></div>';
 			}
