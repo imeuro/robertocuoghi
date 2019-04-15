@@ -969,15 +969,13 @@ img.rc-lazyload.rc-lazyloaded {
 
 
 
-
-
 @media (min-width: 1280px) {
 	.single-artworks .hentry {
 		margin: 0 0 1.5em;
     display: flex;
     flex: 0 0 100%;
     flex-flow: row wrap;
-    align-items: center;
+    align-items: flex-start;
 	}
 	.single .artworks .rc-artwork-photos {
 		width: 50%;
@@ -991,5 +989,6 @@ img.rc-lazyload.rc-lazyloaded {
     text-align: left;
     width: 50%;
     max-width: 50%;
+    margin-top: 150px;
 	}
 }

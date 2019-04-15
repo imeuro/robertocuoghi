@@ -87,7 +87,7 @@ function wpse176347_pre_get_posts( $q ) {
         && $q->is_main_query()
         && ( $q->is_post_type_archive( 'artworks' ) || $q->is_archive() || $q->is_search() )
     ) {
-        $q->set( 'posts_per_page', 5 );
+        $q->set( 'posts_per_page', 50 );
 				$q->set( 'post_status', 'publish' );
 				$q->set( 'meta_key', 'art_code' );
 				$q->set( 'orderby', 'meta_value' );

@@ -11,8 +11,27 @@ wp-content/upgrade/
 wp-content/uploads/
 wp-content/mu-plugins/
 wp-content/wp-cache-config.php
-wp-content/plugins/*
-!wp-content/plugins/catalogo-ragionato/
+
+# .git-ftp-ignore overrides not working !!
+# https://github.com/git-ftp/git-ftp/issues/473
+
+wp-content/plugins/acf-better-search
+wp-content/plugins/advanced-custom-fields-pro
+wp-content/plugins/codepress-admin-columns
+wp-content/plugins/combined-search
+wp-content/plugins/custom-meta-widget
+wp-content/plugins/really-simple-csv-importer
+wp-content/plugins/rest-api
+wp-content/plugins/simple-image-sizes
+wp-content/plugins/super-progressive-web-apps
+wp-content/plugins/theme-switcha
+wp-content/plugins/very-simple-contact-form
+wp-content/plugins/wordpress-seo
+wp-content/plugins/wp-force-login
+wp-content/plugins/wpa-clean-updates
+wp-content/plugins/index.php
+
+#wp-content/plugins/*
 
 wp-admin/
 wp-includes/
