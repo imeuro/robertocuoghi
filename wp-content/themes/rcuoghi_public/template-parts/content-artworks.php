@@ -10,7 +10,6 @@
 ?>
 <article id="rc-artwork-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-	<!-- <a class="backhome" href="<?php //echo esc_url( home_url( '/artworks/' ) ); ?>" rel="back">&nbsp;</a> -->
 
 	<div class="rc-artwork-photos">
 
@@ -23,33 +22,41 @@
 		$otherphotos = get_field('art_additional_images', get_the_ID());
 		$otherphotos_check = get_field('art_additional_images', get_the_ID())[0]['art_attached_images'];
 
-		$otherpics_code = '';
-		$otherpics_big_code = '';
-		if ($otherphotos_check && $otherphotos_check != '') {
+		// var_dump($otherphotos_check);
+
+		$generated_code = '';
+		if (!empty($otherphotos_check)) { // più foto: genero swiper con featured alla fine
+
+			$generated_code .= "\n<figure data-mode=\"swiper\">\n\n<div class=\"swiper-container\" id=\"fl_swipercontainer\">\n<div class=\"swiper-wrapper\">";
 			foreach ($otherphotos as $otherphoto) {
-				$pic_id = $otherphoto['art_attached_images']['ID'];
-				$otherpics_code.= wp_get_attachment_image_src($pic_id,'medium_large')[0].',';
-				$otherpics_big_code.= wp_get_attachment_image_src($pic_id,'full')[0].',';
+				// print_r($otherphoto['art_attached_images']['type']);
+				if ($otherphoto['art_attached_images']['type'] == 'image') {
+					$pic_id = $otherphoto['art_attached_images']['ID'];
+					$generated_code .= "\n<div class=\"swiper-slide\">\n\t<a href=\"".wp_get_attachment_image_src($pic_id,'medium_large')[0]."\" data-lity>\n\t\t<img src=\"".wp_get_attachment_image_src($pic_id,'medium_large')[0]."\" alt=\"".get_the_title()."\" />\n\t</a>\n</div>";
+				}
 			}
+			// aggiungo la featured alla fine (...#@*!)
+			$generated_code .= "\n<div class=\"swiper-slide\">\n\t<a href=\"".wp_get_attachment_image_src($post_thumbnail_id,'medium_large')[0]."\" data-lity>\n\t\t<img src=\"".wp_get_attachment_image_src($post_thumbnail_id,'medium_large')[0]."\"alt=\"".get_the_title()."\" />\n\t</a>\n</div>";
+			$generated_code .= "\n</div>\n<div class=\"swiper-pagination\"></div>\n</div>\n\n</figure>\n\n";
+
+		} else { // una sola foto: semplice img src
+
+			$generated_code .= "<figure><a href=\"".wp_get_attachment_image_src($post_thumbnail_id,'medium_large')[0]."\" data-lity>";
+			if ($is_unlocated == 1 || $is_damaged == 1) {
+				$generated_code .= "<script src=\"".plugins_url()."/catalogo-ragionato/inc/usr_public/three.min.js\"></script>";
+				$generated_code .= "<canvas class=\"p-canvas-webgl\" id=\"canvas-webgl\"></canvas>";
+			} else {
+				$generated_code .= "<img src=\"".wp_get_attachment_image_src($post_thumbnail_id,'medium_large')[0]."\" alt=\"".get_the_title()."\" />";
+			}
+			$generated_code .= "</a></figure>\n";
+
 		}
 
+
+		// finally... printo to screen
+		echo $generated_code;
 		?>
-		<figure <?php if (!empty($otherpics_code)) :
-			echo 'data-otherpics="'. substr($otherpics_code, 0, -1).'"';
-			echo 'data-otherpics-big="'. substr($otherpics_big_code, 0, -1).'"';
-		endif; ?> data-mode="swiper">
-		<a href="<?php echo wp_get_attachment_image_src($post_thumbnail_id,'medium_large')[0]; ?>"  data-lity data-big-pic="<?php echo wp_get_attachment_image_src($post_thumbnail_id,'full')[0]; ?>">
-			<?php
-			if ($is_unlocated == 1 || $is_damaged == 1) :
-				echo '<script src="'.plugins_url().'/catalogo-ragionato/inc/usr_public/three.min.js"></script>';
-				echo '<canvas class="p-canvas-webgl" id="canvas-webgl"></canvas>';
-			else :
-				//the_post_thumbnail('large');
-				echo '<img src="'.wp_get_attachment_image_src($post_thumbnail_id,'medium_large')[0].'" alt="'.get_the_title().'" />';
-			endif;
-			?>
-		</a>
-		</figure>
+
 	</div>
 
 
