@@ -119,13 +119,13 @@ SForm.find('.search-field').attr('placeholder','');
 
 // INIT F***ing INFINITE SCROLL
 var initinfscroll = function() {
-	if (jQuery('.archive-posts') && jQuery('.archive-posts').length !== 0) {
+	if (jQuery('.nav-links a').length !== 0 && jQuery('.archive-posts').length !== 0) {
 		var archiveCont = jQuery('.archive-posts').infiniteScroll({
 		  path: '.nav-links a',
 		  hideNav: '.posts-navigation',
 		  history: true,
 		  status: '.page-load-status',
-		  debug: true,
+		  // debug: true,
 		  append: 'article',
 		});
 
