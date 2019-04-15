@@ -977,7 +977,7 @@ img.rc-lazyload.rc-lazyloaded {
     display: flex;
     flex: 0 0 100%;
     flex-flow: row wrap;
-    align-items: center;
+    align-items: flex-start;
 	}
 	.single .artworks .rc-artwork-photos {
 		width: 50%;
@@ -991,5 +991,6 @@ img.rc-lazyload.rc-lazyloaded {
     text-align: left;
     width: 50%;
     max-width: 50%;
+    margin-top: 150px;
 	}
 }
