@@ -14,6 +14,7 @@ wp-content/wp-cache-config.php
 wp-content/plugins/*
 !wp-content/plugins/catalogo-ragionato/*
 
+
 wp-admin/
 wp-includes/
 
