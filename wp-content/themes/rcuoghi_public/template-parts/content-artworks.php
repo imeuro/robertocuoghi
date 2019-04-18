@@ -30,12 +30,34 @@
 
 			$generated_code .= "\n<figure data-mode=\"swiper\">\n\n<div class=\"swiper-container\" id=\"fl_swipercontainer\">\n<div class=\"swiper-wrapper\">";
 			foreach ($otherphotos as $otherphoto) {
+				// print_r($otherphoto['art_attached_images']['type']);
+				if ($otherphoto['art_attached_images']['type'] == 'image') {
+					$pic_id = $otherphoto['art_attached_images']['ID'];
+					$generated_code .= "\n<div class=\"swiper-slide\">\n\t<a href=\"".wp_get_attachment_image_src($pic_id,'medium_large')[0]."\" data-lity>\n\t\t<img src=\"".wp_get_attachment_image_src($pic_id,'medium_large')[0]."\" alt=\"".get_the_title()."\" />\n\t</a>\n</div>";
+				}
+			}
+			// aggiungo la featured alla fine (...#@*!)
+			$generated_code .= "\n<div class=\"swiper-slide\">\n\t<a href=\"".wp_get_attachment_image_src($post_thumbnail_id,'medium_large')[0]."\" data-lity>\n\t\t<img src=\"".wp_get_attachment_image_src($post_thumbnail_id,'medium_large')[0]."\"alt=\"".get_the_title()."\" />\n\t</a>\n</div>";
+			$generated_code .= "\n</div>\n<div class=\"swiper-pagination\"></div>\n</div>\n\n</figure>\n\n";
+
+		} else { // una sola foto: semplice img src
+
+			$generated_code .= "<figure><a href=\"".wp_get_attachment_image_src($post_thumbnail_id,'medium_large')[0]."\" data-lity>";
+			if ($is_unlocated == 1 || $is_damaged == 1) {
+				$generated_code .= "<script src=\"".plugins_url()."/catalogo-ragionato/inc/usr_public/three.min.js\"></script>";
+				$generated_code .= "<canvas class=\"p-canvas-webgl\" id=\"canvas-webgl\"></canvas>";
+			} else {
+				$generated_code .= "<img src=\"".wp_get_attachment_image_src($post_thumbnail_id,'medium_large')[0]."\" alt=\"".get_the_title()."\" />";
 			}
 			$generated_code .= "</a></figure>\n";
 
 		}
 
+
+		// finally... printo to screen
+		echo $generated_code;
 		?>
+
 	</div>
 
 
