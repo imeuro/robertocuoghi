@@ -998,7 +998,7 @@ img.rc-lazyload.rc-lazyloaded {
 
 /* videojs skin */
 .rc-container .video-js {
-	margin-bottom: 20px;
+	margin: 20px auto;
 }
 .rc-container .video-js .vjs-big-play-button {
 	top: 50%;
