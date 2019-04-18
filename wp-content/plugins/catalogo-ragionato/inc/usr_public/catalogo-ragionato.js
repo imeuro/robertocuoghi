@@ -151,13 +151,13 @@ SForm.find('.search-field').attr('placeholder','');
 
 // INIT F***ing INFINITE SCROLL
 var initinfscroll = function() {
-	if (jQuery('.archive-posts') && jQuery('.archive-posts').length !== 0) {
+	if (jQuery('.nav-links a').length !== 0 && jQuery('.archive-posts').length !== 0) {
 		var archiveCont = jQuery('.archive-posts').infiniteScroll({
 		  path: '.nav-links a',
 		  hideNav: '.posts-navigation',
 		  history: true,
 		  status: '.page-load-status',
-		  debug: true,
+		  // debug: true,
 		  append: 'article',
 		});
 
@@ -214,16 +214,17 @@ jQuery(document).ready( function() {
 
 	// IN PAGE SWIPER:
 	var swiper_activator = jQuery('figure[data-mode="swiper"]');
-	var swiper_first = swiper_activator;
-	if (swiper_activator.attr('data-otherpics')) { // populate & init swiper.js
-		var picArr = swiper_activator.attr('data-otherpics').split(',');
-		var bigpicArr = swiper_activator.attr('data-otherpics-big').split(',');
-		var SWslides = '<div class="swiper-slide">'+swiper_first.html()+'</div>';
-		// picArr.forEach(
-		// function (item, index) {
-		// 	console.log(item);
-		// });
-		swiper_activator.empty().append('<div class="swiper-container" id="fl_swipercontainer"><div class="swiper-wrapper">'+SWslides+'</div><div class="swiper-pagination"></div></div>');
+	// var swiper_first = swiper_activator;
+	// if (swiper_activator.attr('data-otherpics')) { // populate & init swiper.js
+	// 	var picArr = swiper_activator.attr('data-otherpics').split(',');
+	// 	var bigpicArr = swiper_activator.attr('data-otherpics-big').split(',');
+	// 	//var SWslides = '<div class="swiper-slide">'+swiper_first.html()+'</div>';
+	// 	var SWslides = '';
+	// 	picArr.forEach(
+	// 	function (item, index) {
+	// 		SWslides += '<div class="swiper-slide"><a href="'+item+'" data-lity data-big-pic="'+bigpicArr[index]+'"><img src="'+item+'" /></a></div>';
+	// 	});
+	// 	swiper_activator.empty().append('<div class="swiper-container" id="fl_swipercontainer"><div class="swiper-wrapper">'+SWslides+'</div><div class="swiper-pagination"></div></div>');
 
 		var artworks_slider = new Swiper('.swiper-container', {
 			speed: 400,
@@ -244,21 +245,18 @@ jQuery(document).ready( function() {
 				init: function () {
 		      if(jQuery('#canvas-webgl').length > 0) {
 						setTimeout(function() {
-							jQuery('#glitchJS').attr('src','/wp-content/plugins/catalogo-ragionato/inc/usr_public/glitch.js?gigi');
+							jQuery('#glitchJS').attr('src','/wp-content/plugins/catalogo-ragionato/inc/usr_public/glitch.js');
 							jQuery('#fl_swipercontainer .swiper-slide, #fl_swipercontainer .swiper-slide img').css('max-height',picHeight+'px');
 						},1500);
 					}
 		    },
 				click: function () {
-					var bigpic = jQuery('.swiper-slide-active > a').attr('data-big-pic');
-					// console.log('adding data-big-pic: '+bigpic);
-					setTimeout(function() {
-						// jQuery('.lity-image img').wrap( "<a href='"+bigpic+"' class='superzoom'></div>" );
-					},500);
+					// var bigpic = jQuery('.swiper-slide-active > a').attr('data-big-pic');
+					//console.log('adding data-big-pic: '+bigpic);
 				},
 			}
 		});
-	}
+	// }
 
 
 });
