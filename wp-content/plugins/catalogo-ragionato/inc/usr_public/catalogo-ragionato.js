@@ -111,6 +111,38 @@ VMbtn.on('click',function(){
 	}
 });
 
+// video before exhibitions 
+var quantividz = document.querySelectorAll('.videocont').length;
+if (quantividz !== 0) {
+	// <link href="https://vjs.zencdn.net/7.4.1/video-js.css" rel="stylesheet">
+	// <script src='https://vjs.zencdn.net/7.4.1/video.js'></script>
+	var pjs = document.createElement('script');
+	pjs.src = 'https://vjs.zencdn.net/7.4.1/video.js';
+	pjs.async = 'true';
+	document.body.appendChild(pjs);
+
+	var pcss = document.createElement('link');
+	pcss.href = 'https://vjs.zencdn.net/7.4.1/video-js.css';
+	pcss.rel = 'stylesheet';
+	document.head.appendChild(pcss);
+
+	var videoBox = '';
+	var videoUrl = '';
+	var psettings = '"controls": true, "autoplay": false, "preload": "auto", "fluid": true';
+
+	for (i=1; i<=quantividz; i++) {
+		console.log(i);
+		var id = i-1;
+		videoUrl = document.querySelectorAll('.videocont')[id].getAttribute('data-video');
+		videoBox += '<video id="RCvideo-'+id+'" class="video-js" controls preload="auto" width="640" height="264" data-setup=\'{'+psettings+'}\'><source src='+videoUrl+' type="video/mp4"></video>';
+	}	
+	var b = document.getElementById('viewmore_txt');
+	b.innerHTML = videoBox + b.innerHTML;
+
+}
+
+
+
 // SEARCH in Header
 var SForm = jQuery('#rc_searchform');
 SForm.find('.search-field').attr('placeholder','');
@@ -187,29 +219,10 @@ jQuery(document).ready( function() {
 		var picArr = swiper_activator.attr('data-otherpics').split(',');
 		var bigpicArr = swiper_activator.attr('data-otherpics-big').split(',');
 		var SWslides = '<div class="swiper-slide">'+swiper_first.html()+'</div>';
-		picArr.forEach(
-		function (item, index) {
-			console.log(item);
-			if (item.endsWith(".mp4")) {
-				// <link href="https://vjs.zencdn.net/7.4.1/video-js.css" rel="stylesheet">
-				// <script src='https://vjs.zencdn.net/7.4.1/video.js'></script>
-				var pjs = document.createElement('script');
-				pjs.src = 'https://vjs.zencdn.net/7.4.1/video.js';
-				pjs.async = 'true';
-				document.body.appendChild(pjs);
-
-				var pcss = document.createElement('link');
-				pcss.href = 'https://vjs.zencdn.net/7.4.1/video-js.css';
-				pcss.rel = 'stylesheet';
-				document.head.appendChild(pcss);
-
-				var psettings = '"controls": true, "autoplay": false, "preload": "auto", "fluid": true';
-
-				SWslides += '<div class="swiper-slide"><video id="RCvideo-'+index+'" class="video-js" controls preload="auto" width="640" height="264" data-setup=\'{'+psettings+'}\'> <source src='+item+' type="video/mp4"></div>';
-			} else {
-				SWslides += '<div class="swiper-slide"><a href="'+item+'" data-lity data-big-pic="'+bigpicArr[index]+'"><img src="'+item+'" /></a></div>';
-			}
-		});
+		// picArr.forEach(
+		// function (item, index) {
+		// 	console.log(item);
+		// });
 		swiper_activator.empty().append('<div class="swiper-container" id="fl_swipercontainer"><div class="swiper-wrapper">'+SWslides+'</div><div class="swiper-pagination"></div></div>');
 
 		var artworks_slider = new Swiper('.swiper-container', {

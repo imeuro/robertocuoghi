@@ -32,17 +32,6 @@
 				$otherpics_big_code.= wp_get_attachment_image_src($pic_id,'full')[0].',';
 			}
 		}
-		// video
-		$videos = get_field('art_additional_video', get_the_ID());
-		$videos_check = get_field('art_additional_video', get_the_ID())[0]['art_attached_video'];
-		// print_r($videos_check);
-		$videos_code = '';
-		if ($videos_check && $videos_check != '') {
-			foreach ($videos as $video) {
-				$videos_code.= $video['art_attached_video']['url'].',';
-			}
-		}
-		// print_r($videos_code);
 
 		?>
 		<figure <?php if (!empty($otherpics_code)) :
@@ -55,7 +44,6 @@
 				echo '<script src="'.plugins_url().'/catalogo-ragionato/inc/usr_public/three.min.js"></script>';
 				echo '<canvas class="p-canvas-webgl" id="canvas-webgl"></canvas>';
 			else :
-				//the_post_thumbnail('large');
 				echo '<img src="'.wp_get_attachment_image_src($post_thumbnail_id,'medium_large')[0].'" alt="'.get_the_title().'" />';
 			endif;
 			?>
@@ -76,6 +64,18 @@
 			}
 
 
+		// video
+		// $videos = get_field('art_additional_video', get_the_ID());
+		// $videos_check = get_field('art_additional_video', get_the_ID())[0]['art_attached_video'];
+		// // print_r($videos_check);
+		// $videos_code = '';
+		// if ($videos_check && $videos_check != '') {
+		// 	foreach ($videos as $video) {
+		// 		$videos_code.= $video['art_attached_video']['url'].',';
+		// 	}
+		// }
+		// print_r($videos_code);
+
 
 			$public_fields = array(
 				"art_dimensions",
@@ -85,6 +85,7 @@
 				"art_edition",
 				"art_unlocated",
 				"art_notes",
+				"art_additional_video",
 				"art_exhibitions",
 				"art_bibliography"
 			);
@@ -95,6 +96,14 @@
 
 
 				if ($public_field == 'art_photo_credits') { $pre_field = 'Photo: '; }
+				if ($public_field == 'art_additional_video') {
+					$vidz = get_field('art_additional_video', get_the_ID());
+					foreach ($vidz as $vid) {
+						$vidUrl = $vid['art_attached_video']['url'];
+						echo '<span class="videocont" data-video="'.$vidUrl.'"></span>';
+					}
+					continue;
+				}
 				if ($public_field == 'art_exhibitions') {
 					$pre_field = '<span id="viewmore_txt" class="closed"><span>Exhibitions:</span><br />';
 					$post_field = '</span><hr class="divider" /><button id="viewmore_btn"></button>';

@@ -992,3 +992,29 @@ img.rc-lazyload.rc-lazyloaded {
     margin-top: 150px;
 	}
 }
+
+
+
+
+/* videojs skin */
+.rc-container .video-js {
+	margin-bottom: 20px;
+}
+.rc-container .video-js .vjs-big-play-button {
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	border-radius: 50%;
+	width: 64px;
+	height: 64px;
+	border: none;
+}
+.rc-container .vjs-icon-placeholder:before {
+    line-height: 64px;
+}
+.rc-container .video-js .vjs-load-progress {
+    background: rgb(146, 147, 148);
+}
+.rc-container .video-js .vjs-load-progress div {
+	background: rgb(102, 102, 102);
+}
