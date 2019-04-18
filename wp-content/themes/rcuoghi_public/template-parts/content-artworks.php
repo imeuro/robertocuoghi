@@ -107,9 +107,11 @@
 				if ($public_field == 'art_photo_credits') { $pre_field = 'Photo: '; }
 				if ($public_field == 'art_additional_video') {
 					$vidz = get_field('art_additional_video', get_the_ID());
-					foreach ($vidz as $vid) {
-						$vidUrl = $vid['art_attached_video']['url'];
-						echo '<span class="videocont" data-video="'.$vidUrl.'"></span>';
+					if ($vidz && $vidz!== '') {
+						foreach ($vidz as $vid) {
+							$vidUrl = $vid['art_attached_video']['url'];
+							echo '<span class="videocont" data-video="'.$vidUrl.'"></span>';
+						}
 					}
 					continue;
 				}
