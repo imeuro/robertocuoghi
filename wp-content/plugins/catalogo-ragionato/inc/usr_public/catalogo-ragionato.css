@@ -1021,3 +1021,7 @@ img.rc-lazyload.rc-lazyloaded {
 .rc-container .video-js .vjs-fullscreen-control {
 	display: none;
 }
+.rc-video-caption {
+	display: inline-block;
+	padding-bottom: 30px;
+}

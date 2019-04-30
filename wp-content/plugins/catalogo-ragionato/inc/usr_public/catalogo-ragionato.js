@@ -141,7 +141,7 @@ if (quantividz !== 0) {
 		videoW = document.querySelectorAll('.videocont')[id].getAttribute('data-video-width');
 		videoH = document.querySelectorAll('.videocont')[id].getAttribute('data-video-height');
 		videoBox += '<video id="RCvideo-'+id+'" class="video-js" controls preload="auto" width="'+videoW+'" height="'+videoH+'" data-setup=\'{'+psettings+'}\'><source src='+videoUrl+' type="video/mp4"></video>';
-		videoBox += '<small>'+videoCap+'</small>';
+		videoBox += '<small class="rc-video-caption">'+videoCap+'</small>';
 	}	
 	var b = document.getElementById('viewmore_txt');
 	b.innerHTML = videoBox + b.innerHTML;

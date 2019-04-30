@@ -109,7 +109,7 @@
 					$vidz = get_field('art_additional_video', get_the_ID());
 					if ($vidz && $vidz!== '') {
 						foreach ($vidz as $vid) {
-							var_dump($vid['art_attached_video']);
+							// var_dump($vid['art_attached_video']);
 							$vidUrl = $vid['art_attached_video']['url'];
 							$vidCap = $vid['art_attached_video']['caption'];
 							$vidW = $vid['art_attached_video']['width'];
