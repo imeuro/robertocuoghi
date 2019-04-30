@@ -1018,3 +1018,6 @@ img.rc-lazyload.rc-lazyloaded {
 .rc-container .video-js .vjs-load-progress div {
 	background: rgb(102, 102, 102);
 }
+.rc-container .video-js .vjs-fullscreen-control {
+	display: none;
+}

@@ -128,13 +128,20 @@ if (quantividz !== 0) {
 
 	var videoBox = '';
 	var videoUrl = '';
+	var videoCap = '';
+	var videoW = '';
+	var videoH = '';
 	var psettings = '"controls": true, "autoplay": false, "preload": "auto", "fluid": true';
 
 	for (i=1; i<=quantividz; i++) {
 		console.log(i);
 		var id = i-1;
 		videoUrl = document.querySelectorAll('.videocont')[id].getAttribute('data-video');
-		videoBox += '<video id="RCvideo-'+id+'" class="video-js" controls preload="auto" width="640" height="264" data-setup=\'{'+psettings+'}\'><source src='+videoUrl+' type="video/mp4"></video>';
+		videoCap = document.querySelectorAll('.videocont')[id].getAttribute('data-video-caption');
+		videoW = document.querySelectorAll('.videocont')[id].getAttribute('data-video-width');
+		videoH = document.querySelectorAll('.videocont')[id].getAttribute('data-video-height');
+		videoBox += '<video id="RCvideo-'+id+'" class="video-js" controls preload="auto" width="'+videoW+'" height="'+videoH+'" data-setup=\'{'+psettings+'}\'><source src='+videoUrl+' type="video/mp4"></video>';
+		videoBox += '<small>'+videoCap+'</small>';
 	}	
 	var b = document.getElementById('viewmore_txt');
 	b.innerHTML = videoBox + b.innerHTML;

@@ -109,8 +109,12 @@
 					$vidz = get_field('art_additional_video', get_the_ID());
 					if ($vidz && $vidz!== '') {
 						foreach ($vidz as $vid) {
+							var_dump($vid['art_attached_video']);
 							$vidUrl = $vid['art_attached_video']['url'];
-							echo '<span class="videocont" data-video="'.$vidUrl.'"></span>';
+							$vidCap = $vid['art_attached_video']['caption'];
+							$vidW = $vid['art_attached_video']['width'];
+							$vidH = $vid['art_attached_video']['height'];
+							echo '<span class="videocont" data-video="'.$vidUrl.'"  data-video-width="'.$vidW.'"  data-video-height="'.$vidH.'" data-video-caption="'.$vidCap.'" ></span>';
 						}
 					}
 					continue;
