@@ -1001,11 +1001,8 @@ img.rc-lazyload.rc-lazyloaded {
 /* videojs skin */
 .rc-container .video-js,
 .rc-container .video-js.vjs-fluid {
-	width: 90vw;
-	max-width: 90vw;
-	margin: 20px auto;
-	margin-left: calc(-1 * ((90vw - 100%) / 2));
-	padding-top: 100%;
+	width: 100%;
+	max-width: 100%;
 }
 .rc-container .video-js .vjs-big-play-button {
 	top: 50%;
@@ -1031,12 +1028,4 @@ img.rc-lazyload.rc-lazyloaded {
 .rc-video-description {
 	display: block;
 	width: 100%;
-}
-@media all and (min-width: 480px) {
-	.rc-container .video-js,
-	.rc-container .video-js.vjs-fluid {
-		width: 100%;
-    max-width: 100%;
-		margin-left: auto;
-  }
 }
