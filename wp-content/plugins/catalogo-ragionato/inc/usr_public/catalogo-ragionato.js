@@ -137,11 +137,11 @@ if (quantividz !== 0) {
 		console.log(i);
 		var id = i-1;
 		videoUrl = document.querySelectorAll('.videocont')[id].getAttribute('data-video');
-		videoCap = document.querySelectorAll('.videocont')[id].getAttribute('data-video-caption');
+		videoCap = document.querySelectorAll('.videocont')[id].getAttribute('data-video-description');
 		videoW = document.querySelectorAll('.videocont')[id].getAttribute('data-video-width');
 		videoH = document.querySelectorAll('.videocont')[id].getAttribute('data-video-height');
 		videoBox += '<video id="RCvideo-'+id+'" class="video-js" controls preload="auto" width="'+videoW+'" height="'+videoH+'" data-setup=\'{'+psettings+'}\'><source src='+videoUrl+' type="video/mp4"></video>';
-		videoBox += '<small class="rc-video-caption">'+videoCap+'</small>';
+		videoBox += '<small class="rc-video-description">'+videoCap+'</small>';
 	}	
 	var b = document.getElementById('viewmore_txt');
 	b.innerHTML = videoBox + b.innerHTML;

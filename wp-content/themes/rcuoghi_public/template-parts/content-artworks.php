@@ -111,10 +111,10 @@
 						foreach ($vidz as $vid) {
 							// var_dump($vid['art_attached_video']);
 							$vidUrl = $vid['art_attached_video']['url'];
-							$vidCap = $vid['art_attached_video']['caption'];
+							$vidCap = $vid['art_attached_video']['description'];
 							$vidW = $vid['art_attached_video']['width'];
 							$vidH = $vid['art_attached_video']['height'];
-							echo '<span class="videocont" data-video="'.$vidUrl.'"  data-video-width="'.$vidW.'"  data-video-height="'.$vidH.'" data-video-caption="'.$vidCap.'" ></span>';
+							echo '<span class="videocont" data-video="'.$vidUrl.'"  data-video-width="'.$vidW.'"  data-video-height="'.$vidH.'" data-video-description="'.$vidCap.'" ></span>';
 						}
 					}
 					continue;
