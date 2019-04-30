@@ -530,7 +530,9 @@ aside.artworks-navi li a:hover {
   font-weight: 300;
   color: #929394;
 }
-
+@media all and (min-width: 480px) {
+	.single .artworks .entry-content { padding: 10px 60px; }
+}
 .single .artworks .rc-artwork-photos {
   display: flex;
   flex-flow: row wrap;
@@ -997,8 +999,12 @@ img.rc-lazyload.rc-lazyloaded {
 
 
 /* videojs skin */
-.rc-container .video-js {
+.rc-container .video-js,
+.rc-container .video-js.vjs-fluid {
+	width: 90vw;
+	max-width: 90vw;
 	margin: 20px auto;
+	margin-left: calc(-1 * ((90vw - 100%) / 2));
 }
 .rc-container .video-js .vjs-big-play-button {
 	top: 50%;
@@ -1022,6 +1028,14 @@ img.rc-lazyload.rc-lazyloaded {
 	display: none;
 }
 .rc-video-description {
-	display: inline-block;
-	padding-bottom: 30px;
+	display: block;
+	width: 100%;
+}
+@media all and (min-width: 480px) {
+	.rc-container .video-js,
+	.rc-container .video-js.vjs-fluid {
+		width: 100%;
+    max-width: 100%;
+		margin-left: auto;
+  }
 }
