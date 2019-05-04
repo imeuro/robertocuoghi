@@ -1026,6 +1026,10 @@ img.rc-lazyload.rc-lazyloaded {
 	display: none;
 }
 .rc-video-description {
-	display: block;
-	width: 100%;
+    display: block;
+    width: calc(100% - 20px);
+    margin: 10px 10px 20px 10px;
+    font-size: 12px;
+    line-height: 16px;
+    box-sizing: border-box;
 }
