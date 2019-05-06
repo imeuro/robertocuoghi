@@ -1004,6 +1004,11 @@ img.rc-lazyload.rc-lazyloaded {
 	width: 100%;
 	max-width: 100%;
 }
+.rc-container .video-js.RCvideo-vertical {
+    width: 100%;
+    max-width: 320px;
+    margin: 0;
+}
 .rc-container .video-js .vjs-big-play-button {
 	top: 50%;
 	left: 50%;

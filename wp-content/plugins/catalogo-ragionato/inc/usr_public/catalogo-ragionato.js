@@ -112,7 +112,8 @@ VMbtn.on('click',function(){
 });
 
 // video before exhibitions 
-var quantividz = document.querySelectorAll('.videocont').length;
+var vidz = document.querySelectorAll('.videocont');
+var quantividz = vidz.length;
 if (quantividz !== 0) {
 	// <link href="https://vjs.zencdn.net/7.4.1/video-js.css" rel="stylesheet">
 	// <script src='https://vjs.zencdn.net/7.4.1/video.js'></script>
@@ -131,20 +132,46 @@ if (quantividz !== 0) {
 	var videoCap = '';
 	var videoW = '';
 	var videoH = '';
-	var psettings = '"controls": true, "autoplay": false, "preload": "auto", "fluid": true';
+	var psettings = '"controls": true, "autoplay": false, "preload": "metadata", "fluid": true';
+	var player = '';
 
 	for (i=1; i<=quantividz; i++) {
 		console.log(i);
 		var id = i-1;
-		videoUrl = document.querySelectorAll('.videocont')[id].getAttribute('data-video');
-		videoCap = document.querySelectorAll('.videocont')[id].getAttribute('data-video-description');
-		videoW = document.querySelectorAll('.videocont')[id].getAttribute('data-video-width');
-		videoH = document.querySelectorAll('.videocont')[id].getAttribute('data-video-height');
-		videoBox += '<video id="RCvideo-'+id+'" class="video-js" controls preload="auto" width="'+videoW+'" height="'+videoH+'" data-setup=\'{'+psettings+'}\'><source src='+videoUrl+' type="video/mp4"></video>';
+		videoUrl = vidz[id].getAttribute('data-video');
+		videoCap = vidz[id].getAttribute('data-video-description');
+		videoW = vidz[id].getAttribute('data-video-width');
+		videoH = vidz[id].getAttribute('data-video-height');
+		// videoBox += '<video id="RCvideo-'+id+'" class="video-js" data-setup=\'{'+psettings+'}\'><source src='+videoUrl+' type="video/mp4"></video>';
+		videoBox += '<video id="RCvideo-'+id+'" class="video-js"></video>';
 		videoBox += '<small class="rc-video-description">'+videoCap+'</small>';
-	}	
+
+
+  }
+
+
+
 	var b = document.getElementById('viewmore_txt');
 	b.innerHTML = videoBox + b.innerHTML;
+
+
+	pjs.onload = function() {
+
+		player = videojs('RCvideo-'+id);
+		player.src({type: "video/mp4", src: videoUrl});
+		player.controls(true);
+		player.autoplay(false);
+		player.preload('metadata');
+		if (videoH>videoW) {
+			player.fluid(false);
+			player.width(320);
+			player.height((videoH*320)/videoW);
+			player.addClass('RCvideo-vertical');
+		} else {
+			player.fluid(true);
+		}
+
+	}	
 
 }
 
