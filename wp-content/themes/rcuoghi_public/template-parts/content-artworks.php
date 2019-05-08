@@ -73,19 +73,6 @@
 			}
 
 
-		// video
-		// $videos = get_field('art_additional_video', get_the_ID());
-		// $videos_check = get_field('art_additional_video', get_the_ID())[0]['art_attached_video'];
-		// // print_r($videos_check);
-		// $videos_code = '';
-		// if ($videos_check && $videos_check != '') {
-		// 	foreach ($videos as $video) {
-		// 		$videos_code.= $video['art_attached_video']['url'].',';
-		// 	}
-		// }
-		// print_r($videos_code);
-
-
 			$public_fields = array(
 				"art_dimensions",
 				"art_materials",
@@ -114,7 +101,7 @@
 							$vidCap = $vid['art_attached_video']['description'];
 							$vidW = $vid['art_attached_video']['width'];
 							$vidH = $vid['art_attached_video']['height'];
-							echo '<span class="videocont" data-video="'.$vidUrl.'"  data-video-width="'.$vidW.'"  data-video-height="'.$vidH.'" data-video-description="'.$vidCap.'" ></span>';
+							echo '<span class="videocont initvid" data-video="'.$vidUrl.'"  data-video-width="'.$vidW.'"  data-video-height="'.$vidH.'" data-video-description="'.$vidCap.'" ></span>';
 						}
 					}
 					continue;

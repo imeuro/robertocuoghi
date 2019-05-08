@@ -112,9 +112,8 @@ VMbtn.on('click',function(){
 });
 
 // video before exhibitions 
-var vidz = document.querySelectorAll('.videocont');
-var quantividz = vidz.length;
-if (quantividz !== 0) {
+var vid = document.querySelectorAll('.initvid');
+if (vid.length !== 0) {
 	// <link href="https://vjs.zencdn.net/7.4.1/video-js.css" rel="stylesheet">
 	// <script src='https://vjs.zencdn.net/7.4.1/video.js'></script>
 	var pjs = document.createElement('script');
@@ -126,6 +125,11 @@ if (quantividz !== 0) {
 	pcss.href = 'https://vjs.zencdn.net/7.4.1/video-js.css';
 	pcss.rel = 'stylesheet';
 	document.head.appendChild(pcss);
+}
+
+var vidz = document.querySelectorAll('.videocont');
+var quantividz = vidz.length;
+if (quantividz !== 0) {
 
 	var videoBox = '';
 	var videoUrl = '';

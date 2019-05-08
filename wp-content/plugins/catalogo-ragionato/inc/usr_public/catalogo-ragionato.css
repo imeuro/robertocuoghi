@@ -367,6 +367,21 @@ a.backhome:hover + span {
   animation-direction: reverse;
 }
 
+/*
+// cinema putiferio
+*/
+article.rc-text-tit {
+    display: block;
+    width: 100%;
+}
+article.rc-text-tit a.post-ttitle {
+    text-transform: uppercase;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    padding: 20px 0 0 0;
+    font-weight: 700;
+}
 
 /*--------------------------------------------------------------
 # SIDEBAR
