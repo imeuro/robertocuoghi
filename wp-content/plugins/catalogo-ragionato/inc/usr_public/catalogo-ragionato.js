@@ -111,7 +111,7 @@ VMbtn.on('click',function(){
 	}
 });
 
-// video before exhibitions 
+// video player init
 var vid = document.querySelectorAll('.initvid');
 if (vid.length !== 0) {
 	// <link href="https://vjs.zencdn.net/7.4.1/video-js.css" rel="stylesheet">
@@ -183,31 +183,39 @@ if (RCplayer) {
 
 	var RCplayerBox = '';
 	var CinePlayer = '';
+	var CineItems = document.querySelectorAll('article .cine-title');
+	var firstCineItem = CineItems[0].getAttribute('data-video-url');
 
 	RCplayerBox += '<video id="cineplayer" class="video-js"></video>';
 	RCplayerBox += '<small class="rc-video-description"></small>';
 
 	var b = document.getElementById('cinecontainer');
-	b.innerHTML = videoBox + b.innerHTML;
+	b.innerHTML = RCplayerBox + b.innerHTML;
 
 
 	pjs.onload = function() {
 
 		CinePlayer = videojs('cineplayer');
-		CinePlayer.src({type: "video/mp4", src: videoUrl});
+		CinePlayer.src({type: "video/mp4", src: firstCineItem});
 		CinePlayer.controls(true);
 		CinePlayer.autoplay(false);
 		CinePlayer.preload('metadata');
-		if (videoH>videoW) {
-			player.fluid(false);
-			player.width(320);
-			player.height((videoH*320)/videoW);
-			player.addClass('RCvideo-vertical');
-		} else {
-			CinePlayer.fluid(true);
-		}
+		CinePlayer.fluid(true);
+		CinePlayer.play();
 
 	}	
+
+	CineItems[0].classList.add('current');
+
+	for(var i = 0; i<CineItems.length; i++) {
+    CineItems[i].onclick = function(){
+    	document.querySelectorAll('article .cine-title.current')[0].classList.remove('current');
+    	var CineItem = this.getAttribute('data-video-url');
+    	this.classList.add('current');
+			CinePlayer.src({type: "video/mp4", src: CineItem});
+			CinePlayer.play();
+		};
+	}
 
 }
 

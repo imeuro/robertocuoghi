@@ -37,14 +37,18 @@ get_header();
 		<?php if ( have_posts() ) { ?>
 
 		<div class="archive-posts">
-			<span id="cinecontainer"></span>
+			<span id="cinecontainer" class="initvid"></span>
+			<nav id="cineremote">
 		<?php
 			while ( have_posts() ) {
 				the_post();
+				//var_dump($post);
+				$vid = get_field('art_additional_video', $post->ID)[0]["art_attached_video"];
+				//var_dump($vid);
 				?>
 
 				<article id="title-<?php the_ID(); ?>" <?php post_class('rc-text-tit'); ?>>
-					<a class="post-ttitle" href="<?php the_permalink(); ?>" aria-hidden="true" tabindex="-1">
+					<a class="cine-title" data-video-url="<?php echo $vid['url']; ?>" aria-hidden="true" tabindex="-1">
 						<?php the_title_attribute( array( 'echo' => true, ) ); ?>
 					</a>
 				</article>
@@ -52,6 +56,7 @@ get_header();
 			<?php
 			}
 		?>
+			</nav>
 		</div>
 
 		<?php

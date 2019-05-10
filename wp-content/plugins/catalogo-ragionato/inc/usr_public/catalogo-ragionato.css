@@ -373,15 +373,29 @@ a.backhome:hover + span {
 article.rc-text-tit {
     display: block;
     width: 100%;
+    margin: 0 0 10px 0;
 }
-article.rc-text-tit a.post-ttitle {
+
+a.cine-title {
     text-transform: uppercase;
-    text-decoration: none;
-    display: block;
-    width: 100%;
-    padding: 20px 0 0 0;
+    cursor: pointer;
+}
+a.cine-title.current {
+    color: #222;
     font-weight: 700;
 }
+
+#cinecontainer {
+    width: 75%;
+    margin-top: 20px;
+}
+#cineremote {
+    width: 20%;
+    margin-top: 20px;
+    padding: 0 2.5%;
+    float: right;
+}
+
 
 /*--------------------------------------------------------------
 # SIDEBAR
