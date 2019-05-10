@@ -101,7 +101,7 @@
 							$vidCap = $vid['art_attached_video']['description'];
 							$vidW = $vid['art_attached_video']['width'];
 							$vidH = $vid['art_attached_video']['height'];
-							echo '<span class="videocont initvid" data-video="'.$vidUrl.'"  data-video-width="'.$vidW.'"  data-video-height="'.$vidH.'" data-video-description="'.$vidCap.'" ></span>';
+							echo '<span class="initvid artwork-videocont" data-video="'.$vidUrl.'"  data-video-width="'.$vidW.'"  data-video-height="'.$vidH.'" data-video-description="'.$vidCap.'" ></span>';
 						}
 					}
 					continue;

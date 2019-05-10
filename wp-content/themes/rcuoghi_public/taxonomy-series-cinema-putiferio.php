@@ -37,6 +37,7 @@ get_header();
 		<?php if ( have_posts() ) { ?>
 
 		<div class="archive-posts">
+			<span id="cinecontainer"></span>
 		<?php
 			while ( have_posts() ) {
 				the_post();

@@ -127,33 +127,30 @@ if (vid.length !== 0) {
 	document.head.appendChild(pcss);
 }
 
-var vidz = document.querySelectorAll('.videocont');
+// video in scheda artwork:
+var vidz = document.querySelectorAll('.artwork-videocont');
 var quantividz = vidz.length;
 if (quantividz !== 0) {
 
 	var videoBox = '';
 	var videoUrl = '';
-	var videoCap = '';
+	var videoDesc = '';
 	var videoW = '';
 	var videoH = '';
-	var psettings = '"controls": true, "autoplay": false, "preload": "metadata", "fluid": true';
 	var player = '';
 
 	for (i=1; i<=quantividz; i++) {
 		console.log(i);
 		var id = i-1;
 		videoUrl = vidz[id].getAttribute('data-video');
-		videoCap = vidz[id].getAttribute('data-video-description');
+		videoDesc = vidz[id].getAttribute('data-video-description');
 		videoW = vidz[id].getAttribute('data-video-width');
 		videoH = vidz[id].getAttribute('data-video-height');
-		// videoBox += '<video id="RCvideo-'+id+'" class="video-js" data-setup=\'{'+psettings+'}\'><source src='+videoUrl+' type="video/mp4"></video>';
 		videoBox += '<video id="RCvideo-'+id+'" class="video-js"></video>';
-		videoBox += '<small class="rc-video-description">'+videoCap+'</small>';
+		videoBox += '<small class="rc-video-description">'+videoDesc+'</small>';
 
 
   }
-
-
 
 	var b = document.getElementById('viewmore_txt');
 	b.innerHTML = videoBox + b.innerHTML;
@@ -173,6 +170,41 @@ if (quantividz !== 0) {
 			player.addClass('RCvideo-vertical');
 		} else {
 			player.fluid(true);
+		}
+
+	}	
+
+}
+
+
+// player in cinema putiferio:
+var RCplayer = document.querySelectorAll('.cinema-player');
+if (RCplayer) {
+
+	var RCplayerBox = '';
+	var CinePlayer = '';
+
+	RCplayerBox += '<video id="cineplayer" class="video-js"></video>';
+	RCplayerBox += '<small class="rc-video-description"></small>';
+
+	var b = document.getElementById('cinecontainer');
+	b.innerHTML = videoBox + b.innerHTML;
+
+
+	pjs.onload = function() {
+
+		CinePlayer = videojs('cineplayer');
+		CinePlayer.src({type: "video/mp4", src: videoUrl});
+		CinePlayer.controls(true);
+		CinePlayer.autoplay(false);
+		CinePlayer.preload('metadata');
+		if (videoH>videoW) {
+			player.fluid(false);
+			player.width(320);
+			player.height((videoH*320)/videoW);
+			player.addClass('RCvideo-vertical');
+		} else {
+			CinePlayer.fluid(true);
 		}
 
 	}	
@@ -252,18 +284,8 @@ jQuery(document).ready( function() {
 
 	// IN PAGE SWIPER:
 	var swiper_activator = jQuery('figure[data-mode="swiper"]');
-	// var swiper_first = swiper_activator;
-	// if (swiper_activator.attr('data-otherpics')) { // populate & init swiper.js
-	// 	var picArr = swiper_activator.attr('data-otherpics').split(',');
-	// 	var bigpicArr = swiper_activator.attr('data-otherpics-big').split(',');
-	// 	//var SWslides = '<div class="swiper-slide">'+swiper_first.html()+'</div>';
-	// 	var SWslides = '';
-	// 	picArr.forEach(
-	// 	function (item, index) {
-	// 		SWslides += '<div class="swiper-slide"><a href="'+item+'" data-lity data-big-pic="'+bigpicArr[index]+'"><img src="'+item+'" /></a></div>';
-	// 	});
-	// 	swiper_activator.empty().append('<div class="swiper-container" id="fl_swipercontainer"><div class="swiper-wrapper">'+SWslides+'</div><div class="swiper-pagination"></div></div>');
 
+	if(swiper_activator.length !== 0) {
 		var artworks_slider = new Swiper('.swiper-container', {
 			speed: 400,
 			spaceBetween: 100,
@@ -294,7 +316,7 @@ jQuery(document).ready( function() {
 				},
 			}
 		});
-	// }
+	}
 
 
 });
