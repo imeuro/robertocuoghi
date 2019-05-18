@@ -178,6 +178,7 @@ if (quantividz !== 0) {
 
 
 // player in cinema putiferio:
+/*
 var RCplayer = document.querySelectorAll('.cinema-player');
 if (RCplayer) {
 
@@ -218,7 +219,7 @@ if (RCplayer) {
 	}
 
 }
-
+*/
 
 
 // SEARCH in Header

@@ -36,9 +36,7 @@ get_header();
 
 		<?php if ( have_posts() ) { ?>
 
-		<div class="archive-posts">
-			<span id="cinecontainer" class="initvid"></span>
-			<nav id="cineremote">
+		<div class="archive-posts cinema-putiferio">
 		<?php
 			while ( have_posts() ) {
 				the_post();
@@ -48,15 +46,15 @@ get_header();
 				?>
 
 				<article id="title-<?php the_ID(); ?>" <?php post_class('rc-text-tit'); ?>>
-					<a class="cine-title" data-video-url="<?php echo $vid['url']; ?>" aria-hidden="true" tabindex="-1">
-						<?php the_title_attribute( array( 'echo' => true, ) ); ?>
-					</a>
+					<video id='video-<?php the_ID(); ?>' class='video-js initvid' controls preload='auto' width='640' height='264' data-setup='{"controls": true, "preload": "auto", "fluid": true}'>
+    				<source src='<?php echo $vid['url']; ?>' type='video/mp4'>
+    			</video>
+					<?php // the_title_attribute( array( 'echo' => true, ) ); ?>
 				</article>
 
 			<?php
 			}
 		?>
-			</nav>
 		</div>
 
 		<?php
@@ -75,7 +73,9 @@ get_header();
 		$term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) );
 		?>
 		<aside class="artworks-navi <?php echo 'render-'.$pcls; ?>" data-tax="<?php echo $term->taxonomy ?>" data-term="<?php echo $term->name ?>">
-			<ul id="cat-filter"><?php get_template_part( 'template-parts/artworks', 'nav' ); ?></ul>
+			<ul id="cat-filter">
+				<li class="series cinema-putiferio" style="width: 100%"><h2 class="highlight">Cinema Putiferio</h2></li>
+			</ul>
 		</aside>
 
 		<div class="page-load-status">

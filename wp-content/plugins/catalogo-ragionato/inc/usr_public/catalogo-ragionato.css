@@ -223,8 +223,8 @@ a.backhome:hover + span {
 
 .page #main { flex: 1 0 100%; }
 #main.archive-main { order: 1; transition: opacity 500ms linear;}
-@media all and (max-width: 1000px){
-	#main.archive-main { order: 2; }
+@media all and (max-width: 960px){
+	#main.archive-main { order: 2; width: 100%;}
 	a.backhome {
 		top: 15px;
 	  left: 25px;
@@ -385,15 +385,9 @@ a.cine-title.current {
     font-weight: 700;
 }
 
-#cinecontainer {
-    width: 75%;
-    margin-top: 20px;
-}
-#cineremote {
-    width: 20%;
-    margin-top: 20px;
-    padding: 0 2.5%;
-    float: right;
+.cinema-putiferio article {
+    margin: 25px auto;
+    max-width: 768px;
 }
 
 
