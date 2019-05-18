@@ -1061,3 +1061,9 @@ img.rc-lazyload.rc-lazyloaded {
     line-height: 16px;
     box-sizing: border-box;
 }
+
+video.video-js.initvid { 
+	opacity:0;
+	transition: opacity 500ms linear;
+}
+div.video-js.initvid { opacity:1; }
