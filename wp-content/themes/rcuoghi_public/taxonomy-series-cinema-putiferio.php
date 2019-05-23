@@ -42,6 +42,7 @@ get_header();
 				the_post();
 				//var_dump($post);
 				$vid = get_field('art_additional_video', $post->ID)[0]["art_attached_video"];
+				// poster='MY_VIDEO_POSTER.jpg'
 				//var_dump($vid);
 				?>
 
