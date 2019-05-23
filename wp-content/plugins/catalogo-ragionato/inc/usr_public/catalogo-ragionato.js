@@ -99,6 +99,9 @@ jQuery(document).on('scroll', function(){
 				asaid.removeClass('fixd').removeAttr('style');
 				if (sw < 999) {
 					mein.css('opacity','1');
+					asaid.children('ul').children('li').each(function(){
+						jQuery(this).show().removeClass('open');
+					})
 				}
 			},1000);
 		}
