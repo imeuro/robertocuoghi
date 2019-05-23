@@ -30,54 +30,63 @@ secondseries.children('li').eq(0).addClass('meta-cat');
 series.eq(0).find('ul').append(secondseries.html());
 secondseries.remove();
 
-// se siamo in pagina archivio per taxonomy, sostituisci nome taxonomy con term (!!)
-if ( asaid.attr('data-term') && asaid.attr('data-term').length !== 0 ) {
-	console.log('siamo in una tax');
-	var curtax = asaid.attr('data-tax');
-	var curterm = asaid.attr('data-term');
-	asaid.children('ul').children('li.'+curtax).children('H2').addClass('highlight').html(curterm);
-}
-
-
-tituli.on('click',function(){
-	// reset
-	cunteiners.slideUp();
-	cunteiners.removeClass('open');
-	if (sw < 999) {
-		mein.css('opacity','0');
+if (secondseries.length !== 0) {
+	// se siamo in pagina archivio per taxonomy, sostituisci nome taxonomy con term (!!)
+	if ( asaid.attr('data-term') && asaid.attr('data-term').length !== 0 ) {
+		console.log('siamo in una tax');
+		var curtax = asaid.attr('data-tax');
+		var curterm = asaid.attr('data-term');
+		asaid.children('ul').children('li.'+curtax).children('H2').addClass('highlight').html(curterm);
 	}
-	if(!jQuery(this).hasClass('open')) { // se è chiuso
-		jQuery(this).siblings('ul').addClass('open');
-		jQuery(this).siblings('ul').slideDown(500);
-		tituli.removeClass('open');
-		jQuery(this).addClass('open');
-		if (asaid.length !== 0) {
-			var adjust = 0;
-			if (sw < 999) {
-				adjust = 10;
-			}
-			setTimeout(function(){
-				asaid.addClass('fixd').css({
-					'position':'relative',
-					'top': (window.scrollY+adjust)+'px'
-				});
 
-			},600);
-		}
-
-
-	} else { // se è aperto
-		jQuery(this).removeClass('open');
-		if (asaid.length !== 0) {
-			asaid.removeClass('fixd').removeAttr('style');
-		}
+	tituli.on('click',function(){
+		// reset
+		cunteiners.slideUp();
+		cunteiners.removeClass('open');
 		if (sw < 999) {
-			mein.css('opacity','1');
+			mein.css('opacity','0');
 		}
-	}
+		if(!jQuery(this).hasClass('open')) { // se è chiuso
+			jQuery(this).siblings('ul').slideDown(500);
+			jQuery(this).siblings('ul').addClass('open');
+			tituli.removeClass('open');
+			jQuery(this).addClass('open');
+			if (asaid.length !== 0) {
+				var adjust = 0;
+				if (sw < 999) {
+					adjust = 10;
+					asaid.children('ul').children('li').each(function(){
+						jQuery(this).hide();
+					})
+					jQuery(this).parent().removeAttr('style').addClass('open');
+				}
+				setTimeout(function(){
+					asaid.addClass('fixd').css({
+						'position':'relative',
+						'top': (window.scrollY+adjust)+'px'
+					});
+
+				},600);
+			}
 
 
-});
+		} else { // se è aperto
+			jQuery(this).removeClass('open');
+			if (asaid.length !== 0) {
+				asaid.removeClass('fixd').removeAttr('style');
+			}
+			if (sw < 999) {
+				mein.css('opacity','1');
+				asaid.children('ul').children('li').each(function(){
+					jQuery(this).show();
+				})
+				jQuery(this).parent().removeClass('open');
+			}
+		}
+
+
+	});
+}
 
 jQuery(document).on('scroll', function(){
 	if (asaid.length !== 0) {

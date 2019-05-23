@@ -74,7 +74,7 @@ get_header();
 		?>
 		<aside class="artworks-navi <?php echo 'render-'.$pcls; ?>" data-tax="<?php echo $term->taxonomy ?>" data-term="<?php echo $term->name ?>">
 			<ul id="cat-filter">
-				<li class="series cinema-putiferio" style="width: 100%"><h2 class="highlight">Cinema Putiferio</h2></li>
+				<li class="series cinema-putiferio" style="width: 100%"><h2 class="noclick">Cinema Putiferio</h2></li>
 			</ul>
 		</aside>
 
