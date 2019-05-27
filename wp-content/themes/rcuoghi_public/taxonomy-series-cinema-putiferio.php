@@ -42,12 +42,16 @@ get_header();
 				the_post();
 				//var_dump($post);
 				$vid = get_field('art_additional_video', $post->ID)[0]["art_attached_video"];
-				// poster='MY_VIDEO_POSTER.jpg'
-				//var_dump($vid);
+				$post_thumbnail_id = get_post_thumbnail_id( get_the_ID() );
+				$poster="";
+				if($post_thumbnail_id) {
+					$poster = 'poster="'.get_the_post_thumbnail_url("$post->ID",'medium_large').'"';
+				}
+
 				?>
 
 				<article id="title-<?php the_ID(); ?>" <?php post_class('rc-text-tit'); ?>>
-					<video id='video-<?php the_ID(); ?>' class='video-js initvid' controls preload='auto' width='640' height='264' data-setup='{"controls": true, "preload": "auto", "fluid": true}'>
+					<video id='video-<?php the_ID(); ?>' class='video-js initvid' controls preload='auto' width='640' height='264' <?php echo $poster ?> data-setup='{"controls": true, "preload": "auto", "fluid": true}'>
     				<source src='<?php echo $vid['url']; ?>' type='video/mp4'>
     			</video>
 					<?php // the_title_attribute( array( 'echo' => true, ) ); ?>

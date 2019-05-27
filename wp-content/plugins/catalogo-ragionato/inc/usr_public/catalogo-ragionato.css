@@ -1061,6 +1061,9 @@ img.rc-lazyload.rc-lazyloaded {
 .rc-container .video-js .vjs-fullscreen-control {
 	display: none;
 }
+.rc-container .vjs-poster {
+	background-size: cover;
+}
 .rc-video-description {
     display: block;
     width: calc(100% - 20px);
@@ -1075,3 +1078,4 @@ video.video-js.initvid {
 	transition: opacity 500ms linear;
 }
 div.video-js.initvid { opacity:1; }
+
