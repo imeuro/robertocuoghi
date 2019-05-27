@@ -370,6 +370,14 @@ a.backhome:hover + span {
 /*
 // cinema putiferio
 */
+.tax-term-description {
+	text-align: center;
+	max-width: 768px;
+	margin: 2 auto;
+	font-size: 14px;
+	line-height: 18px;
+}
+
 article.rc-text-tit {
     display: block;
     width: 100%;

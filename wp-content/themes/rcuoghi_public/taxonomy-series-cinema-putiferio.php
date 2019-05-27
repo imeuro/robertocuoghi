@@ -37,6 +37,9 @@ get_header();
 		<?php if ( have_posts() ) { ?>
 
 		<div class="archive-posts cinema-putiferio">
+			<?php if (term_description( 701, 'series' ) !== null) {
+				echo '<h4 class="tax-term-description">'.term_description( 701, "series" ).'</h4>';
+			} ?>
 		<?php
 			while ( have_posts() ) {
 				the_post();
