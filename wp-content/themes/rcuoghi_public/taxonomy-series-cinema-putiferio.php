@@ -34,15 +34,37 @@ get_header();
 
 		<main id="main" class="archive-main <?php echo 'render-'.$pcls; ?>">
 
-		<?php if ( have_posts() ) { ?>
+	<?php 
+	$paged = ( get_query_var('page') ) ? get_query_var('page') : 1;
+	$args = array(
+	    'orderby' => 'date',
+	    'order'   => 'DESC',
+	    'post_type' => 'artworks',
+		'tax_query' => array(
+		        array (
+		            'taxonomy' => 'series',
+		            'field' => 'slug',
+		            'terms' => 'cinema-putiferio',
+		        )
+		    ),
+	    'posts_per_page' => 20,
+	    'paged' => $paged
+	);
+
+	$query = new WP_Query( $args );
+
+	//print_r($query);
+	// die();
+	if ( $query->have_posts() ) { ?>
 
 		<div class="archive-posts cinema-putiferio">
 			<?php if (term_description( 701, 'series' ) !== null) {
 				echo '<h4 class="tax-term-description">'.term_description( 701, "series" ).'</h4>';
 			} ?>
 		<?php
-			while ( have_posts() ) {
-				the_post();
+			// while ( have_posts() ) {
+			while ($query->have_posts()) {
+				$query->the_post();
 				//var_dump($post);
 				$vid = get_field('art_additional_video', $post->ID)[0]["art_attached_video"];
 				$post_thumbnail_id = get_post_thumbnail_id( get_the_ID() );
