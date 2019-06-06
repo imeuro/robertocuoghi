@@ -58,9 +58,17 @@ get_header();
 	if ( $query->have_posts() ) { ?>
 
 		<div class="archive-posts cinema-putiferio">
-			<?php if (term_description( 701, 'series' ) !== null) {
+			<?php 
+			if (term_description( 701, 'series' ) !== null) {
 				echo '<h4 class="tax-term-description">'.term_description( 701, "series" ).'</h4>';
-			} ?>
+			} 
+			$term = get_queried_object();
+			$mobDesc = get_field('tax_desc_mobile', $term);
+			if ($mobDesc && $mobDesc!=='') {
+				echo '<h4 class="tax-term-description-mobile">'.$mobDesc.'</h4>';
+			}
+
+			?>
 		<?php
 			// while ( have_posts() ) {
 			while ($query->have_posts()) {

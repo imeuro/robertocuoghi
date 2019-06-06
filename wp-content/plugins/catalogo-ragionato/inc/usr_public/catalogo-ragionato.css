@@ -374,15 +374,23 @@ a.backhome:hover + span {
   max-width: 768px;
   margin: 0 auto;
 }
-.tax-term-description {
+.tax-term-description,
+.tax-term-description-mobile {
 	text-align: center;
-	display: block;
 	width: 100%;
 	max-width: 768px;
 	margin: 10px auto;
 	font-size: 16px;
   line-height: 22px;
 }
+
+.tax-term-description {display: none;}
+.tax-term-description-mobile {display: block;}
+@media all and (min-width:768px) {
+	.tax-term-description-mobile {display: none;}
+	.tax-term-description {display: block;}
+}
+
 
 article.rc-text-tit {
     display: block;
