@@ -97,8 +97,10 @@
 					if ($vidz && $vidz!== '') {
 						foreach ($vidz as $vid) {
 							echo '<span style="display:none;">';
-							if ($vid['art_attached_video'] !== NULL) {
-								echo '</span>';
+							echo '$vid["art_attached_video"]';
+							echo '</span>';
+							if ($vid['art_attached_video'] && $vid['art_attached_video'] !== NULL) {
+								
 								$vidUrl = $vid['art_attached_video']['url'];
 								$vidCap = $vid['art_attached_video']['description'];
 								$vidW = $vid['art_attached_video']['width'];
