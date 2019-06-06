@@ -97,7 +97,7 @@
 					if ($vidz && $vidz!== '') {
 						foreach ($vidz as $vid) {
 							echo '<span style="display:none;">';
-							echo '$vid["art_attached_video"]';
+							echo $vid["art_attached_video"];
 							echo '</span>';
 							if ($vid['art_attached_video'] && $vid['art_attached_video'] !== NULL) {
 								
