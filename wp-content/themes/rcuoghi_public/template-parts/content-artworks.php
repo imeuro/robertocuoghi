@@ -97,13 +97,14 @@
 					if ($vidz && $vidz!== '') {
 						foreach ($vidz as $vid) {
 							echo '<span style="display:none;">';
-							var_dump($vid['art_attached_video']);
-							echo '</span>';
-							$vidUrl = $vid['art_attached_video']['url'];
-							$vidCap = $vid['art_attached_video']['description'];
-							$vidW = $vid['art_attached_video']['width'];
-							$vidH = $vid['art_attached_video']['height'];
-							echo '<span class="initvid artwork-videocont" data-video="'.$vidUrl.'"  data-video-width="'.$vidW.'"  data-video-height="'.$vidH.'" data-video-description="'.$vidCap.'" ></span>';
+							if ($vid['art_attached_video'] !== NULL) {
+								echo '</span>';
+								$vidUrl = $vid['art_attached_video']['url'];
+								$vidCap = $vid['art_attached_video']['description'];
+								$vidW = $vid['art_attached_video']['width'];
+								$vidH = $vid['art_attached_video']['height'];
+								echo '<span class="initvid artwork-videocont" data-video="'.$vidUrl.'"  data-video-width="'.$vidW.'"  data-video-height="'.$vidH.'" data-video-description="'.$vidCap.'" ></span>';
+							};
 						}
 					}
 					continue;

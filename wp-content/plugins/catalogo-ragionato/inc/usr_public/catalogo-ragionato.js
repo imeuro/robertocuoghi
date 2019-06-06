@@ -165,7 +165,7 @@ if (quantividz !== 0) {
   }
 
 	var b = document.getElementById('viewmore_txt');
-	b.innerHTML = videoBox + b.innerHTML;
+	if (b) { b.innerHTML = videoBox + b.innerHTML };
 
 
 	pjs.onload = function() {
