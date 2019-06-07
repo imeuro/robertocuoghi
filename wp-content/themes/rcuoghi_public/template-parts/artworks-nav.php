@@ -5,7 +5,7 @@ $list_series_args = array(
 	'title_li' 	=> '<h2>ARTWORKS</h2>',
 	'hierarchical' => true,
 	'orderby'		=> 'slug',
-	'exclude_tree'		=> 	430	// childs of 'non-categories'
+	'exclude_tree'	=> 	array(430,702)	// childs of 'non-categories'
 );
 $list_series_noncats_args = array(
 	'taxonomy' 	=> 'series',
@@ -13,6 +13,13 @@ $list_series_noncats_args = array(
 	'hierarchical' => true,
 	'orderby'		=> 'slug',
 	'child_of'		=> 	430	// childs of 'non-categories'
+);
+$list_series_noncats2_args = array(
+	'taxonomy' 	=> 'series',
+	'title_li' 	=> '<span class="hidden">Ciname Putiferio</span>',
+	'hierarchical' => true,
+	'orderby'		=> 'slug',
+	'child_of'		=> 	702	// childs of 'non-categories'
 );
 
 $list_media_args = array(
@@ -28,6 +35,7 @@ $list_year_args = array(
 );
 wp_list_categories( $list_series_args );
 wp_list_categories( $list_series_noncats_args );
+wp_list_categories( $list_series_noncats2_args );
 wp_list_categories( $list_media_args );
 wp_list_categories( $list_year_args );
 ?>
