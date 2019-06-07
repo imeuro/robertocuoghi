@@ -5,7 +5,7 @@ $list_series_args = array(
 	'title_li' 	=> '<h2>ARTWORKS</h2>',
 	'hierarchical' => true,
 	'orderby'		=> 'slug',
-	'exclude_tree'	=> 	array(430,702)	// childs of 'non-categories'
+	'exclude_tree'	=> 	array(430,720)	// childs of 'non-categories'
 );
 $list_series_noncats_args = array(
 	'taxonomy' 	=> 'series',
@@ -19,7 +19,7 @@ $list_series_noncats2_args = array(
 	'title_li' 	=> '<span class="hidden">Ciname Putiferio</span>',
 	'hierarchical' => true,
 	'orderby'		=> 'slug',
-	'child_of'		=> 	702	// childs of 'non-categories'
+	'child_of'		=> 	720	// childs of 'non-categories'
 );
 
 $list_media_args = array(
