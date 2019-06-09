@@ -113,20 +113,6 @@ jQuery(document).on('scroll', function(){
 	}
 });
 
-// WIEW MORE Button
-var VMbtn = jQuery('#viewmore_btn, .viewmore_btn');
-var VMtxt = jQuery('#viewmore_txt, .viewmore_txt');
-VMbtn.on('click',function(){
-	VMtxt.slideToggle();
-	VMbtn.toggleClass('open');
-	if (VMtxt.hasClass('closed')) {
-		VMtxt.removeClass('closed');
-		//VMbtn.text('Close');
-	} else {
-		VMtxt.addClass('closed');
-		//VMbtn.text('View more');
-	}
-});
 
 // video player init
 var vid = document.querySelectorAll('.initvid');
@@ -163,14 +149,22 @@ if (quantividz !== 0) {
 		videoDesc = vidz[id].getAttribute('data-video-description');
 		videoW = vidz[id].getAttribute('data-video-width');
 		videoH = vidz[id].getAttribute('data-video-height');
-		videoBox += '<video id="RCvideo-'+id+'" class="video-js"></video>';
+		videoBox += '<video id="RCvideo-'+id+'" class="video-js initvid"></video>';
 		videoBox += '<small class="rc-video-description">'+videoDesc+'</small>';
 
 
   }
 
 	var b = document.getElementById('viewmore_txt');
-	if (b) { b.innerHTML = videoBox + b.innerHTML };
+	if (b) { 
+		b.innerHTML = videoBox + b.innerHTML 
+	} else { // fix if no exibitions, still displays the video
+		var c = document.createElement('p');
+		c.setAttribute('class','art_exhibitions');
+		var d = document.getElementById('rc-artwork-caption');
+		d.appendChild(c);
+		c.innerHTML ='<span id="viewmore_txt" class="closed">'+videoBox+'</span><hr class="divider" /><button id="viewmore_btn"></button>';
+	}	
 
 
 	pjs.onload = function() {
@@ -193,51 +187,20 @@ if (quantividz !== 0) {
 
 }
 
-
-// player in cinema putiferio:
-/*
-var RCplayer = document.querySelectorAll('.cinema-player');
-if (RCplayer) {
-
-	var RCplayerBox = '';
-	var CinePlayer = '';
-	var CineItems = document.querySelectorAll('article .cine-title');
-	var firstCineItem = CineItems[0].getAttribute('data-video-url');
-
-	RCplayerBox += '<video id="cineplayer" class="video-js"></video>';
-	RCplayerBox += '<small class="rc-video-description"></small>';
-
-	var b = document.getElementById('cinecontainer');
-	b.innerHTML = RCplayerBox + b.innerHTML;
-
-
-	pjs.onload = function() {
-
-		CinePlayer = videojs('cineplayer');
-		CinePlayer.src({type: "video/mp4", src: firstCineItem});
-		CinePlayer.controls(true);
-		CinePlayer.autoplay(false);
-		CinePlayer.preload('metadata');
-		CinePlayer.fluid(true);
-		CinePlayer.play();
-
-	}	
-
-	CineItems[0].classList.add('current');
-
-	for(var i = 0; i<CineItems.length; i++) {
-    CineItems[i].onclick = function(){
-    	document.querySelectorAll('article .cine-title.current')[0].classList.remove('current');
-    	var CineItem = this.getAttribute('data-video-url');
-    	this.classList.add('current');
-			CinePlayer.src({type: "video/mp4", src: CineItem});
-			CinePlayer.play();
-		};
+// WIEW MORE Button
+var VMbtn = jQuery('#viewmore_btn, .viewmore_btn');
+var VMtxt = jQuery('#viewmore_txt, .viewmore_txt');
+VMbtn.on('click',function(){
+	VMtxt.slideToggle();
+	VMbtn.toggleClass('open');
+	if (VMtxt.hasClass('closed')) {
+		VMtxt.removeClass('closed');
+		//VMbtn.text('Close');
+	} else {
+		VMtxt.addClass('closed');
+		//VMbtn.text('View more');
 	}
-
-}
-*/
-
+});
 
 // SEARCH in Header
 var SForm = jQuery('#rc_searchform');
