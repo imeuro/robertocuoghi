@@ -17,6 +17,9 @@
 		$is_unlocated = get_post_custom_values('art_unlocated', get_the_ID())[0];
 		$is_damaged = get_post_custom_values('art_damaged', get_the_ID())[0];
 
+		$audio_track = get_field('art_additional_audio', get_the_ID())[0];
+		$audio_track_check = get_field('art_additional_audio', get_the_ID())[0]['art_attached_audio'];
+
 		$post_thumbnail_id = get_post_thumbnail_id( get_the_ID() );
 
 		// altre foto
@@ -39,6 +42,15 @@
 			// aggiungo la featured alla fine (...#@*!)
 			$generated_code .= "\n<div class=\"swiper-slide\">\n\t<a href=\"".wp_get_attachment_image_src($post_thumbnail_id,'medium_large')[0]."\" data-lity>\n\t\t<img src=\"".wp_get_attachment_image_src($post_thumbnail_id,'medium_large')[0]."\"alt=\"".get_the_title()."\" />\n\t</a>\n</div>";
 			$generated_code .= "\n</div>\n<div class=\"swiper-pagination\"></div>\n</div>\n\n</figure>\n\n";
+
+		} 
+		elseif (!empty($audio_track_check)) { // traccia audio
+			//print_r($audio_track);
+			foreach ($audio_track as $atrack) {
+				$audio_id = $atrack['ID'];
+				$poster = wp_get_attachment_image_src($post_thumbnail_id,'medium_large')[0];
+				$generated_code .= "<br/><br/><video id='audio-".$audio_id."' class='video-js audiotrack initvid' controls preload='auto' width='600' height='488' poster='".$poster."' data-setup='{\"controls\": true, \"preload\": \"auto\", \"fluid\": true}' style='padding-top: 71.5%;'><source src='".$atrack['url']."' type='video/mp4'></video>\n";
+			}
 
 		} else { // una sola foto: semplice img src
 
