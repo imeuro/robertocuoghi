@@ -147,8 +147,8 @@ if (quantividz !== 0) {
 		var id = i-1;
 		videoUrl = vidz[id].getAttribute('data-video');
 		videoDesc = vidz[id].getAttribute('data-video-description');
-		videoW = vidz[id].getAttribute('data-video-width');
-		videoH = vidz[id].getAttribute('data-video-height');
+		videoW = Math.floor(vidz[id].getAttribute('data-video-width'));
+		videoH = Math.floor(vidz[id].getAttribute('data-video-height'));
 		videoBox += '<video id="RCvideo-'+id+'" class="video-js initvid"></video>';
 		videoBox += '<small class="rc-video-description">'+videoDesc+'</small>';
 
