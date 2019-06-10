@@ -1,4 +1,6 @@
 *.log
+.DS_Store
+
 wp-config.php
 wp-content/advanced-cache.php
 wp-content/backup-db/
@@ -13,7 +15,6 @@ wp-content/mu-plugins/
 wp-content/wp-cache-config.php
 wp-content/plugins/*
 !wp-content/plugins/catalogo-ragionato/
-
 wp-admin/
 wp-includes/
 

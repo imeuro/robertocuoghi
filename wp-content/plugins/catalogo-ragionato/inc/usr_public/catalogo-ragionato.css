@@ -619,6 +619,7 @@ p.art_exhibitions {
 p.art_exhibitions #viewmore_txt,
 p.viewmore_txt {
   display: none;
+  width: 100%;
 }
 p.art_exhibitions #viewmore_txt > span:first-child,
 p.viewmore_txt > span:first-child {
