@@ -1060,7 +1060,7 @@ img.rc-lazyload.rc-lazyloaded {
 .rc-container .video-js.RCvideo-vertical {
     width: 100%;
     max-width: 320px;
-    margin: 0;
+    margin: 20px auto;
 }
 .rc-container .video-js .vjs-big-play-button {
 	top: 50%;
@@ -1101,3 +1101,9 @@ video.video-js.initvid {
 }
 div.video-js.initvid { opacity:1; }
 
+@media (min-width: 1280px) {
+	.rc-container .video-js.RCvideo-vertical {
+	    margin: 0;
+	}
+
+}
