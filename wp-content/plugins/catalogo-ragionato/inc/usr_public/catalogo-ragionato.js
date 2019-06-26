@@ -239,6 +239,17 @@ var initlazyload = function() {
 }
 
 
+var logoLinkUrl = function() {
+	var curdomain = document.referrer.indexOf(location.protocol + "//" + location.host);
+	//event.preventDefault();
+	if (curdomain === 0) { // we already were browsing the website --> back button
+		history.back();
+	} else { // direct hit from outside --> /artworks
+		var relpath = '';
+		if (location.host !== 'www.robertocuoghi.com') { relpath = '/robertocuoghi'; }
+		document.location = location.protocol + "//" + location.host + relpath + '/artworks/';
+	}
+}
 
 
 
@@ -261,15 +272,22 @@ jQuery(document).ready( function() {
 
 	// DISATTIVATO PER DEBUG, POI RIATTIVARE!
 	//
-  // jQuery(document).on("contextmenu",function(e){
-  //   if(e.target.nodeName != "INPUT" && e.target.nodeName != "TEXTAREA")
-  //     e.preventDefault();
-  //   	console.log(e.target.nodeName);
-  // });
+	// jQuery(document).on("contextmenu",function(e){
+	//   if(e.target.nodeName != "INPUT" && e.target.nodeName != "TEXTAREA")
+	//     e.preventDefault();
+	//   	console.log(e.target.nodeName);
+	// });
 
-  initinfscroll()
-  initlazyload();
-	
+	initinfscroll()
+	initlazyload();
+
+	var coniglioEffect = document.getElementById("coniglioEffect");
+	if (coniglioEffect && coniglioEffect !== null) {
+		coniglioEffect.addEventListener("click", function(event){
+			event.preventDefault();
+			logoLinkUrl();
+		});
+	}
 
 	// IN PAGE SWIPER:
 	var swiper_activator = jQuery('figure[data-mode="swiper"]');

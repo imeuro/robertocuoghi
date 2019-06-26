@@ -44,9 +44,9 @@
 								<img class="shake" src="<?php echo get_template_directory_uri()."/icons/icon-192x192.png"; ?>" alt="<?php bloginfo( 'name' ); ?>" />
 							</a>
 						</h1>
-					<?php elseif(is_single): ?>
+					<?php elseif(is_single()): ?>
 						<h2 class="site-title">
-							<a href="javascript:history.go(-1);" rel="prev">
+							<a href="<?php echo esc_url( home_url( '/artworks/' ) ); ?>" id="coniglioEffect" rel="prev">
 								<span><img class="shake" src="<?php echo get_template_directory_uri()."/icons/icon-192x192.png"; ?>" alt="<?php bloginfo( 'name' ); ?>" /></span>
 							</a>
 						</h2>
