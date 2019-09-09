@@ -1109,7 +1109,7 @@ div.video-js.initvid { opacity:1; }
 
 }
 
-body.post-type-archive-artworks article.media_type-sound,
+/* body.post-type-archive-artworks article.media_type-sound, */
 body.post-type-archive-artworks article.series-cinema-putiferio {
     display: none;
 }
