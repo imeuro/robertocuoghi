@@ -16,6 +16,7 @@ get_header();
 		$picsz = 'medium_large';
 ?>
 
+<?php if ( have_posts() ) : ?>
 
 	<div id="primary" class="content-area">
 
@@ -35,7 +36,6 @@ get_header();
 
 		<main id="main" class="archive-main <?php echo 'render-'.$pcls; ?>">
 
-		<?php if ( have_posts() ) : ?>
 
 		<div class="archive-posts">
 		<?php
@@ -53,11 +53,6 @@ get_header();
 
 			the_posts_navigation();
 
-		else :
-
-			get_template_part( 'template-parts/content', 'none' );
-
-		endif;
 		?>
 
 	</main><!-- #main -->
@@ -81,4 +76,10 @@ get_header();
 
 <?php
 get_sidebar();
+
+else :
+	get_template_part( 'template-parts/content', 'none' );
+
+endif;
+
 get_footer();
