@@ -63,6 +63,7 @@
         VTag.addEventListener("canplay", BGfadein);
         function BGfadein() {
             console.log('BGfadein running');
+			Vtag.play();
             setTimeout(() => {
                 Pcont.classList.remove('hidden');
             }, 500);
