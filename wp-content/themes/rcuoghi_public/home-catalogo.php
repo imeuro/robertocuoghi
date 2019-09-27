@@ -48,7 +48,7 @@
     </style>
     <script>
         var Vcont = document.getElementById('videocontainer');
-        var VTag = document.querySelector('#videocontent');
+        var VTag = document.getElementById('videocontent');
         var Pcont = document.querySelector('.homepage .onecol');
 
         Vcont.addEventListener("click", Vfadeout);
