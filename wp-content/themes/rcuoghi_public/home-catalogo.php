@@ -48,7 +48,7 @@
     </style>
     <script>
         var Vcont = document.getElementById('videocontainer');
-        var VTag = document.getElementById('videocontent');
+        var Vtag = document.getElementById('videocontent');
         var Pcont = document.querySelector('.homepage .onecol');
 
         Vcont.addEventListener("click", Vfadeout);
@@ -60,7 +60,7 @@
             }, 500);
         };
 
-        VTag.addEventListener("canplay", BGfadein);
+        Vtag.addEventListener("canplay", BGfadein);
         function BGfadein() {
             console.log('BGfadein running');
 			Vtag.play();
