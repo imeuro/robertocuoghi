@@ -48,12 +48,13 @@
     var Vtag = document.getElementById('videocontent');
     var Pcont = document.querySelector('.homepage .onecol');
     
-    var Vurl = 'https://www.robertocuoghi.com/wp-content/uploads/intro/Retrobalera_1080';
 
     Pcont.classList.add('hidden'); // ASAP!
 
     var chooseVideoFormat = function() {
         var sw = window.innerWidth;
+        var Vurl = 'https://www.robertocuoghi.com/wp-content/uploads/intro/Retrobalera_1080';
+
         if (sw < 640) {
             Vurl = 'https://www.robertocuoghi.com/wp-content/uploads/intro/Retrobalera_mob';
         }
@@ -64,17 +65,18 @@
         Vsource2.setAttribute('type','video/webm');
         Vsource2.setAttribute('src',Vurl + '.webm');
         Vtag.innerHTML = "";
+
         Vtag.append(Vsource1);
         Vtag.append(Vsource2);
-        Vtag.load();
 
-        //console.log('video chosen: '+Vurl);
+        Vtag.load();
+        console.log('video chosen: '+Vurl);
     }
 
     chooseVideoFormat();
 
     window.onresize = function(event) {
-        setTimeout(chooseVideoFormat(),500)
+        setTimeout(chooseVideoFormat(),500);
     };
 
     Vcont.addEventListener("click", Vfadeout);
