@@ -15,7 +15,7 @@
     <video id="videocontent" autoplay loop muted playsinline></video>
 </div>
 <style>
-    body {
+    body.fixed {
         overflow: hidden;
         position: fixed;
     }
@@ -82,7 +82,8 @@
     Vcont.addEventListener("click", Vfadeout);
     function Vfadeout() {
         // console.log('Vcont clicked');
-        Vcont.className += ' hidden';
+        Vcont.classList.add('hidden');
+        document.body.classList.remove('fixed');
         setTimeout(() => {
             Vcont.remove();
         }, 500);
@@ -91,6 +92,7 @@
     Vtag.addEventListener("canplay", BGfadein);
     function BGfadein() {
         console.log('BGfadein running');
+        document.body.classList.add('fixed');
         Vtag.play();
         setTimeout(() => {
             Pcont.classList.remove('hidden');
