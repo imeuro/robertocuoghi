@@ -14,6 +14,7 @@
 <!-- ARTIFIZIO OMINI -->
 <div id="videocontainer" class="fullscreen-video"> 
         <video id="videocontent" autoplay loop muted playsinline> 
+            <source src="https://www.robertocuoghi.com/wp-content/uploads/intro/Retrobalera_mob.mp4" type=video/mp4  media="all and (max-width: 480px)">
             <source src="https://www.robertocuoghi.com/wp-content/uploads/intro/Retrobalera_1080.mp4" type=video/mp4>
             <source src="https://www.robertocuoghi.com/wp-content/uploads/intro/Retrobalera_1080.webm" type=video/webm>
         </video>
