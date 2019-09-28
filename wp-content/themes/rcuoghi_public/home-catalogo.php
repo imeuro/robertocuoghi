@@ -32,6 +32,11 @@
         transition: opacity 500ms ease-in-out;
         cursor: pointer;
     }
+    @media all and (max-width:640px) {
+        div#videocontainer {
+            left: 12.5%;
+        }
+    }
     #videocontainer.hidden,
     .homepage .onecol.hidden { opacity : 0; }
     video {
