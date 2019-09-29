@@ -31,12 +31,9 @@
         opacity: 1;
         transition: opacity 500ms ease-in-out;
         cursor: pointer;
+        backgroud: #fff;
     }
-    @media all and (max-width:640px) {
-        div#videocontainer {
-            left: 12.5%;
-        }
-    }
+
     #videocontainer.hidden,
     .homepage .onecol.hidden { opacity : 0; }
     video {
@@ -57,7 +54,7 @@
     Pcont.classList.add('hidden'); // ASAP!
 
     var chooseVideoFormat = function() {
-        var sw = window.innerWidth;
+        var sw = jQuery(window).width();
         var Vurl = 'https://www.robertocuoghi.com/wp-content/uploads/intro/Retrobalera_1080';
 
         if (sw < 640) {
@@ -78,7 +75,7 @@
         console.log('video chosen: '+Vurl);
     }
 
-    chooseVideoFormat();
+    setTimeout(chooseVideoFormat(),500);
 
     window.onresize = function(event) {
         setTimeout(chooseVideoFormat(),500);
