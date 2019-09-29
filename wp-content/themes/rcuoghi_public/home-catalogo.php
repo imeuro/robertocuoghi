@@ -58,7 +58,7 @@
         var Vurl = 'https://www.robertocuoghi.com/wp-content/uploads/intro/Retrobalera_1080';
 
         if (sw < 640) {
-            Vurl = 'https://www.robertocuoghi.com/wp-content/uploads/intro/Retrobalera_mob';
+            Vurl = 'https://www.robertocuoghi.com/wp-content/uploads/intro/Retrobalera_1080';
         }
         var Vsource1 = document.createElement('source');
         Vsource1.setAttribute('type','video/mp4');
