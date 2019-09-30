@@ -674,7 +674,6 @@ h2.site-title {
 	    max-width: 1440px;
 	    margin: 0 auto;
 	}
-	h1.site-title,
 }
 @media all and (min-width: 1920px) {
 	.rc-container {
@@ -683,7 +682,6 @@ h2.site-title {
 	    max-width: 2560px;
 	    margin: 0 auto;
 	}
-	h1.site-title,
 }
 
 /*--------------------------------------------------------------
