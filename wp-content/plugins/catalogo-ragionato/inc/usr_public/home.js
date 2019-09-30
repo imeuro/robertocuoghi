@@ -4,6 +4,11 @@ var VMbtn = jQuery('.viewmore_btn');
 var VMtxt = jQuery('.viewmore_txt');
 var offTop = col.offset().top;
 
+// ARTIFIZIO OMINI
+var Pcont = document.querySelector('.homepage .onecol');
+var Vcont = document.getElementById('videocontainer');
+var Vtag = document.getElementById('videocontent');
+
 
 $(document).ready(function () {
 
@@ -46,10 +51,73 @@ function randomNumberFromRange(min,max) {
 
 function initHome() {
 
-		VMbtn.on('click',function(){
-			//VMtxt.slideToggle(300);
-			console.log('testo...');
-		});
+	VMbtn.on('click',function(){
+		//VMtxt.slideToggle(300);
+		console.log('display testo...');
+		// tracking gente che vede le note to collectors..
+		// così per curiosità mia.
+		var VMaction = 'open';
+		if( this.classList.contains('open') !== true  ) {
+			VMaction = 'close';
+		}
+		gtag('event', 'notes_collector', {
+			'event_category' : 'homepage',
+			'event_label' : 'toggled '+VMaction
+		  });
+	});
 
+	if (Pcont && Vcont) { 
+		Pcont.classList.add('hidden'); // ASAP!
+
+		console.log('check se siamo in home...');
+		setTimeout(chooseVideoFormat(),500);
+
+
+		window.onresize = function(event) {
+			setTimeout(chooseVideoFormat(),500);
+		};
+		Vcont.addEventListener("click", Vfadeout);
+		Vtag.addEventListener("canplay", BGfadein);
+		function BGfadein() {
+			console.log('BGfadein running');
+			document.body.classList.add('fixed');
+			Vtag.play();
+			setTimeout(() => {
+				Pcont.classList.remove('hidden');
+			}, 500);
+		};
+
+	}
 
 }
+
+// ARTIFIZIO OMINI
+var chooseVideoFormat = function() {
+	var sw = jQuery(window).width();
+	var Vurl = 'https://www.robertocuoghi.com/wp-content/uploads/intro/Retrobalera_1080';
+
+	if (sw < 640) {
+		Vurl = 'https://www.robertocuoghi.com/wp-content/uploads/intro/Retrobalera_12col';
+	}
+	var Vsource1 = document.createElement('source');
+	Vsource1.setAttribute('type','video/mp4');
+	Vsource1.setAttribute('src',Vurl + '.mp4');
+	var Vsource2 = document.createElement('source');
+	Vsource2.setAttribute('type','video/webm');
+	Vsource2.setAttribute('src',Vurl + '.webm');
+	Vtag.innerHTML = "";
+
+	Vtag.append(Vsource1);
+	Vtag.append(Vsource2);
+
+	Vtag.load();
+	console.log('video chosen: '+Vurl);
+}
+var Vfadeout = function() {
+	// console.log('Vcont clicked');
+	Vcont.classList.add('hidden');
+	document.body.classList.remove('fixed');
+	setTimeout(() => {
+		Vcont.remove();
+	}, 500);
+};
