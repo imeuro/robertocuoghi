@@ -14,37 +14,6 @@
 <div id="videocontainer" class="fullscreen-video"> 
     <video id="videocontent" autoplay loop muted playsinline></video>
 </div>
-<style>
-    body.fixed {
-        overflow: hidden;
-        position: fixed;
-    }
-    #page { float: left; }
-    div#videocontainer {
-        position: absolute;
-        top: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 100vw;
-        height: 100vh;
-        z-index: 1000;
-        opacity: 1;
-        transition: opacity 500ms ease-in-out;
-        cursor: pointer;
-        backgroud: #fff;
-    }
-
-    #videocontainer.hidden,
-    .homepage .onecol.hidden { opacity : 0; }
-    #videocontainer video {
-        min-height: 100vh;
-        width: auto;
-        min-width: 100vw;
-        position: relative;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-</style>  
 <!-- END ARTIFIZIO OMINI -->
 
 
