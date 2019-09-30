@@ -834,11 +834,11 @@ span.left.copyright {
 	#rc_searchform { right: 60px; }
 	#rc_searchform .search-field { width: 120px; }
 	span.left.copyright {
-		background-size: 120% 120%;
+		background-size: 100% 100%;
 		background-position: -15px 2px;
 		margin-top: 5px;
 		text-indent: -9999px;
-		width: 200px;
+		width: 175px;
 		height: 30px;
 	}
 }
