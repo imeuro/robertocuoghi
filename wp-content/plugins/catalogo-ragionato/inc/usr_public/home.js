@@ -94,10 +94,10 @@ function initHome() {
 // ARTIFIZIO OMINI
 var chooseVideoFormat = function() {
 	var sw = jQuery(window).width();
-	var Vurl = 'https://www.robertocuoghi.com/wp-content/uploads/intro/Retrobalera_1080';
+	var Vurl = 'https://www.robertocuoghi.com/wp-content/uploads/intro/Retrobalera_9col';
 
 	if (sw < 640) {
-		Vurl = 'https://www.robertocuoghi.com/wp-content/uploads/intro/Retrobalera_12col';
+		Vurl = 'https://www.robertocuoghi.com/wp-content/uploads/intro/Retrobalera_9col';
 	}
 	var Vsource1 = document.createElement('source');
 	Vsource1.setAttribute('type','video/mp4');
