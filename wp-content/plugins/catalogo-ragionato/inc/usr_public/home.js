@@ -66,26 +66,18 @@ function initHome() {
 		  });
 	});
 
-	if (Pcont && Vcont) { 
+	if (Vcont && Vcont.classList.contains('playing') === false) { 
 		Pcont.classList.add('hidden'); // ASAP!
-
+		document.body.classList.add('fixed');
 		console.log('check se siamo in home...');
-		setTimeout(chooseVideoFormat(),500);
+		setTimeout(chooseVideoFormat(),100);
 
 
 		window.onresize = function(event) {
 			setTimeout(chooseVideoFormat(),500);
 		};
 		Vcont.addEventListener("click", Vfadeout);
-		Vtag.addEventListener("canplay", BGfadein);
-		function BGfadein() {
-			console.log('BGfadein running');
-			document.body.classList.add('fixed');
-			Vtag.play();
-			setTimeout(() => {
-				Pcont.classList.remove('hidden');
-			}, 500);
-		};
+		//Vtag.addEventListener("canplay", BGfadein);
 
 	}
 
@@ -111,13 +103,23 @@ var chooseVideoFormat = function() {
 	Vtag.append(Vsource2);
 
 	Vtag.load();
+	Vtag.play();
+	Vcont.classList.add('playing');
 	console.log('video chosen: '+Vurl);
 }
 var Vfadeout = function() {
 	// console.log('Vcont clicked');
 	Vcont.classList.add('hidden');
-	document.body.classList.remove('fixed');
 	setTimeout(() => {
 		Vcont.remove();
+		document.body.classList.remove('fixed');
+		Pcont.classList.remove('hidden');
 	}, 500);
+};
+
+var BGfadein = function() {
+		console.log('BGfadein running');
+		setTimeout(() => {
+			
+		}, 500);
 };
