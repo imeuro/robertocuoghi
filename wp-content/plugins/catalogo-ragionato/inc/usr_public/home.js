@@ -3,6 +3,7 @@ var sw = jQuery(window).width();
 var VMbtn = jQuery('.viewmore_btn');
 var VMtxt = jQuery('.viewmore_txt');
 var offTop = col.offset().top;
+var Entrypoints = document.querySelectorAll('.homepage a[href*="/artworks"]');
 
 // ARTIFIZIO OMINI
 var Pcont = document.querySelector('.homepage .onecol');
@@ -51,6 +52,18 @@ function randomNumberFromRange(min,max) {
 
 function initHome() {
 
+	var Entrypoints = document.querySelectorAll('.homepage a[href*="artworks"]');
+	var EPts = Array.from(Entrypoints);
+	Entrypoints.forEach(function(a){
+		a.onclick = function(e) {
+			// e.preventDefault();
+			gtag('event', 'entrypoint', {
+				'event_category' : 'homepage',
+				'event_label' : 'enter website'
+			});
+		}
+	});
+
 	VMbtn.on('click',function(){
 		//VMtxt.slideToggle(300);
 		console.log('display testo...');
@@ -89,7 +102,7 @@ var chooseVideoFormat = function() {
 	var Vurl = 'https://www.robertocuoghi.com/wp-content/uploads/intro/Retrobalera_9col';
 
 	if (sw < 640) {
-		Vurl = 'https://www.robertocuoghi.com/wp-content/uploads/intro/Retrobalera_9col';
+		Vurl = 'https://www.robertocuoghi.com/wp-content/uploads/intro/Retrobalera_12col';
 	}
 	var Vsource1 = document.createElement('source');
 	Vsource1.setAttribute('type','video/mp4');
