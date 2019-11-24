@@ -12,7 +12,7 @@ var Vtag = document.getElementById('videocontent');
 
 
 $(document).ready(function () {
-
+	
 	console.log('-- Window width: '+sw);
 
 	initHome();
@@ -82,7 +82,7 @@ function initHome() {
 	if (Vcont && Vcont.classList.contains('playing') === false) { 
 		Pcont.classList.add('hidden'); // ASAP!
 		document.body.classList.add('fixed');
-		console.log('check se siamo in home...');
+		//console.log('check se siamo in home...');
 		setTimeout(chooseVideoFormat(),100);
 
 
