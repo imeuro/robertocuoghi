@@ -1057,6 +1057,7 @@ img.rc-lazyload.rc-lazyloaded {
 .rc-container .video-js.vjs-fluid {
 	width: 100%;
 	max-width: 100%;
+	background-color: #fff;
 }
 .rc-container .video-js.RCvideo-vertical {
     width: 100%;
