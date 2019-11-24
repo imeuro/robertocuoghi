@@ -166,6 +166,6 @@ div#videocontainer {
 	width: auto;
 	min-width: 100%;
 	position: relative;
-	left: 50%;
+	left: calc(50% + 10px);
 	transform: translateX(-50%);
 }
