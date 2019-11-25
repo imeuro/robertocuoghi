@@ -99,7 +99,7 @@ function initHome() {
 // ARTIFIZIO OMINI
 var chooseVideoFormat = function() {
 	var sw = jQuery(window).width();
-	var Vurl = 'https://www.robertocuoghi.com/wp-content/uploads/intro/Retrobalera_12col';
+	var Vurl = 'https://www.robertocuoghi.com/wp-content/uploads/intro/Retrobalera_9col';
 
 	if (sw < 640) {
 		Vurl = 'https://www.robertocuoghi.com/wp-content/uploads/intro/Retrobalera_9col';
