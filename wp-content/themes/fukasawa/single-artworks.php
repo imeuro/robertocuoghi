@@ -104,47 +104,59 @@
 						<?php
 				    $artworks_fields = get_artworks_fields();
 				    foreach ( $artworks_fields as $name => $field ):
-							$key = $field['label'];
-				      $value = $field['value'];
 
-							if ($name != 'art_unlocated' && !empty($value)) :
+						$key = $field['label'];
+						$value = $field['value'];
 
-								if ($name == 'art_additional_images' && !empty($value)) :
+						if (is_array($value) === true) :
+							// echo '<pre>';
+							// print_r($name);
+							// echo '</pre>';
 
-									$value = array_filter($value);
-									echo '<li class="key"><strong>'.$key.':</strong></li>';
-									echo '<li class="value">';
-									foreach ( $value as $arr_field ) :
-										$attachment_ID = $arr_field['art_attached_images']['ID'];
-										echo '<a href="'.get_attachment_link($attachment_ID).'" target="_blank">'.wp_get_attachment_image( $attachment_ID, 'thumbnail', "", array( "class" => "img-responsive art_additional_images_icon" )).'</a>';
-									endforeach;
+							if ($name == 'art_additional_images') {
+								$arr_name = 'art_attached_images';
+							} elseif ($name == 'art_additional_video') {
+								$arr_name = 'art_attached_video';
+							} elseif ($name == 'art_attachments') {
+								$arr_name = 'art_attachment';
+							}
 
-								elseif ($name == 'art_attachments' && !empty($value) ) :
-									//print_r($value[0][0]);
-									$value = array_filter($value);
-									echo '<li class="key"><strong>'.$key.':</strong></li>';
-									echo '<li class="value">';
-									foreach ( $value as $arr_field ) :
-										$attachment_ID = $arr_field['art_attachment']['ID'];
-										//print_r($arr_field['art_attachment']);
-										echo '<a href="'.$arr_field['art_attachment']['url'].'" target="_blank">'.$arr_field['art_attachment']['filename'].'</a><br>';
-									endforeach;
-
-								elseif ($name == 'art_copyright' && !empty($value) ) :
-
-									//$value = array_filter($value);
-									echo '<li class="key"><strong>'.$key.':</strong></li>';
-									echo '<li class="value">yes';
-
-								else:
-									echo '<li class="key"><strong>'.$key.':</strong></li>';
-									echo '<li class="value">';
-									echo $value;
+							$value = array_filter($value);
+							echo '<li class="key"><strong>'.$key.':</strong></li>';
+							echo '<li class="value">';
+							
+							foreach ( $value as $arr_field ) :
+								// echo '<pre>';
+								// print_r( $arr_field);
+								// echo '</pre>';
+								if (!empty($arr_field[$arr_name])) :
+									echo '<a href="'.$arr_field[$arr_name]['url'].'" target="_blank">'.wp_get_attachment_image($arr_field[$arr_name]['ID'],'thumbnail',true).'</a><br>';
 								endif;
+							endforeach;
 
-								echo '</li>';
+							continue;
 
+						elseif ($name != 'art_unlocated' && !empty($value)) :
+
+
+
+
+							if ($name == 'art_copyright' ) :
+
+								//$value = array_filter($value);
+								echo '<li class="key"><strong>'.$key.':</strong></li>';
+								echo '<li class="value">yes';
+
+							else:
+								echo '<li class="key"><strong>'.$key.':</strong></li>';
+								echo '<li class="value">';
+								echo $value;
 							endif;
+
+							echo '</li>';
+
+						endif;
+
 				    endforeach;
 
 						if (get_field('art_unlocated') && (get_field('art_unlocated')=='1')) :
