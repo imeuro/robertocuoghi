@@ -65,13 +65,19 @@ function catalogo_scriptsnstyles() {
 
 
 		if ( is_home() || is_front_page() ) {
-			wp_enqueue_style( 'slick', plugin_dir_url( __FILE__ ) . $usr_path . '/slick.css', array(), '', 'all');
-			wp_enqueue_style( 'home', plugin_dir_url( __FILE__ ) . $usr_path . '/home.css', array(), '', 'all');
-			wp_enqueue_script( 'home', plugin_dir_url( __FILE__ ) . $usr_path . '/home.js', array('rcuoghi_public-jquery'), '', true );
-			wp_enqueue_script( 'slick', plugin_dir_url( __FILE__ ) . $usr_path . '/slick.min.js', array('rcuoghi_public-jquery'), '', true );
+
+			$cacheBusterCSS = date("mdHi", filemtime( plugin_dir_path( __FILE__ ) . $usr_path . '/home.css'));
+			$cacheBusterJS = date("mdHi", filemtime( plugin_dir_path( __FILE__ ) . $usr_path . '/home.js'));
+
+			wp_enqueue_style( 'slick', plugin_dir_url( __FILE__ ) . $usr_path . '/slick.css', array(), $cacheBusterCSS, 'all');
+			wp_enqueue_style( 'home', plugin_dir_url( __FILE__ ) . $usr_path . '/home.css', array(), $cacheBusterCSS, 'all');
+			wp_enqueue_script( 'home', plugin_dir_url( __FILE__ ) . $usr_path . '/home.js', array('rcuoghi_public-jquery'), $cacheBusterJS, true );
+			wp_enqueue_script( 'slick', plugin_dir_url( __FILE__ ) . $usr_path . '/slick.min.js', array('rcuoghi_public-jquery'), $cacheBusterJS, true );
 		} else {
 
-			//wp_enqueue_style( 'rcuoghi_public-font', 'https://fonts.googleapis.com/css?family=Hind:300,500' );
+			$cacheBusterCSS = date("mdHi", filemtime( plugin_dir_path( __FILE__ ) . $usr_path . '/catalogo-ragionato.css'));
+			$cacheBusterJS = date("mdHi", filemtime( plugin_dir_path( __FILE__ ) . $usr_path . '/catalogo-ragionato.js'));
+
 			wp_enqueue_style( 'rcuoghi_public-font', 'https://fonts.googleapis.com/css?family=Lato:300,700' );
 			wp_enqueue_style( 'rcuoghi_public-style', get_stylesheet_uri() );
 
