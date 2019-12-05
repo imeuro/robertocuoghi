@@ -102,7 +102,7 @@ var chooseVideoFormat = function() {
 	var Vurl = 'https://www.robertocuoghi.com/wp-content/uploads/intro/Retrobalera_9col';
 
 	if (sw < 640) {
-		Vurl = 'https://www.robertocuoghi.com/wp-content/uploads/intro/Retrobalera_9col';
+		Vurl = 'http://www.rapconverter.com/SampleDownload/Sample1280';
 	}
 	
 	var Vsource1 = document.createElement('source');

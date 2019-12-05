@@ -1,4 +1,30 @@
-<?php /* Template Name: Home Sito */  get_header(); ?>
+<?php /* Template Name: Home Sito */  get_header();
+function showTheCam() {
+	$webcam = false;
+	date_default_timezone_set('Europe/Rome'); // CET
+	$timeformat = 'd/m/Y H:i';
+	$timenow = strtotime(date($timeformat));
+	// echo 'timenow: '.$timenow."\n"; // echos today!
+
+	$timestart = date(strtotime("05/12/2019 16:00"));
+	$timeend = date(strtotime("05/12/2019 17:00"));
+	$second_timestart = date(strtotime("05/12/2019 17:42"));
+	$second_timeend = date(strtotime("05/12/2019 24:00"));
+	$third_timestart = date(strtotime("07/12/2019 20:00"));
+	$third_timeend = date(strtotime("07/12/2019 23:10"));
+
+
+
+	if ((($timenow >= $timestart) && ($timenow <= $timeend)) || (($timenow >= $second_timestart) && ($timenow <= $second_timeend)) || (($timenow >= $third_timestart) && ($timenow <= $third_timeend))){
+	    // echo "is between";
+	    $webcam = true;
+	    return true;
+	}else{
+		// echo "NO GO!"; 
+		return false;
+	}
+}
+?>
 
 
 <div class="container-full homepage">
@@ -10,11 +36,19 @@
 
 </div>
 
+
+<?php if (showTheCam()) : ?>
+<!-- DISPLAY THE WEBCAM -->
+webcam time!
+<!-- END DISPLAY THE WEBCAM -->
+<?php else : ?>
 <!-- ARTIFIZIO OMINI -->
 <div id="videocontainer" class="fullscreen-video"> 
     <video id="videocontent" autoplay loop muted playsinline></video>
 </div>
 <!-- END ARTIFIZIO OMINI -->
+<?php endif; ?>
+
 
 
 <?php get_footer(); ?>
