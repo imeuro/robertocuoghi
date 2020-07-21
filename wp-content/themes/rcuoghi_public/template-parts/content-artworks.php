@@ -68,6 +68,41 @@
 
 		// finally... printo to screen
 		echo $generated_code;
+
+
+
+		echo 'aaaaaaaaaaa';
+
+		$videoverlay = get_post_custom_values('art_additional_video', get_the_ID())[0];
+		if ($videoverlay) {
+			$vidz = get_field('art_additional_video', get_the_ID());
+			if ($vidz && $vidz!== '') {
+				foreach ($vidz as $vid) {
+					if ($vid['art_attached_video'] && $vid['art_attached_video'] !== NULL) {
+						$vidUrl = $vid['art_attached_video']['url'];
+						$vidCap = $vid['art_attached_video']['description'];
+						$vidW = $vid['art_attached_video']['width'];
+						$vidH = $vid['art_attached_video']['height'];
+						echo '<a href="#videoverlay" data-lity>the  button!</a>';
+						echo '<span id="videoverlay" class="lity-hide">
+						<video
+						    id="my-video"
+						    class="video-js"
+						    controls
+						    preload="auto"
+						    width="'.$vidW.'"
+						    height="'.$vidH.'"
+						    poster="MY_VIDEO_POSTER.jpg"
+						    data-setup="{}"
+						  >
+						    <source src="'.$vidUrl.'" type="video/mp4" />
+						  </video></span>
+						';
+					};
+				}
+			}
+		}
+
 		?>
 
 	</div>
@@ -93,7 +128,7 @@
 				"art_edition",
 				"art_unlocated",
 				"art_notes",
-				"art_additional_video",
+				//"art_additional_video",
 				"art_exhibitions",
 				"art_bibliography"
 			);
@@ -104,21 +139,21 @@
 
 
 				if ($public_field == 'art_photo_credits') { $pre_field = 'Photo: '; }
-				if ($public_field == 'art_additional_video') {
-					$vidz = get_field('art_additional_video', get_the_ID());
-					if ($vidz && $vidz!== '') {
-						foreach ($vidz as $vid) {
-							if ($vid['art_attached_video'] && $vid['art_attached_video'] !== NULL) {
-								$vidUrl = $vid['art_attached_video']['url'];
-								$vidCap = $vid['art_attached_video']['description'];
-								$vidW = $vid['art_attached_video']['width'];
-								$vidH = $vid['art_attached_video']['height'];
-								echo '<span class="initvid artwork-videocont" data-video="'.$vidUrl.'"  data-video-width="'.$vidW.'"  data-video-height="'.$vidH.'" data-video-description="'.$vidCap.'" ></span>';
-							};
-						}
-					}
-					continue;
-				}
+				// if ($public_field == 'art_additional_video') {
+				// 	$vidz = get_field('art_additional_video', get_the_ID());
+				// 	if ($vidz && $vidz!== '') {
+				// 		foreach ($vidz as $vid) {
+				// 			if ($vid['art_attached_video'] && $vid['art_attached_video'] !== NULL) {
+				// 				$vidUrl = $vid['art_attached_video']['url'];
+				// 				$vidCap = $vid['art_attached_video']['description'];
+				// 				$vidW = $vid['art_attached_video']['width'];
+				// 				$vidH = $vid['art_attached_video']['height'];
+				// 				echo '<span class="initvid artwork-videocont" data-video="'.$vidUrl.'"  data-video-width="'.$vidW.'"  data-video-height="'.$vidH.'" data-video-description="'.$vidCap.'" ></span>';
+				// 			};
+				// 		}
+				// 	}
+				// 	continue;
+				// }
 				if ($public_field == 'art_exhibitions') {
 					$pre_field = '<span id="viewmore_txt" class="closed"><span>Exhibitions:</span><br />';
 					$post_field = '</span><hr class="divider" /><button id="viewmore_btn"></button>';
