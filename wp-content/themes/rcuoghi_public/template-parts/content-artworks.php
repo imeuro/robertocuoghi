@@ -82,16 +82,15 @@
 						$vidCap = $vid['art_attached_video']['description'];
 						$vidW = $vid['art_attached_video']['width'];
 						$vidH = $vid['art_attached_video']['height'];
-						echo '<a href="#videoverlay" data-lity class="videoverlay-btn">the  button!</a>';
+						echo '<a href="#videoverlay" data-lity class="videoverlay-btn">the button!</a>';
 						echo '<span id="videoverlay" class="lity-hide">
 						<video
-						    id="my-video"
-						    class="video-js"
+						    id="LBoxPlayer"
+						    class="video-js initvid"
 						    controls
 						    preload="auto"
 						    width="'.$vidW.'"
 						    height="'.$vidH.'"
-						    poster="MY_VIDEO_POSTER.jpg"
 						    data-setup="{}"
 						  >
 						    <source src="'.$vidUrl.'" type="video/mp4" />
