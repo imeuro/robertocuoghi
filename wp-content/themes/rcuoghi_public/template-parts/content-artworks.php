@@ -71,7 +71,6 @@
 
 
 
-		echo 'aaaaaaaaaaa';
 
 		$videoverlay = get_post_custom_values('art_additional_video', get_the_ID())[0];
 		if ($videoverlay) {
@@ -83,7 +82,7 @@
 						$vidCap = $vid['art_attached_video']['description'];
 						$vidW = $vid['art_attached_video']['width'];
 						$vidH = $vid['art_attached_video']['height'];
-						echo '<a href="#videoverlay" data-lity>the  button!</a>';
+						echo '<a href="#videoverlay" data-lity class="videoverlay-btn">the  button!</a>';
 						echo '<span id="videoverlay" class="lity-hide">
 						<video
 						    id="my-video"
