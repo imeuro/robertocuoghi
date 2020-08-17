@@ -189,16 +189,18 @@ if (quantividz !== 0) {
 // video sotto foto principale in scheda artworks:
 
 // start the video on lightbox visible
-videoverlayBtn = document.querySelector('.videoverlay-btn');
-videoverlayBtn.addEventListener("click", function(event){
-	event.preventDefault();
-	videojs.players["LBoxPlayer"].play();
-});
+let videoverlayBtn = document.querySelector('.videoverlay-btn');
+if (videoverlayBtn) {
+	videoverlayBtn.addEventListener("click", function(event){
+		event.preventDefault();
+		videojs.players["LBoxPlayer"].play();
+	});
 
-$(document).on('lity:close', function(event, instance) {
-	console.debug(instance);
-    videojs.players["LBoxPlayer"].pause();
-});
+	$(document).on('lity:close', function(event, instance) {
+		console.debug(instance);
+	    videojs.players["LBoxPlayer"].pause();
+	});
+}
 
 
 // WIEW MORE Button
