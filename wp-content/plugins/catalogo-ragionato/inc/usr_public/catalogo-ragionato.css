@@ -1128,6 +1128,7 @@ body.post-type-archive-artworks article.series-cinema-putiferio {
     padding: 3px 20px;
 }
 
-
+#LBoxPlayer {
+	max-width: 100%;
 }
 
