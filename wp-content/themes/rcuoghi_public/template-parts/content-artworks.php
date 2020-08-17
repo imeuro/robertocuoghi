@@ -82,7 +82,7 @@
 						$vidCap = $vid['art_attached_video']['description'];
 						$vidW = $vid['art_attached_video']['width'];
 						$vidH = $vid['art_attached_video']['height'];
-						echo '<a href="#videoverlay" data-lity class="videoverlay-btn">the button!</a>';
+						echo '<a href="#videoverlay" data-lity class="videoverlay-btn">video</a>';
 						echo '<span id="videoverlay" class="lity-hide">
 						<video
 						    id="LBoxPlayer"

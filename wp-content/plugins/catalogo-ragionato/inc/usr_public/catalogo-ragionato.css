@@ -1119,7 +1119,15 @@ body.post-type-archive-artworks article.series-cinema-putiferio {
 .videoverlay-btn {
 	text-align: center;
     margin: 0 auto 20px auto;
-    width: 100%;
-    display: inline-block;
+    display: table;
+    background: #656565;
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 3px;
+    padding: 3px 20px;
+}
+
+
 }
 
