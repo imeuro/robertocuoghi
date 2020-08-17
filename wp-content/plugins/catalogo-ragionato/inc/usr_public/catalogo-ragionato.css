@@ -1129,7 +1129,12 @@ body.post-type-archive-artworks article.series-cinema-putiferio {
 }
 
 #LBoxPlayer {
-	max-height: 100vh;
-	max-width: 100%;
+	max-height: 250px;
+	max-width: 90vw;
+	background-color: transparent;
 }
-
+@media (min-width: 1280px) {
+	#LBoxPlayer {    
+	    max-height: 600px;
+	}
+}
