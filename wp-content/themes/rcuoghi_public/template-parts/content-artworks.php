@@ -82,7 +82,13 @@
 						$vidCap = $vid['art_attached_video']['description'];
 						$vidW = $vid['art_attached_video']['width'];
 						$vidH = $vid['art_attached_video']['height'];
-						echo '<a href="#videoverlay" data-lity class="videoverlay-btn">video</a>';
+
+						$vidbtntype = 'play1';
+						if ($_GET["btntype"]) {
+							$vidbtntype = $_GET["btntype"];
+						}
+
+						echo '<a href="#videoverlay" data-lity class="videoverlay-btn videobtn-'.$vidbtntype.'"></a>';
 						echo '<span id="videoverlay" class="lity-hide">
 						<video
 						    id="LBoxPlayer"
