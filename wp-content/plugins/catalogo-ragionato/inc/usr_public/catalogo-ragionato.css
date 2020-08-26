@@ -1116,3 +1116,46 @@ body.post-type-archive-artworks article.series-cinema-putiferio {
 }
 
 
+/*.videoverlay-btn {
+	text-align: center;
+    margin: 0 auto 20px auto;
+    display: table;
+    background: #656565;
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 3px;
+    padding: 3px 20px;
+}*/
+.videoverlay-btn {
+	background: url('../../../../themes/rcuoghi_public/icons/video-play1.svg') no-repeat center;
+	background-size: 62px;
+    width: 72px;
+    height: 72px;
+    text-align: center;
+    margin: 0 auto 20px auto;
+    display: table;
+    padding: 0;
+    opacity: 0.6;
+    transform: scale(0.85);
+    transition: all 300ms ease-in-out;
+}
+.videoverlay-btn:hover {
+	opacity: 1;
+	transform: scale(1);
+}
+.videobtn-play2 {
+	background-image: url('../../../../themes/rcuoghi_public/icons/video-play2.svg');
+}
+
+#LBoxPlayer {
+	max-height: 250px;
+	max-width: 90vw;
+	background-color: transparent;
+}
+@media (min-width: 1023px) {
+	#LBoxPlayer {
+		max-height: 90vh;
+		max-width: none;
+	}
+}
