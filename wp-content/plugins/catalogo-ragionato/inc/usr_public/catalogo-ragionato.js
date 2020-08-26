@@ -130,7 +130,7 @@ if (vid.length !== 0) {
 	document.head.appendChild(pcss);
 }
 
-// video in scheda artwork:
+// video in scheda artwork a lato (old):
 var vidz = document.querySelectorAll('.artwork-videocont');
 var quantividz = vidz.length;
 if (quantividz !== 0) {
@@ -151,9 +151,7 @@ if (quantividz !== 0) {
 		videoH = Math.floor(vidz[id].getAttribute('data-video-height'));
 		videoBox += '<video id="RCvideo-'+id+'" class="video-js initvid"></video>';
 		videoBox += '<small class="rc-video-description">'+videoDesc+'</small>';
-
-
-  }
+	}
 
 	var b = document.getElementById('viewmore_txt');
 	if (b) { 
@@ -186,6 +184,24 @@ if (quantividz !== 0) {
 	}	
 
 }
+
+
+// video sotto foto principale in scheda artworks:
+
+// start the video on lightbox visible
+let videoverlayBtn = document.querySelector('.videoverlay-btn');
+if (videoverlayBtn) {
+	videoverlayBtn.addEventListener("click", function(event){
+		event.preventDefault();
+		videojs.players["LBoxPlayer"].play();
+	});
+
+	$(document).on('lity:close', function(event, instance) {
+		console.debug(instance);
+	    videojs.players["LBoxPlayer"].pause();
+	});
+}
+
 
 // WIEW MORE Button
 var VMbtn = jQuery('#viewmore_btn');
