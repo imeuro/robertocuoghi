@@ -27,19 +27,19 @@ body {
 .container-full a.enter {
 	position: absolute;
 	z-index: 10;
-  height: 100%;
-  width: 100%;
-  display: inline-block;
-  padding: 60px;
+	height: 100%;
+	width: 100%;
+	display: inline-block;
+	padding: 60px;
 }
 
 
 .onecol {
-  position: relative;
-  top: 0;
-  width: 75vw;
-  height: 100%;
-	padding-top: 150px;
+	position: relative;
+	top: 0;
+	width: 75vw;
+	height: 100%;
+	padding-top: 50px;
 	font-weight: 300;
 	font-family: "Lato", sans-serif;
 	text-align: center;
@@ -96,8 +96,8 @@ body {
 	.onecol { width: 50vw; }
 }
 
-.viewmore_txt {
-  display: none;
+.onecol .viewmore_txt {
+	display: block;
 	margin-bottom: 100px;
 }
 .viewmore_btn {
