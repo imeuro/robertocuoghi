@@ -88,8 +88,8 @@
 							$vidbtntype = $_GET["btntype"];
 						}
 
-						echo '<a href="#videoverlay" data-lity class="videoverlay-btn videobtn-'.$vidbtntype.'"></a>';
-						echo '<span id="videoverlay" class="lity-hide">
+						echo '<a href="#videoverlay" class="videoverlay-btn videobtn-'.$vidbtntype.'"></a>';
+						echo '<span id="videoverlay" class="lity-hide" data-lity-videoverlay>
 						<video
 						    id="LBoxPlayer"
 						    class="video-js initvid"
