@@ -97,7 +97,7 @@ body {
 }
 
 .onecol .viewmore_txt {
-	display: block;
+	display: none;
 	margin-bottom: 100px;
 }
 .viewmore_btn {

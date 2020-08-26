@@ -204,8 +204,8 @@ if (videoverlayBtn) {
 
 
 // WIEW MORE Button
-var VMbtn = jQuery('#viewmore_btn');
-var VMtxt = jQuery('#viewmore_txt');
+var VMbtn = jQuery('#viewmore_btn, .viewmore_btn');
+var VMtxt = jQuery('#viewmore_txt, .viewmore_txt');
 VMbtn.on('click',function(){
 	VMtxt.slideToggle();
 	VMbtn.toggleClass('open');
