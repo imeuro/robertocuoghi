@@ -189,11 +189,17 @@ if (quantividz !== 0) {
 // video sotto foto principale in scheda artworks:
 
 // start the video on lightbox visible
-let videoverlayBtn = document.querySelector('.videoverlay-btn');
+const videoverlayBtn = document.querySelector('.videoverlay-btn');
+
+
 if (videoverlayBtn) {
 	videoverlayBtn.addEventListener("click", function(event){
 		event.preventDefault();
-		videojs.players["LBoxPlayer"].play();
+		//videowrap.style.opacity = 0;
+		setTimeout( function(){
+			lity('[data-lity-videoverlay]')
+			videojs.players["LBoxPlayer"].play();
+		}, 500);
 	});
 
 	$(document).on('lity:close', function(event, instance) {
