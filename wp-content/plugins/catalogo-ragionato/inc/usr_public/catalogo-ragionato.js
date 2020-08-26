@@ -195,7 +195,6 @@ const videoverlayBtn = document.querySelector('.videoverlay-btn');
 if (videoverlayBtn) {
 	videoverlayBtn.addEventListener("click", function(event){
 		event.preventDefault();
-		//videowrap.style.opacity = 0;
 		setTimeout( function(){
 			lity('[data-lity-videoverlay]')
 			videojs.players["LBoxPlayer"].play();
