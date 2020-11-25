@@ -127,7 +127,7 @@
 			$public_fields = array(
 				"art_dimensions",
 				"art_materials",
-				"art_weight",
+				//"art_weight",
 				"art_photo_credits",
 				"art_edition",
 				"art_unlocated",
