@@ -295,11 +295,11 @@ jQuery(document).ready( function() {
 
 	// DISATTIVATO PER DEBUG, POI RIATTIVARE!
 	//
-	// jQuery(document).on("contextmenu",function(e){
-	//   if(e.target.nodeName != "INPUT" && e.target.nodeName != "TEXTAREA")
-	//     e.preventDefault();
-	//   	console.log(e.target.nodeName);
-	// });
+	jQuery(document).on("contextmenu",function(e){
+	  if(e.target.nodeName != "INPUT" && e.target.nodeName != "TEXTAREA")
+	    e.preventDefault();
+	  	console.log(e.target.nodeName);
+	});
 
 	initinfscroll()
 	initlazyload();
@@ -341,16 +341,17 @@ jQuery(document).ready( function() {
 					}
 
 					if (videoverlayBtn) { // 22/02/2023 -> spostiamo bottoncino a fianco dei pallini slider:
-						const VPtarget = document.querySelector('.swiper-pagination-bullets span:last-child');
-						VPtarget.after(videoverlayBtn);
-						VPtarget.parentNode.style.cssText = `
-							display: flex;
-							align-items: center;
-							justify-content: center;
-							bottom: 0px;
-						`;
-						videoverlayBtn.style.cssText = `margin: 0`;
-					}
+						setTimeout(function() {
+							const VPtarget = document.querySelector('.swiper-pagination-bullets span:last-child');
+							VPtarget.after(videoverlayBtn);
+							VPtarget.parentNode.style.cssText = `
+								display: flex;
+								align-items: center;
+								justify-content: center;
+								bottom: 0px;
+							`;
+							videoverlayBtn.style.cssText = `margin: 0`;
+						},250);					}
 		    },
 				click: function () {
 					// var bigpic = jQuery('.swiper-slide-active > a').attr('data-big-pic');
