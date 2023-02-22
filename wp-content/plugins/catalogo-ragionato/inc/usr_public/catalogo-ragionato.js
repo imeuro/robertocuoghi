@@ -194,17 +194,6 @@ const videoverlayBtn = document.querySelector('.videoverlay-btn');
 
 if (videoverlayBtn) {
 
-	// 22/02/2023 -> spostiamo bottoncino a fianco dei pallini slider:
-	const VPtarget = document.querySelector('.swiper-pagination-bullets span:last-child');
-	VPtarget.after(videoverlayBtn);
-	VPtarget.parentNode.style.cssText = `
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		bottom: 0px;
-	`;
-	videoverlayBtn.style.cssText = `margin: 0;`;
-
 	// click listener per modale
 	videoverlayBtn.addEventListener("click", function(event){
 		event.preventDefault();
@@ -349,6 +338,18 @@ jQuery(document).ready( function() {
 							jQuery('#glitchJS').attr('src','/wp-content/plugins/catalogo-ragionato/inc/usr_public/glitch.js');
 							jQuery('#fl_swipercontainer .swiper-slide, #fl_swipercontainer .swiper-slide img').css('max-height',picHeight+'px');
 						},1500);
+					}
+
+					if (videoverlayBtn) { // 22/02/2023 -> spostiamo bottoncino a fianco dei pallini slider:
+						const VPtarget = document.querySelector('.swiper-pagination-bullets span:last-child');
+						VPtarget.after(videoverlayBtn);
+						VPtarget.parentNode.style.cssText = `
+							display: flex;
+							align-items: center;
+							justify-content: center;
+							bottom: 0px;
+						`;
+						videoverlayBtn.style.cssText = `margin: 0`;
 					}
 		    },
 				click: function () {
