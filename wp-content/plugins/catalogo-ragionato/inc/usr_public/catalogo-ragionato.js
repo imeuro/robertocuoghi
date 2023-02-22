@@ -193,6 +193,19 @@ const videoverlayBtn = document.querySelector('.videoverlay-btn');
 
 
 if (videoverlayBtn) {
+
+	// 22/02/2023 -> spostiamo bottoncino a fianco dei pallini slider:
+	const VPtarget = document.querySelector('.swiper-pagination-bullets span:last-child');
+	VPtarget.after(videoverlayBtn);
+	VPtarget.parentNode.style.cssText = `
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		bottom: 0px;
+	`;
+	videoverlayBtn.style.cssText = `margin: 0;`;
+
+	// click listener per modale
 	videoverlayBtn.addEventListener("click", function(event){
 		event.preventDefault();
 		setTimeout( function(){
