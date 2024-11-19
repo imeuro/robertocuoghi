@@ -908,6 +908,21 @@ canvas#canvas-webgl {
     text-align: center;
 }
 
+/* solo la foto di "P(LXXIVPs)ac" è più larga e spaziata,
+perchè è molto orizzontale come taglio */
+#thumb-2953.render-one-column .rc-square-thumb img {
+	min-height: 640px;
+	display: flex;
+}
+#thumb-2953.render-one-column .rc-square-thumb a {
+	height: 100%;
+	align-items: center;
+	display: flex;
+	}
+#thumb-2953.render-one-column .rc-square-thumb img {
+	width: 100%;
+}
+
 
 img.rc-lazyload {
     opacity: 0;

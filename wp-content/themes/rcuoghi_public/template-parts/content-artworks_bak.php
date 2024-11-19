@@ -10,44 +10,105 @@
 ?>
 <article id="rc-artwork-<?php the_ID(); ?>" <?php post_class(); ?>>
 
+
 	<div class="rc-artwork-photos">
-		<figure>
+
 		<?php
 		$is_unlocated = get_post_custom_values('art_unlocated', get_the_ID())[0];
 		$is_damaged = get_post_custom_values('art_damaged', get_the_ID())[0];
 
+		$audio_track = get_field('art_additional_audio', get_the_ID())[0];
+		$audio_track_check = get_field('art_additional_audio', get_the_ID())[0]['art_attached_audio'];
+
 		$post_thumbnail_id = get_post_thumbnail_id( get_the_ID() );
 
+		// altre foto
 		$otherphotos = get_field('art_additional_images', get_the_ID());
 		$otherphotos_check = get_field('art_additional_images', get_the_ID())[0]['art_attached_images'];
 
-		$custom_thumb_id= get_field('custom_thumb',get_the_ID());
+		// var_dump($otherphotos_check);
 
+		$generated_code = '';
+		if (!empty($otherphotos_check)) { // più foto: genero swiper con featured alla fine
 
-		$otherpics_code = '';
-		if ($otherphotos_check && $otherphotos_check != '') {
+			$generated_code .= "\n<figure data-mode=\"swiper\">\n\n<div class=\"swiper-container\" id=\"fl_swipercontainer\">\n<div class=\"swiper-wrapper\">";
 			foreach ($otherphotos as $otherphoto) {
-				$pic_id = $otherphoto['art_attached_images']['ID'];
-				$otherpics_code.= wp_get_attachment_image_src($pic_id,'medium_large')[0].',';
+				// print_r($otherphoto['art_attached_images']['type']);
+				if ($otherphoto['art_attached_images']['type'] == 'image') {
+					$pic_id = $otherphoto['art_attached_images']['ID'];
+					$generated_code .= "\n<div class=\"swiper-slide\">\n\t<a href=\"".wp_get_attachment_image_src($pic_id,'medium_large')[0]."\" data-lity>\n\t\t<img src=\"".wp_get_attachment_image_src($pic_id,'medium_large')[0]."\" alt=\"".get_the_title()."\" />\n\t</a>\n</div>";
+				}
 			}
+			// aggiungo la featured alla fine (...#@*!)
+			$generated_code .= "\n<div class=\"swiper-slide\">\n\t<a href=\"".wp_get_attachment_image_src($post_thumbnail_id,'medium_large')[0]."\" data-lity>\n\t\t<img src=\"".wp_get_attachment_image_src($post_thumbnail_id,'medium_large')[0]."\"alt=\"".get_the_title()."\" />\n\t</a>\n</div>";
+			$generated_code .= "\n</div>\n<div class=\"swiper-pagination\"></div>\n</div>\n\n</figure>\n\n";
+
+		} 
+		elseif (!empty($audio_track_check)) { // traccia audio
+			//print_r($audio_track);
+			foreach ($audio_track as $atrack) {
+				$audio_id = $atrack['ID'];
+				$poster = wp_get_attachment_image_src($post_thumbnail_id,'medium_large')[0];
+				$generated_code .= "<br/><br/><video id='audio-".$audio_id."' class='video-js audiotrack initvid' controls preload='auto' width='600' height='488' poster='".$poster."' data-setup='{\"controls\": true, \"preload\": \"auto\", \"fluid\": true}' style='padding-top: 71.5%;'><source src='".$atrack['url']."' type='video/mp4'></video>\n";
+			}
+
+		} else { // una sola foto: semplice img src
+
+			$generated_code .= "<figure><a href=\"".wp_get_attachment_image_src($post_thumbnail_id,'medium_large')[0]."\" data-lity>";
+			if ($is_unlocated == 1 || $is_damaged == 1) {
+				$generated_code .= "<script src=\"".plugins_url()."/catalogo-ragionato/inc/usr_public/three.min.js\"></script>";
+				$generated_code .= "<canvas class=\"p-canvas-webgl\" id=\"canvas-webgl\"></canvas>";
+			} else {
+				$generated_code .= "<img src=\"".wp_get_attachment_image_src($post_thumbnail_id,'medium_large')[0]."\" alt=\"".get_the_title()."\" />";
+			}
+			$generated_code .= "</a></figure>\n";
+
 		}
-		if ($custom_thumb_id && $custom_thumb_id != '') {
-			//print_r( $custom_thumb_id );
-			$otherpics_code.= wp_get_attachment_image_src($custom_thumb_id,'medium_large')[0].',';
+
+
+		// finally... printo to screen
+		echo $generated_code;
+
+
+
+
+		$videoverlay = get_post_custom_values('art_additional_video', get_the_ID())[0];
+		if ($videoverlay) {
+			$vidz = get_field('art_additional_video', get_the_ID());
+			if ($vidz && $vidz!== '') {
+				foreach ($vidz as $vid) {
+					if ($vid['art_attached_video'] && $vid['art_attached_video'] !== NULL) {
+						$vidUrl = $vid['art_attached_video']['url'];
+						$vidCap = $vid['art_attached_video']['description'];
+						$vidW = $vid['art_attached_video']['width'];
+						$vidH = $vid['art_attached_video']['height'];
+
+						$vidbtntype = 'play1';
+						if ($_GET["btntype"]) {
+							$vidbtntype = $_GET["btntype"];
+						}
+
+						echo '<a href="#videoverlay" class="videoverlay-btn videobtn-'.$vidbtntype.'"></a>';
+						echo '<span id="videoverlay" class="lity-hide" data-lity-videoverlay>
+						<video
+						    id="LBoxPlayer"
+						    class="video-js initvid"
+						    controls
+						    preload="auto"
+						    width="'.$vidW.'"
+						    height="'.$vidH.'"
+						    data-setup="{}"
+						  >
+						    <source src="'.$vidUrl.'" type="video/mp4" />
+						  </video></span>
+						';
+					};
+				}
+			}
 		}
 
 		?>
-		<a href="<?php echo wp_get_attachment_image_src($post_thumbnail_id,'medium_large')[0]; ?>" <?php if (!empty($otherpics_code)) : echo 'data-otherpics="'. substr($otherpics_code, 0, -1).'"'; endif; ?> data-mode="fakelightbox">
-			<?php
-			if ($is_unlocated == 1 || $is_damaged == 1) :
-				echo '<script src="'.plugins_url().'/catalogo-ragionato/inc/usr_public/three.min.js"></script>';
-				echo '<canvas class="p-canvas-webgl" id="canvas-webgl"></canvas>';
-			else :
-				the_post_thumbnail('medium');
-			endif;
-			?>
-		</a>
-		</figure>
+
 	</div>
 
 
@@ -63,15 +124,15 @@
 			}
 
 
-
 			$public_fields = array(
 				"art_dimensions",
-				"art_weight",
+				"art_materials",
+				//"art_weight",
 				"art_photo_credits",
 				"art_edition",
-				//"art_number_elements",
 				"art_unlocated",
 				"art_notes",
+				//"art_additional_video",
 				"art_exhibitions",
 				"art_bibliography"
 			);
@@ -82,6 +143,21 @@
 
 
 				if ($public_field == 'art_photo_credits') { $pre_field = 'Photo: '; }
+				// if ($public_field == 'art_additional_video') {
+				// 	$vidz = get_field('art_additional_video', get_the_ID());
+				// 	if ($vidz && $vidz!== '') {
+				// 		foreach ($vidz as $vid) {
+				// 			if ($vid['art_attached_video'] && $vid['art_attached_video'] !== NULL) {
+				// 				$vidUrl = $vid['art_attached_video']['url'];
+				// 				$vidCap = $vid['art_attached_video']['description'];
+				// 				$vidW = $vid['art_attached_video']['width'];
+				// 				$vidH = $vid['art_attached_video']['height'];
+				// 				echo '<span class="initvid artwork-videocont" data-video="'.$vidUrl.'"  data-video-width="'.$vidW.'"  data-video-height="'.$vidH.'" data-video-description="'.$vidCap.'" ></span>';
+				// 			};
+				// 		}
+				// 	}
+				// 	continue;
+				// }
 				if ($public_field == 'art_exhibitions') {
 					$pre_field = '<span id="viewmore_txt" class="closed"><span>Exhibitions:</span><br />';
 					$post_field = '</span><hr class="divider" /><button id="viewmore_btn"></button>';
@@ -120,5 +196,9 @@ if ($is_unlocated == 1 || $is_damaged == 1) :
 	var picWidth = '<?php echo $pic_data[1]; ?>';
 	var picHeight = '<?php echo $pic_data[2]; ?>';
 	</script>
-	<script src="<?php echo plugins_url() ?>/catalogo-ragionato/inc/usr_public/glitch.js"></script>
+	<?php if (empty($otherpics_code)) : ?>
+		<script id="glitchJS" src="<?php echo plugins_url() ?>/catalogo-ragionato/inc/usr_public/glitch.js"></script>
+	<?php else : ?>
+		<script id="glitchJS"></script>
+	<?php endif; ?>
 <?php endif; ?>

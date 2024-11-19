@@ -13,6 +13,24 @@
 
 	<div class="rc-artwork-photos">
 
+	<!-- styles -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/zoomist@2/zoomist.css" />
+
+<!-- scripts -->
+<script type="module">
+  import Zoomist from 'https://cdn.jsdelivr.net/npm/zoomist@2/zoomist.js'
+
+  const zoomist = new Zoomist('.zoomist-container', {
+	// Optional parameters
+	maxScale: 4,
+	bounds: true,
+	// if you need slider
+	slider: true,
+	// if you need zoomer
+	zoomer: true
+  });
+</script>
+
 		<?php
 		$is_unlocated = get_post_custom_values('art_unlocated', get_the_ID())[0];
 		$is_damaged = get_post_custom_values('art_damaged', get_the_ID())[0];
@@ -53,15 +71,23 @@
 			}
 
 		} else { // una sola foto: semplice img src
+			$generated_code .= "<div class=\"zoomist-container\">";
+			$generated_code .= "<div class=\"zoomist-wrapper\">";
+			$generated_code .= "<div class=\"zoomist-image\">";
+			
 
-			$generated_code .= "<figure><a href=\"".wp_get_attachment_image_src($post_thumbnail_id,'medium_large')[0]."\" data-lity>";
-			if ($is_unlocated == 1 || $is_damaged == 1) {
-				$generated_code .= "<script src=\"".plugins_url()."/catalogo-ragionato/inc/usr_public/three.min.js\"></script>";
-				$generated_code .= "<canvas class=\"p-canvas-webgl\" id=\"canvas-webgl\"></canvas>";
-			} else {
-				$generated_code .= "<img src=\"".wp_get_attachment_image_src($post_thumbnail_id,'medium_large')[0]."\" alt=\"".get_the_title()."\" />";
-			}
-			$generated_code .= "</a></figure>\n";
+				
+				if ($is_unlocated == 1 || $is_damaged == 1) {
+					$generated_code .= "<script src=\"".plugins_url()."/catalogo-ragionato/inc/usr_public/three.min.js\"></script>";
+					$generated_code .= "<canvas class=\"p-canvas-webgl\" id=\"canvas-webgl\"></canvas>";
+				} else {
+					$generated_code .= "<img src=\"".wp_get_attachment_image_src($post_thumbnail_id,'medium_large')[0]."\" alt=\"".get_the_title()."\" />";
+				}
+
+
+			$generated_code .= "</div>";
+			$generated_code .= "</div>";
+			$generated_code .= "</div>";
 
 		}
 
