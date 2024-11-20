@@ -906,13 +906,18 @@ canvas#canvas-webgl {
     flex: 1 0 100%;
     margin: 20px auto;
     text-align: center;
+	display: flex;
+	min-height: 400px;
+}
+.render-one-column .rc-square-thumb#thumb-2953 {
+	min-height: 75dvh;
 }
 
 
 img.rc-lazyload {
     opacity: 0;
     margin-top: 40px;
-		transition: all 1000ms ease-in-out;
+	transition: all 1000ms ease-in-out;
 }
 img.rc-lazyload.rc-lazyloaded {
     opacity: 1;
