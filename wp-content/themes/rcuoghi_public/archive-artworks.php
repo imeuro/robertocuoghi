@@ -32,44 +32,54 @@ get_header();
 				<article id="thumb-<?php the_ID(); ?>" <?php post_class('rc-square-thumb'); ?>>
 					<a class="post-thumbnail" href="<?php the_permalink(); ?>" aria-hidden="true" tabindex="-1">
 						<?php
-
-						// PIC SIZE IS BASED ON REAL WORLD DIMENSIONS
-						
-						$dims = get_field('art_dimensions');
-						//$string = "200 x 554 x 5 cm / 78.74 x 218.11 x 21.65 in";
-						$pattern = "/(\d+(?:\.\d+)?) (x|×) (\d+(?:\.\d+)?)/";
-						preg_match($pattern, $dims, $matches);
-						
-						/*
-						echo '<pre>';
-						print_r($dims);
-						echo '<br>';
-						print_r($matches);
-						echo '<br>';
-						print_r($matches[1]);
-						echo '<br>';
-						print_r($matches[32]);
-						echo '<br>';
-						print_r(($matches[1] * $matches[3] ));
-						echo '<br>';
-						print_r(($matches[1] * $matches[3] )/5000);
-						echo '</pre>';
-						*/
-
 						$custom_thumb_id= get_field('custom_thumb',get_the_ID());
 						if ($custom_thumb_id && $custom_thumb_id != '') :
 							$ThumbImgData = wp_get_attachment_image_src( $custom_thumb_id, $picsz );
 						else :
 							$ThumbImgData = wp_get_attachment_image_src( get_post_thumbnail_id(), $picsz );
 						endif;
+						
+						// PIC SIZE IS BASED ON REAL WORLD DIMENSIONS
+						$manage_dimensions = get_field('manage_dimensions');
+						if (!is_null($manage_dimensions)) {
+							$dimensions_override = $manage_dimensions['dimensions_variation'];
+							$dimensions_reset = $manage_dimensions['dimensions_reset'];
+						} else {
+							$dimensions_override = null;
+							$dimensions_reset = null;
+						}
+						// echo '<pre>';
+						// print_r($manage_dimensions);
+						// echo '-------';
+						// print_r($dimensions_override);
+						// print_r($dimensions_reset);
+						// echo '</pre>';
 
-						if (isset($matches[3]) && $matches[3] != null) :
-							$multiplier = ($matches[3] / $ThumbImgData[1])*400;
-						else :
-							$multiplier = 100;
-						endif;
+						if ( isset($dimensions_override) && (!isset($dimensions_reset) || $dimensions_reset == '') ) {
+							$multiplier = $dimensions_override;
+						} else {
+							$dims = get_field('art_dimensions');
+							//$string = "200 x 554 x 5 cm / 78.74 x 218.11 x 21.65 in";
+							$pattern = "/(\d+(?:\.\d+)?) (x|×) (\d+(?:\.\d+)?)/";
+							preg_match($pattern, $dims, $matches);
 
-						echo '<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="'.$ThumbImgData[0].'" width="'.$multiplier.'%" height="'.$ThumbImgData[2]*$multiplier.'" alt ="Roberto Cuoghi - '.the_title_attribute( array( 'echo' => false, ) ).'" class="rc-lazyload" />';
+							if (isset($matches[3]) && $matches[3] != null) :
+								$multiplier = ($matches[3] / $ThumbImgData[1])*400;
+							else :
+								$multiplier = 100;
+							endif;
+
+							$manage_dimensions = array(
+								'dimensions_variation' 	=> round($multiplier),
+								'dimensions_reset'		=> '',
+
+							);
+							// set the dimensions override CPT for future reference 
+							update_field( 'manage_dimensions', $manage_dimensions, get_the_ID() );
+						}
+						
+
+						echo '<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="'.$ThumbImgData[0].'" width="'.$ThumbImgData[1].'%" height="'.$ThumbImgData[2].'" alt ="Roberto Cuoghi - '.the_title_attribute( array( 'echo' => false, ) ).'" class="rc-lazyload" style="width: '.round($multiplier/1).'%; height: auto; @media (min-width: 960px) {width: '.round($multiplier/2).'%;}" />';
 
 						?>
 					</a>
@@ -77,6 +87,7 @@ get_header();
 
 			<?php 
 			// echo '$multiplier: '.$multiplier;
+			// echo '<br>$dimensions_override: '.round($multiplier);
 			}
 			the_posts_navigation(); ?>
 
