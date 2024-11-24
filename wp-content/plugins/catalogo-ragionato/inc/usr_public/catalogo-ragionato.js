@@ -333,7 +333,7 @@ jQuery(document).ready( function() {
 			},
 			on: {
 				init: function () {
-		      if(jQuery('#canvas-webgl').length > 0) {
+					if(jQuery('#canvas-webgl').length > 0) {
 						setTimeout(function() {
 							jQuery('#glitchJS').attr('src','/wp-content/plugins/catalogo-ragionato/inc/usr_public/glitch.js');
 							jQuery('#fl_swipercontainer .swiper-slide, #fl_swipercontainer .swiper-slide img').css('max-height',picHeight+'px');

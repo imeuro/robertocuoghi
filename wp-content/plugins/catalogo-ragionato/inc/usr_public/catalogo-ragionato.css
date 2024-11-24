@@ -906,28 +906,21 @@ canvas#canvas-webgl {
     flex: 1 0 100%;
     margin: 20px auto;
     text-align: center;
+	display: flex;
+	min-height: 300px;
+}
+.render-one-column .rc-square-thumb#thumb-2953 {
+	min-height: 75dvh;
 }
 
-/* solo la foto di "P(LXXIVPs)ac" è più larga e spaziata,
-perchè è molto orizzontale come taglio */
-#thumb-2953.render-one-column .rc-square-thumb img {
-	min-height: 640px;
-	display: flex;
-}
-#thumb-2953.render-one-column .rc-square-thumb a {
-	height: 100%;
-	align-items: center;
-	display: flex;
-	}
-#thumb-2953.render-one-column .rc-square-thumb img {
+.render-one-column .rc-square-thumb .post-thumbnail {
 	width: 100%;
 }
-
 
 img.rc-lazyload {
     opacity: 0;
     margin-top: 40px;
-		transition: all 1000ms ease-in-out;
+	transition: all 1000ms ease-in-out;
 }
 img.rc-lazyload.rc-lazyloaded {
     opacity: 1;
@@ -953,6 +946,9 @@ img.rc-lazyload.rc-lazyloaded {
   padding: 10px 20px 5px 20px;
 }
 @media all and (min-width: 960px) {
+	.render-one-column .rc-square-thumb {
+		min-height: 400px;
+	}
 	.error-404 canvas#canvas-webgl {
 	  top: -25%;
 	}
