@@ -1052,8 +1052,10 @@ img.rc-lazyload.rc-lazyloaded {
 	}
 	.single .artworks .rc-artwork-photos {
 		width: 50%;
-    max-width: 50%;
-    display: inline-block;
+		max-width: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 	}
 	.single .artworks .rc-artwork-photos figure {
     flex: 0 0 100%;

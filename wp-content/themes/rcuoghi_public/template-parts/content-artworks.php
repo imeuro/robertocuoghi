@@ -43,6 +43,13 @@ if ($_SERVER['HTTP_HOST'] == 'localhost' || $_SERVER['HTTP_HOST'] == 'meuro.dev'
 		$art_code = get_field('art_code', get_the_ID());
 
 		//var_dump($art_code);
+		
+		$hires_file_path = $_SERVER['DOCUMENT_ROOT'].$base_url.'/hires/'.$art_code.'.jpg';
+		if (file_exists($hires_file_path)) {
+			$hires_url = $base_url.'/hires/'.$art_code.'.jpg';
+		} else {
+			$hires_url = null;
+		}
 
 		$generated_code = '';
 		if (!empty($otherphotos_check)) { // più foto: genero swiper con featured alla fine
@@ -52,11 +59,17 @@ if ($_SERVER['HTTP_HOST'] == 'localhost' || $_SERVER['HTTP_HOST'] == 'meuro.dev'
 				// print_r($otherphoto['art_attached_images']['type']);
 				if ($otherphoto['art_attached_images']['type'] == 'image') {
 					$pic_id = $otherphoto['art_attached_images']['ID'];
-					$generated_code .= "\n<div class=\"swiper-slide\">\n\t<a href=\"".wp_get_attachment_image_src($pic_id,'medium_large')[0]."\" data-lity>\n\t\t<img src=\"".wp_get_attachment_image_src($pic_id,'medium_large')[0]."\" alt=\"".get_the_title()."\" />\n\t</a>\n</div>";
+					if ($hires_url) {
+						$generated_code .= "\n<div class=\"swiper-slide\">\n\t<a href=\"".$base_url."/hires-zoomist.php?art_code=".$art_code."\" data-lity class=\"zoomable\">\n\t\t<img src=\"".wp_get_attachment_image_src($pic_id,'medium_large')[0]."\" alt=\"".get_the_title()."\" />\n\t</a>\n</div></a>";
+					} else {
+						$generated_code .= "\n<div class=\"swiper-slide\">\n\t<img src=\"".wp_get_attachment_image_src($post_thumbnail_id,'medium_large')[0]."\" alt=\"".get_the_title()."\" />\n</div>";
+					}
+					
+					
 				}
 			}
 			// aggiungo la featured alla fine (...#@*!)
-			$generated_code .= "\n<div class=\"swiper-slide\">\n\t<a href=\"".wp_get_attachment_image_src($post_thumbnail_id,'medium_large')[0]."\" data-lity>\n\t\t<img src=\"".wp_get_attachment_image_src($post_thumbnail_id,'medium_large')[0]."\"alt=\"".get_the_title()."\" />\n\t</a>\n</div>";
+			$generated_code .= "\n<div class=\"swiper-slide\">\n\t<a href=\"".$base_url."/hires-zoomist.php?art_code=".$art_code."\" data-lity class=\"zoomable\">\n\t\t<img src=\"".wp_get_attachment_image_src($post_thumbnail_id,'medium_large')[0]."\"alt=\"".get_the_title()."\" />\n\t</a>\n</div></a>";
 			$generated_code .= "\n</div>\n<div class=\"swiper-pagination\"></div>\n</div>\n\n</figure>\n\n";
 
 		} 
@@ -70,23 +83,16 @@ if ($_SERVER['HTTP_HOST'] == 'localhost' || $_SERVER['HTTP_HOST'] == 'meuro.dev'
 
 		} else { // una sola foto: semplice img src
 			
-			$hires_file_path = $_SERVER['DOCUMENT_ROOT'].$base_url.'/hires/'.$art_code.'.jpg';
-			if (file_exists($hires_file_path)) {
-				$hires_url = $base_url.'/hires/'.$art_code.'.jpg';
-			} else {
-				$hires_url = null;
-			}
+
 			if ($is_unlocated == 1 || $is_damaged == 1) {
 				$generated_code .= "<script src=\"".plugins_url()."/catalogo-ragionato/inc/usr_public/three.min.js\"></script>";
 				$generated_code .= "<canvas class=\"p-canvas-webgl\" id=\"canvas-webgl\"></canvas>";
 			} else {
 				if ($hires_url) {
-					$generated_code .= "<a href=\"".$base_url."/hires-zoomist.php?art_code=".$art_code."\" data-lity class=\"zoomable\"><img src=\"".wp_get_attachment_image_src($post_thumbnail_id,'medium_large')[0]."\" alt=\"".get_the_title()."\" /></a>";
+					$generated_code .= "<a href=\"".$base_url."/hires-zoomist.php?art_code=".$art_code."\" data-lity class=\"zoomable\"><img src=\"".wp_get_attachment_image_src($post_thumbnail_id,'medium')[0]."\" alt=\"".get_the_title()."\" /></a>";
 				} else {
 					$generated_code .= "<img src=\"".wp_get_attachment_image_src($post_thumbnail_id,'medium_large')[0]."\" alt=\"".get_the_title()."\" />";
 				}
-				//echo $hires_url;
-				//$generated_code .= '<img src="'.$hires_url.'" alt="'.get_the_title().'" />';
 			}
 
 		}
