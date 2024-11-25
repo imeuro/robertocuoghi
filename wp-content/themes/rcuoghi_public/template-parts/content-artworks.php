@@ -7,44 +7,42 @@
  * @package rcuoghi_public
  */
 
+if ($_SERVER['HTTP_HOST'] == 'localhost' || $_SERVER['HTTP_HOST'] == 'meuro.dev') {
+	$base_url = '/robertocuoghi/';
+} else {
+	$base_url = '/';
+}
+
 ?>
 <article id="rc-artwork-<?php the_ID(); ?>" <?php post_class(); ?>>
 
 
 	<div class="rc-artwork-photos">
-
-	<!-- styles -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/zoomist@2/zoomist.css" />
-
-<!-- scripts -->
-<script type="module">
-  import Zoomist from 'https://cdn.jsdelivr.net/npm/zoomist@2/zoomist.js'
-
-  const zoomist = new Zoomist('.zoomist-container', {
-	// Optional parameters
-	maxScale: 4,
-	bounds: true,
-	// if you need slider
-	slider: true,
-	// if you need zoomer
-	zoomer: true
-  });
-</script>
-
 		<?php
 		$is_unlocated = get_post_custom_values('art_unlocated', get_the_ID())[0];
 		$is_damaged = get_post_custom_values('art_damaged', get_the_ID())[0];
 
-		$audio_track = get_field('art_additional_audio', get_the_ID())[0];
-		$audio_track_check = get_field('art_additional_audio', get_the_ID())[0]['art_attached_audio'];
-
+		$audio_track = get_field('art_additional_audio', get_the_ID());
+		if ($audio_track && isset($audio_track[0])) {
+			$audio_track = $audio_track[0];
+		} else {
+			$audio_track = null;
+		}
+		$audio_track_check = get_field('art_additional_audio', get_the_ID());
+		if ($audio_track_check && isset($audio_track_check[0]['art_attached_audio'])) {
+			$audio_track_check = $audio_track_check[0]['art_attached_audio'];
+		} else {
+			$audio_track_check = null;
+		}
 		$post_thumbnail_id = get_post_thumbnail_id( get_the_ID() );
 
 		// altre foto
 		$otherphotos = get_field('art_additional_images', get_the_ID());
 		$otherphotos_check = get_field('art_additional_images', get_the_ID())[0]['art_attached_images'];
+		// art code
+		$art_code = get_field('art_code', get_the_ID());
 
-		// var_dump($otherphotos_check);
+		//var_dump($art_code);
 
 		$generated_code = '';
 		if (!empty($otherphotos_check)) { // più foto: genero swiper con featured alla fine
@@ -71,23 +69,25 @@
 			}
 
 		} else { // una sola foto: semplice img src
-			$generated_code .= "<div class=\"zoomist-container\">";
-			$generated_code .= "<div class=\"zoomist-wrapper\">";
-			$generated_code .= "<div class=\"zoomist-image\">";
 			
-
-				
-				if ($is_unlocated == 1 || $is_damaged == 1) {
-					$generated_code .= "<script src=\"".plugins_url()."/catalogo-ragionato/inc/usr_public/three.min.js\"></script>";
-					$generated_code .= "<canvas class=\"p-canvas-webgl\" id=\"canvas-webgl\"></canvas>";
+			$hires_file_path = $_SERVER['DOCUMENT_ROOT'].$base_url.'/hires/'.$art_code.'.jpg';
+			if (file_exists($hires_file_path)) {
+				$hires_url = $base_url.'/hires/'.$art_code.'.jpg';
+			} else {
+				$hires_url = null;
+			}
+			if ($is_unlocated == 1 || $is_damaged == 1) {
+				$generated_code .= "<script src=\"".plugins_url()."/catalogo-ragionato/inc/usr_public/three.min.js\"></script>";
+				$generated_code .= "<canvas class=\"p-canvas-webgl\" id=\"canvas-webgl\"></canvas>";
+			} else {
+				if ($hires_url) {
+					$generated_code .= "<a href=\"".$base_url."/hires-zoomist.php?art_code=".$art_code."\" data-lity class=\"zoomable\"><img src=\"".wp_get_attachment_image_src($post_thumbnail_id,'medium_large')[0]."\" alt=\"".get_the_title()."\" /></a>";
 				} else {
 					$generated_code .= "<img src=\"".wp_get_attachment_image_src($post_thumbnail_id,'medium_large')[0]."\" alt=\"".get_the_title()."\" />";
 				}
-
-
-			$generated_code .= "</div>";
-			$generated_code .= "</div>";
-			$generated_code .= "</div>";
+				//echo $hires_url;
+				//$generated_code .= '<img src="'.$hires_url.'" alt="'.get_the_title().'" />';
+			}
 
 		}
 
@@ -98,8 +98,9 @@
 
 
 
-		$videoverlay = get_post_custom_values('art_additional_video', get_the_ID())[0];
-		if ($videoverlay) {
+		$videoverlay = get_post_custom_values('art_additional_video', get_the_ID());
+		if ($videoverlay && isset($videoverlay[0])) {
+			$videoverlay = $videoverlay[0];
 			$vidz = get_field('art_additional_video', get_the_ID());
 			if ($vidz && $vidz!== '') {
 				foreach ($vidz as $vid) {
@@ -164,7 +165,10 @@
 			);
 
 			foreach ($public_fields as $public_field) :
-				$public_field_value = get_post_custom_values($public_field, get_the_ID())[0];
+				$public_field_value = get_post_custom_values($public_field, get_the_ID());
+				if ($public_field_value && isset($public_field_value[0]) ) {
+					$public_field_value = $public_field_value[0];
+				}
 				$pre_field = $post_field = '';
 
 

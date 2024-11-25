@@ -968,9 +968,15 @@ img.rc-lazyload.rc-lazyloaded {
 }
 .lity-close,
 .lity-close:hover {
+	font-family: "Lato", sans-serif;
+	font-weight: 300;
 	color: #565656;
 	text-shadow: none;
-	opacity: 0;
+	opacity: 1;
+	top: 5px;
+	right: 5px;
+	background: rgba(255, 255, 255, 0.8);
+	border-radius: 2px;
 }
 .lity-wrap:before {
   margin-right: 0;
@@ -1169,4 +1175,34 @@ body.post-type-archive-artworks article.series-cinema-putiferio {
 		max-height: 90vh;
 		max-width: none;
 	}
+}
+
+
+
+
+.single-artworks .lity-iframe-container {
+	width: 100dvw;
+	height: 100dvh;
+	padding: 0;
+	margin: 0;
+}
+.single-artworks .lity-iframe-container > iframe { background-color: rgba(255, 255, 255, 0.8); }
+.single-artworks .lity-iframe .lity-container { max-width: 100dvw; }
+
+a.zoomable {
+	position: relative;
+	display: inline-block;
+	cursor: zoom-in;
+}
+a.zoomable:after {
+	content: "click to zoom";
+	position: absolute;
+	bottom: 25px;
+	left: 50%;
+	transform: translateX(-50%);
+	background: #fff9;
+	border-radius: 2px;
+	padding: 0 10px;
+	display: inline-block;
+	font-size: 12px;
 }
