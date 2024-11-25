@@ -62,7 +62,7 @@ if ($_SERVER['HTTP_HOST'] == 'localhost' || $_SERVER['HTTP_HOST'] == 'meuro.dev'
 					if ($hires_url) {
 						$generated_code .= "\n<div class=\"swiper-slide\">\n\t<a href=\"".$base_url."/hires-zoomist.php?cb=2&art_code=".$art_code."\" data-lity class=\"zoomable\">\n\t\t<img src=\"".wp_get_attachment_image_src($pic_id,'medium_large')[0]."\" alt=\"".get_the_title()."\" />\n\t</a>\n</div></a>";
 					} else {
-						$generated_code .= "\n<div class=\"swiper-slide\">\n\t<img src=\"".wp_get_attachment_image_src($post_thumbnail_id,'medium_large')[0]."\" alt=\"".get_the_title()."\" />\n</div>";
+						$generated_code .= "\n<div class=\"swiper-slide\">\n\t<img src=\"".wp_get_attachment_image_src($pic_id,'medium_large')[0]."\" alt=\"".get_the_title()."\" />\n</div>";
 					}
 					
 					
@@ -83,7 +83,6 @@ if ($_SERVER['HTTP_HOST'] == 'localhost' || $_SERVER['HTTP_HOST'] == 'meuro.dev'
 
 		} else { // una sola foto: semplice img src
 			
-
 			if ($is_unlocated == 1 || $is_damaged == 1) {
 				$generated_code .= "<script src=\"".plugins_url()."/catalogo-ragionato/inc/usr_public/three.min.js\"></script>";
 				$generated_code .= "<canvas class=\"p-canvas-webgl\" id=\"canvas-webgl\"></canvas>";
@@ -97,12 +96,8 @@ if ($_SERVER['HTTP_HOST'] == 'localhost' || $_SERVER['HTTP_HOST'] == 'meuro.dev'
 
 		}
 
-
 		// finally... printo to screen
 		echo $generated_code;
-
-
-
 
 		$videoverlay = get_post_custom_values('art_additional_video', get_the_ID());
 		if ($videoverlay && isset($videoverlay[0])) {
