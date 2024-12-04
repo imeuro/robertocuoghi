@@ -1202,6 +1202,10 @@ a.zoomable {
 	justify-content: center;
 	margin-top: 10px;
 }
+.swiper-slide-zoom img {
+	width: 30px;
+	height: 54px;
+}
 /*
 a.zoomable:after {
 	content: "click to zoom";
