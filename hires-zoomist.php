@@ -64,8 +64,12 @@
 </head>
 <body>
     <?php
-    //print_r($_GET['art_code']);
-    $hires_url = "/robertocuoghi/hires/{$_GET['art_code']}.jpg";
+    if ($_SERVER['HTTP_HOST'] == 'localhost' || $_SERVER['HTTP_HOST'] == 'meuro.dev') {
+        $base_url = '/robertocuoghi';
+    } else {
+        $base_url = '';
+    }
+    $hires_url = $base_url."/hires/{$_GET['art_code']}.jpg";
     //print_r($hires_url);
     ?>
     <div id="hiresZoom" class="zoomist-container"  style="background:#fff;">
