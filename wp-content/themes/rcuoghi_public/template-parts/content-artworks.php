@@ -8,9 +8,9 @@
  */
 
 if ($_SERVER['HTTP_HOST'] == 'localhost' || $_SERVER['HTTP_HOST'] == 'meuro.dev') {
-	$base_url = '/robertocuoghi/';
+	$base_url = '/robertocuoghi';
 } else {
-	$base_url = '/';
+	$base_url = '';
 }
 
 ?>
