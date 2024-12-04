@@ -1194,7 +1194,7 @@ body.post-type-archive-artworks article.series-cinema-putiferio {
 a.zoomable {
 	position: relative;
 	display: inline-block;
-	cursor: zoom-in;
+	/* cursor: zoom-in; */
 }
 .swiper-slide-zoom {
 	display: flex;
