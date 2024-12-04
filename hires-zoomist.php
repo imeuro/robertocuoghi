@@ -79,7 +79,7 @@
     import Zoomist from 'https://cdn.jsdelivr.net/npm/zoomist@2/zoomist.js'
     const zoomist = new Zoomist('.zoomist-container', {
         // Optional parameters
-        maxScale: 20,
+        maxScale: 40,
         bounds: true,
         // if you need slider
         slider: true,
