@@ -1196,6 +1196,13 @@ a.zoomable {
 	display: inline-block;
 	cursor: zoom-in;
 }
+.swiper-slide-zoom {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 10px;
+}
+/*
 a.zoomable:after {
 	content: "click to zoom";
 	position: absolute;
@@ -1208,3 +1215,4 @@ a.zoomable:after {
 	display: inline-block;
 	font-size: 12px;
 }
+*/

@@ -71,7 +71,7 @@ if ($_SERVER['HTTP_HOST'] == 'localhost' || $_SERVER['HTTP_HOST'] == 'meuro.dev'
 			}
 			// aggiungo la featured alla fine (...#@*!)
 			if ($hires_url) {
-				$generated_code .= "\n<div class=\"swiper-slide\">\n\t<a href=\"".$base_url."/hires-zoomist.php?cb=3&art_code=".$art_code."\" data-lity class=\"zoomable\">\n\t\t<img src=\"".wp_get_attachment_image_src($post_thumbnail_id,'medium_large')[0]."\"alt=\"".get_the_title()."\" />\n\t</a>\n</div></a>";
+				$generated_code .= "\n<div class=\"swiper-slide\">\n\t<a href=\"".$base_url."/hires-zoomist.php?cb=3&art_code=".$art_code."\" data-lity class=\"zoomable\" title=\"Click to zoom ".get_the_title()."\">\n\t\t<img src=\"".wp_get_attachment_image_src($post_thumbnail_id,'medium_large')[0]."\"alt=\"".get_the_title()."\" />\n\t</a>\n</div><div class=\"swiper-slide-zoom\"><img src=\"".get_template_directory_uri()."/icons/search.png\" width=\"30\" height=\"54\" alt=\"Click to zoom ".get_the_title()."\" /></div></a>";
 			} else {
 				$generated_code .= "\n<div class=\"swiper-slide\">\n\t<img src=\"".wp_get_attachment_image_src($post_thumbnail_id,'medium_large')[0]."\"alt=\"".get_the_title()."\" />\n</div></a>";
 			}
@@ -93,7 +93,7 @@ if ($_SERVER['HTTP_HOST'] == 'localhost' || $_SERVER['HTTP_HOST'] == 'meuro.dev'
 				$generated_code .= "<canvas class=\"p-canvas-webgl\" id=\"canvas-webgl\"></canvas>";
 			} else {
 				if ($hires_url) {
-					$generated_code .= "<a href=\"".$base_url."/hires-zoomist.php?cb=3&art_code=".$art_code."\" data-lity class=\"zoomable\"><img src=\"".wp_get_attachment_image_src($post_thumbnail_id,'medium')[0]."\" alt=\"".get_the_title()."\" /></a>";
+					$generated_code .= "<a href=\"".$base_url."/hires-zoomist.php?cb=3&art_code=".$art_code."\" data-lity class=\"zoomable\" title=\"Click to zoom ".get_the_title()."\"><img src=\"".wp_get_attachment_image_src($post_thumbnail_id,'medium')[0]."\" alt=\"".get_the_title()."\" /><div class=\"swiper-slide-zoom\"><img src=\"".get_template_directory_uri()."/icons/search.png\" width=\"30\" height=\"54\" alt=\"Click to zoom ".get_the_title()."\" /></div></a>";
 				} else {
 					$generated_code .= "<img src=\"".wp_get_attachment_image_src($post_thumbnail_id,'medium_large')[0]."\" alt=\"".get_the_title()."\" />";
 				}
@@ -150,8 +150,8 @@ if ($_SERVER['HTTP_HOST'] == 'localhost' || $_SERVER['HTTP_HOST'] == 'meuro.dev'
 		if ( is_singular() ) :
 
 			the_title( '<h1 class="entry-title">', '</h1>' );
-			$artwork_years = get_the_terms( get_the_ID(), array( 'artwork_year' ) );
-			if ($artwork_years) {
+			$artwork_years = get_the_terms( get_the_ID(), 'artwork_year' );
+			if ( is_array( $artwork_years ) && ! empty( $artwork_years ) ) {
 		    $artwork_year = $artwork_years[0]->name;
 				echo '<p>'.$artwork_year.'</p>';
 			}
