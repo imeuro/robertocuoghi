@@ -61,7 +61,7 @@ if ($_SERVER['HTTP_HOST'] == 'localhost' || $_SERVER['HTTP_HOST'] == 'meuro.dev'
 				if ($otherphoto['art_attached_images']['type'] == 'image') {
 					$pic_id = $otherphoto['art_attached_images']['ID'];
 					if ($hires_url) {
-						$generated_code .= "\n<div class=\"swiper-slide\">\n\t<a href=\"".$base_url."/hires-zoomist.php?cb=3&art_code=".$art_code."\" data-lity class=\"zoomable\">\n\t\t<img src=\"".wp_get_attachment_image_src($pic_id,'medium_large')[0]."\" alt=\"".get_the_title()."\" />\n\t<div class=\"swiper-slide-zoom\"><img src=\"".get_template_directory_uri()."/icons/search.png\" width=\"30\" height=\"54\" alt=\"Click to zoom ".get_the_title()."\" /></div></a>\n</div>";
+						$generated_code .= "\n<div class=\"swiper-slide\">\n\t<a href=\"".$base_url."/hires-zoomist.php?cb=3&art_code=".$art_code."\" data-lity class=\"zoomable\" title=\"Click to zoom ".get_the_title()."\">\n\t\t<img src=\"".wp_get_attachment_image_src($pic_id,'medium_large')[0]."\" alt=\"".get_the_title()."\" />\n\t<div class=\"swiper-slide-zoom\"><img src=\"".get_template_directory_uri()."/icons/search.png\" width=\"30\" height=\"54\" alt=\"Click to zoom ".get_the_title()."\" /></div></a>\n</div>";
 					} else {
 						$generated_code .= "\n<div class=\"swiper-slide\">\n\t<img src=\"".wp_get_attachment_image_src($pic_id,'medium_large')[0]."\" alt=\"".get_the_title()."\" />\n</div>";
 					}
