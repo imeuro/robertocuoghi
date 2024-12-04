@@ -26,11 +26,11 @@ wp-content/plugins/*
 /wp-content/themes/twenty*/
 
 
-/index.php
-/license.txt
-/readme.html
-/wp-*.php
-/xmlrpc.php
+index.php
+license.txt
+readme.html
+wp-*.php
+xmlrpc.php
 
 dbs
 scripts
@@ -38,6 +38,6 @@ _demos/
 out/
 
 
-/.htaccess
-/sitemap.xml
-/sitemap.xml.gz
+.htaccess
+sitemap.xml
+sitemap.xml.gz
