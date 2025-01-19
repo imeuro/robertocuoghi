@@ -54,8 +54,12 @@ if ($_SERVER['HTTP_HOST'] == 'localhost' || $_SERVER['HTTP_HOST'] == 'meuro.dev'
 
 		$generated_code = '';
 		if (!empty($otherphotos_check)) { // più foto: genero swiper con featured alla fine
+			if ($hires_url) {
+				$generated_code .= "\n<figure data-mode=\"swiper\">\n\n<div class=\"swiper-container hires_btn\" id=\"fl_swipercontainer\">\n<div class=\"swiper-wrapper\">";
+			} else {
+				$generated_code .= "\n<figure data-mode=\"swiper\">\n\n<div class=\"swiper-container\" id=\"fl_swipercontainer\">\n<div class=\"swiper-wrapper\">";
+			}
 
-			$generated_code .= "\n<figure data-mode=\"swiper\">\n\n<div class=\"swiper-container\" id=\"fl_swipercontainer\">\n<div class=\"swiper-wrapper\">";
 			foreach ($otherphotos as $otherphoto) {
 				// print_r($otherphoto['art_attached_images']['type']);
 				if (isset($otherphoto['art_attached_images']['type']) && $otherphoto['art_attached_images']['type'] == 'image') {
@@ -117,7 +121,7 @@ if ($_SERVER['HTTP_HOST'] == 'localhost' || $_SERVER['HTTP_HOST'] == 'meuro.dev'
 						$vidH = $vid['art_attached_video']['height'];
 
 						$vidbtntype = 'play1';
-						if ($_GET["btntype"]) {
+						if (isset($_GET["btntype"])) {
 							$vidbtntype = $_GET["btntype"];
 						}
 

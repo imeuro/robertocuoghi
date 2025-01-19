@@ -588,7 +588,7 @@ aside.artworks-navi #cat-filter > li.open {
 }
 .single .artworks .rc-artwork-photos {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: column wrap;
   justify-content: space-evenly;
 }
 .single .artworks .rc-artwork-photos figure {
@@ -779,6 +779,7 @@ a#fl_close:before {
 
 
 #fl_swipercontainer { max-height: 100vh; padding-bottom: 60px; }
+
 #fl_swipercontainer .swiper-wrapper { align-items: center; }
 #fl_swipercontainer .swiper-slide,
 #fl_swipercontainer .swiper-slide img {
@@ -786,7 +787,13 @@ a#fl_close:before {
     max-height: 70vh;
 }
 
+@media all and (min-width: 768px) {
+	#fl_swipercontainer.hires_btn {
+		padding-bottom: 90px;
+	}
+}
 @media all and (min-width: 1680px) {
+	#fl_swipercontainer.hires_btn { padding-bottom: 90px; }
 	#fl_swipercontainer .swiper-slide,
 	#fl_swipercontainer .swiper-slide img {
 	    max-height: 72.5vh;

@@ -36,6 +36,7 @@ dbs
 scripts
 _demos/
 out/
+hires
 
 
 /.htaccess
