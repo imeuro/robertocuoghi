@@ -295,11 +295,11 @@ jQuery(document).ready( function() {
 
 	// DISATTIVATO PER DEBUG, POI RIATTIVARE!
 	//
-	jQuery(document).on("contextmenu",function(e){
-	  if(e.target.nodeName != "INPUT" && e.target.nodeName != "TEXTAREA")
-	    e.preventDefault();
-	  	console.log(e.target.nodeName);
-	});
+	// jQuery(document).on("contextmenu",function(e){
+	//   if(e.target.nodeName != "INPUT" && e.target.nodeName != "TEXTAREA")
+	//     e.preventDefault();
+	//   	console.log(e.target.nodeName);
+	// });
 
 	initinfscroll()
 	initlazyload();
@@ -339,6 +339,10 @@ jQuery(document).ready( function() {
 					// 		jQuery('#fl_swipercontainer .swiper-slide, #fl_swipercontainer .swiper-slide img').css('max-height',picHeight+'px');
 					// 	},1500);
 					// }
+					setTimeout(() => {
+						console.debug('artworks_slider.update()')
+						artworks_slider.update();
+					}, 500);
 
 					if (videoverlayBtn) { // 22/02/2023 -> spostiamo bottoncino a fianco dei pallini slider:
 						setTimeout(function() {

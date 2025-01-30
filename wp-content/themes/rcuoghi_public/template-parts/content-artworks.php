@@ -164,12 +164,10 @@ if ($_SERVER['HTTP_HOST'] == 'localhost' || $_SERVER['HTTP_HOST'] == 'meuro.dev'
 			$public_fields = array(
 				"art_dimensions",
 				"art_materials",
-				//"art_weight",
 				"art_photo_credits",
 				"art_edition",
 				"art_unlocated",
 				"art_notes",
-				//"art_additional_video",
 				"art_exhibitions",
 				"art_bibliography"
 			);
@@ -181,35 +179,21 @@ if ($_SERVER['HTTP_HOST'] == 'localhost' || $_SERVER['HTTP_HOST'] == 'meuro.dev'
 				}
 				$pre_field = $post_field = '';
 
-
 				if ($public_field == 'art_photo_credits') { $pre_field = 'Photo: '; }
-				// if ($public_field == 'art_additional_video') {
-				// 	$vidz = get_field('art_additional_video', get_the_ID());
-				// 	if ($vidz && $vidz!== '') {
-				// 		foreach ($vidz as $vid) {
-				// 			if ($vid['art_attached_video'] && $vid['art_attached_video'] !== NULL) {
-				// 				$vidUrl = $vid['art_attached_video']['url'];
-				// 				$vidCap = $vid['art_attached_video']['description'];
-				// 				$vidW = $vid['art_attached_video']['width'];
-				// 				$vidH = $vid['art_attached_video']['height'];
-				// 				echo '<span class="initvid artwork-videocont" data-video="'.$vidUrl.'"  data-video-width="'.$vidW.'"  data-video-height="'.$vidH.'" data-video-description="'.$vidCap.'" ></span>';
-				// 			};
-				// 		}
-				// 	}
-				// 	continue;
-				// }
+				
 				if ($public_field == 'art_exhibitions') {
 					$pre_field = '<span id="viewmore_txt" class="closed"><span>Exhibitions:</span><br />';
 					$post_field = '</span><hr class="divider" /><button id="viewmore_btn"></button>';
 				}
 
 				if ($public_field == 'art_unlocated' && $public_field_value == 1) { echo '<p class="unlocated-work">UNLOCATED WORK</p>'; continue; }
+
+				if ($public_field == 'art_notes' && $public_field_value == "permanently damaged work") { echo '<p class="unlocated-work">PERMANENTLY DAMAGED WORK</p>'; continue; }
+
 				else if ($public_field_value && !empty($public_field_value)) {
 					echo '<p class="'.$public_field.'">'.$pre_field.nl2br($public_field_value).$post_field.'</p>';
 				}
 			endforeach;
-
-
 
 			// print_r(get_post_custom(get_the_ID()));
 		endif;

@@ -773,7 +773,7 @@ a#fl_close:before {
 	/* background: #929394;
 	color: #fff; */
 	display: inline-block;
-	padding: 5px 10px 2px 10px;
+	padding: 5px 0 2px 0;
 	line-height: 16px;
 }
 
@@ -781,19 +781,17 @@ a#fl_close:before {
 #fl_swipercontainer { max-height: 100vh; padding-bottom: 60px; }
 
 #fl_swipercontainer .swiper-wrapper { align-items: center; }
+#fl_swipercontainer .swiper-pagination-bullets { bottom: 0; }
 #fl_swipercontainer .swiper-slide,
 #fl_swipercontainer .swiper-slide img {
     text-align: center;
     max-height: 70vh;
 }
-
-@media all and (min-width: 768px) {
-	#fl_swipercontainer.hires_btn {
-		padding-bottom: 90px;
-	}
+#fl_swipercontainer.hires_btn {
+	padding-bottom: 90px;
 }
+
 @media all and (min-width: 1680px) {
-	#fl_swipercontainer.hires_btn { padding-bottom: 90px; }
 	#fl_swipercontainer .swiper-slide,
 	#fl_swipercontainer .swiper-slide img {
 	    max-height: 72.5vh;
