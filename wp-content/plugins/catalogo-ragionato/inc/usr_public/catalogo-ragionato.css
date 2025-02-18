@@ -789,6 +789,7 @@ a#fl_close:before {
 }
 #fl_swipercontainer .swiper-slide a[data-lity] {
 	display: inline-block;
+	width: 100%;
 }
 #fl_swipercontainer.hires_btn {
 	padding-bottom: 90px;
