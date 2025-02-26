@@ -1087,6 +1087,11 @@ img.rc-lazyload.rc-lazyloaded {
 	max-width: 100%;
 	background-color: #fff;
 }
+
+.rc-container .video-js.audiotrack.vjs-user-inactive.vjs-playing .vjs-control-bar {
+	opacity: 1;
+}
+
 .rc-container .video-js.RCvideo-vertical {
     width: 100%;
     max-width: 320px;
