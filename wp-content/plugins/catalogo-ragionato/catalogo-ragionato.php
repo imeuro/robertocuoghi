@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: Artworks Catalogue
-Plugin URI: http://imeuro.io/
+Plugin URI: https://meuro.dev/
 Description: Catalogo delle opere di Roberto Cuoghi
-Version: 1.0
+Version: 1.1
 Author: Mauro Fioravanzi
-Author URI: http://imeuro.io/
+Author URI: https://meuro.dev/
 */
 
 
