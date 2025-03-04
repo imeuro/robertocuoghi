@@ -956,11 +956,13 @@ img.rc-lazyload.rc-lazyloaded {
 }
 @media all and (min-width: 960px) {
 	.render-one-column .rc-square-thumb {
-		max-width: 960px;
 		min-height: 400px;
 	}
+	.render-one-column .rc-square-thumb img.rc-lazyload {
+		max-width: 960px;
+	}
 	.error-404 canvas#canvas-webgl {
-	  top: -25%;
+		top: -25%;
 	}
 }
 
