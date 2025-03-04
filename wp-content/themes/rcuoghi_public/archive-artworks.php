@@ -92,8 +92,8 @@ get_header();
 				</article>
 
 			<?php 
-			echo '$multiplier: '.$multiplier;
-			echo '<br>$dimensions_override: '.round($multiplier);
+			// echo '$multiplier: '.$multiplier;
+			// echo '<br>$dimensions_override: '.round($multiplier);
 			}
 			the_posts_navigation(); ?>
 
