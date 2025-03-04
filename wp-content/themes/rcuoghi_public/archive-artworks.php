@@ -56,18 +56,21 @@ get_header();
 						// echo '</pre>';
 
 						if ( isset($dimensions_override) && (!isset($dimensions_reset) || $dimensions_reset == '') ) {
-							$multiplier = $dimensions_override;
+							// $multiplier = $dimensions_override;
+							$multiplier = 100;
 						} else {
-							$dims = get_field('art_dimensions');
-							//$string = "200 x 554 x 5 cm / 78.74 x 218.11 x 21.65 in";
-							$pattern = "/(\d+(?:\.\d+)?) (x|×) (\d+(?:\.\d+)?)/";
-							preg_match($pattern, $dims, $matches);
+							// $dims = get_field('art_dimensions');
+							// //$string = "200 x 554 x 5 cm / 78.74 x 218.11 x 21.65 in";
+							// $pattern = "/(\d+(?:\.\d+)?) (x|×) (\d+(?:\.\d+)?)/";
+							// preg_match($pattern, $dims, $matches);
 
-							if (isset($matches[3]) && $matches[3] != null) :
-								$multiplier = ($matches[3] / $ThumbImgData[1])*400;
-							else :
-								$multiplier = 100;
-							endif;
+							// if (isset($matches[3]) && $matches[3] != null) :
+							// 	$multiplier = ($matches[3] / $ThumbImgData[1])*400;
+							// else :
+							// 	$multiplier = 100;
+							// endif;
+
+							$multiplier = 100;
 
 							$manage_dimensions = array(
 								'dimensions_variation' 	=> round($multiplier),
@@ -86,8 +89,8 @@ get_header();
 				</article>
 
 			<?php 
-			// echo '$multiplier: '.$multiplier;
-			// echo '<br>$dimensions_override: '.round($multiplier);
+			echo '$multiplier: '.$multiplier;
+			echo '<br>$dimensions_override: '.round($multiplier);
 			}
 			the_posts_navigation(); ?>
 
