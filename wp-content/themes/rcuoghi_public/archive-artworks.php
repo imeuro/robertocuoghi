@@ -57,15 +57,15 @@ get_header();
 						// echo '</pre>';
 
 						if ( isset($dimensions_override) && (!isset($dimensions_reset) || $dimensions_reset == '') ) {
-							//$multiplier = $dimensions_override;
+							$multiplier = $dimensions_override;
 							// MANUAL RESET:
-							$multiplier = 100;
-							$manage_dimensions = array(
-								'dimensions_variation' 	=> round($multiplier),
-								'dimensions_reset'		=> '',
+							// $multiplier = 100;
+							// $manage_dimensions = array(
+							// 	'dimensions_variation' 	=> round($multiplier),
+							// 	'dimensions_reset'		=> '',
 
-							);
-							update_field( 'manage_dimensions', $manage_dimensions, get_the_ID() );
+							// );
+							// update_field( 'manage_dimensions', $manage_dimensions, get_the_ID() );
 						} else {
 							// PIC SIZE WAS BASED ON REAL WORLD DIMENSIONS
 							// $dims = get_field('art_dimensions');
