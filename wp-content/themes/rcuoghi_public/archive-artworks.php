@@ -39,7 +39,8 @@ get_header();
 							$ThumbImgData = wp_get_attachment_image_src( get_post_thumbnail_id(), $picsz );
 						endif;
 						
-						// PIC SIZE IS BASED ON REAL WORLD DIMENSIONS
+						// PIC SIZE IS (NOT ANYMORE) BASED ON REAL WORLD DIMENSIONS
+						// BUT YOU CAN STILL APPLY A VARIATION
 						$manage_dimensions = get_field('manage_dimensions');
 						if (!is_null($manage_dimensions)) {
 							$dimensions_override = $manage_dimensions['dimensions_variation'];
@@ -56,9 +57,11 @@ get_header();
 						// echo '</pre>';
 
 						if ( isset($dimensions_override) && (!isset($dimensions_reset) || $dimensions_reset == '') ) {
-							// $multiplier = $dimensions_override;
-							$multiplier = 100;
+							$multiplier = $dimensions_override;
+							// MANUAL RESET:
+							//$multiplier = 100;
 						} else {
+							// PIC SIZE WAS BASED ON REAL WORLD DIMENSIONS
 							// $dims = get_field('art_dimensions');
 							// //$string = "200 x 554 x 5 cm / 78.74 x 218.11 x 21.65 in";
 							// $pattern = "/(\d+(?:\.\d+)?) (x|×) (\d+(?:\.\d+)?)/";

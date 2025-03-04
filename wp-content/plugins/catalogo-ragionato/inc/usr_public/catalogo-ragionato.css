@@ -956,6 +956,7 @@ img.rc-lazyload.rc-lazyloaded {
 }
 @media all and (min-width: 960px) {
 	.render-one-column .rc-square-thumb {
+		max-width: 960px;
 		min-height: 400px;
 	}
 	.error-404 canvas#canvas-webgl {
