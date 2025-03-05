@@ -916,10 +916,6 @@ canvas#canvas-webgl {
     margin: 20px auto;
     text-align: center;
 	display: flex;
-	min-height: 300px;
-}
-.render-one-column .rc-square-thumb#thumb-2953 {
-	min-height: 75dvh;
 }
 
 .render-one-column .rc-square-thumb .post-thumbnail {
