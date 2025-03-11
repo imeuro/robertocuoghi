@@ -588,7 +588,7 @@ aside.artworks-navi #cat-filter > li.open {
 }
 .single .artworks .rc-artwork-photos {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: column wrap;
   justify-content: space-evenly;
 }
 .single .artworks .rc-artwork-photos figure {
@@ -773,17 +773,26 @@ a#fl_close:before {
 	/* background: #929394;
 	color: #fff; */
 	display: inline-block;
-	padding: 5px 10px 2px 10px;
+	padding: 5px 0 2px 0;
 	line-height: 16px;
 }
 
 
 #fl_swipercontainer { max-height: 100vh; padding-bottom: 60px; }
+
 #fl_swipercontainer .swiper-wrapper { align-items: center; }
+#fl_swipercontainer .swiper-pagination-bullets { bottom: 0; }
 #fl_swipercontainer .swiper-slide,
 #fl_swipercontainer .swiper-slide img {
     text-align: center;
     max-height: 70vh;
+}
+#fl_swipercontainer .swiper-slide a[data-lity] {
+	display: inline-block;
+	width: 100%;
+}
+#fl_swipercontainer.hires_btn {
+	padding-bottom: 90px;
 }
 
 @media all and (min-width: 1680px) {
@@ -907,10 +916,6 @@ canvas#canvas-webgl {
     margin: 20px auto;
     text-align: center;
 	display: flex;
-	min-height: 300px;
-}
-.render-one-column .rc-square-thumb#thumb-2953 {
-	min-height: 75dvh;
 }
 
 .render-one-column .rc-square-thumb .post-thumbnail {
@@ -949,8 +954,11 @@ img.rc-lazyload.rc-lazyloaded {
 	.render-one-column .rc-square-thumb {
 		min-height: 400px;
 	}
+	.render-one-column .rc-square-thumb img.rc-lazyload {
+		max-width: 960px;
+	}
 	.error-404 canvas#canvas-webgl {
-	  top: -25%;
+		top: -25%;
 	}
 }
 
@@ -1078,6 +1086,11 @@ img.rc-lazyload.rc-lazyloaded {
 	max-width: 100%;
 	background-color: #fff;
 }
+
+.rc-container .video-js.audiotrack.vjs-user-inactive.vjs-playing .vjs-control-bar {
+	opacity: 1;
+}
+
 .rc-container .video-js.RCvideo-vertical {
     width: 100%;
     max-width: 320px;
@@ -1149,8 +1162,8 @@ body.post-type-archive-artworks article.series-cinema-putiferio {
 .videoverlay-btn {
 	background: url('../../../../themes/rcuoghi_public/icons/video-play1.svg') no-repeat center;
 	background-size: 55px;
-    width: 72px;
-    height: 72px;
+    width: 55px;
+    height: 35px;
     text-align: center;
     margin: 0 auto 20px auto;
     display: table;

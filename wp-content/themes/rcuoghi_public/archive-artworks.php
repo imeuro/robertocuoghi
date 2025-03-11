@@ -39,7 +39,8 @@ get_header();
 							$ThumbImgData = wp_get_attachment_image_src( get_post_thumbnail_id(), $picsz );
 						endif;
 						
-						// PIC SIZE IS BASED ON REAL WORLD DIMENSIONS
+						// PIC SIZE IS (NOT ANYMORE) BASED ON REAL WORLD DIMENSIONS
+						// BUT YOU CAN STILL APPLY A VARIATION
 						$manage_dimensions = get_field('manage_dimensions');
 						if (!is_null($manage_dimensions)) {
 							$dimensions_override = $manage_dimensions['dimensions_variation'];
@@ -57,17 +58,28 @@ get_header();
 
 						if ( isset($dimensions_override) && (!isset($dimensions_reset) || $dimensions_reset == '') ) {
 							$multiplier = $dimensions_override;
-						} else {
-							$dims = get_field('art_dimensions');
-							//$string = "200 x 554 x 5 cm / 78.74 x 218.11 x 21.65 in";
-							$pattern = "/(\d+(?:\.\d+)?) (x|×) (\d+(?:\.\d+)?)/";
-							preg_match($pattern, $dims, $matches);
+							// MANUAL RESET:
+							// $multiplier = 100;
+							// $manage_dimensions = array(
+							// 	'dimensions_variation' 	=> round($multiplier),
+							// 	'dimensions_reset'		=> '',
 
-							if (isset($matches[3]) && $matches[3] != null) :
-								$multiplier = ($matches[3] / $ThumbImgData[1])*400;
-							else :
-								$multiplier = 100;
-							endif;
+							// );
+							// update_field( 'manage_dimensions', $manage_dimensions, get_the_ID() );
+						} else {
+							// PIC SIZE WAS BASED ON REAL WORLD DIMENSIONS
+							// $dims = get_field('art_dimensions');
+							// //$string = "200 x 554 x 5 cm / 78.74 x 218.11 x 21.65 in";
+							// $pattern = "/(\d+(?:\.\d+)?) (x|×) (\d+(?:\.\d+)?)/";
+							// preg_match($pattern, $dims, $matches);
+
+							// if (isset($matches[3]) && $matches[3] != null) :
+							// 	$multiplier = ($matches[3] / $ThumbImgData[1])*400;
+							// else :
+							// 	$multiplier = 100;
+							// endif;
+
+							$multiplier = 100;
 
 							$manage_dimensions = array(
 								'dimensions_variation' 	=> round($multiplier),
@@ -79,7 +91,7 @@ get_header();
 						}
 						
 
-						echo '<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="'.$ThumbImgData[0].'" width="'.$ThumbImgData[1].'%" height="'.$ThumbImgData[2].'" alt ="Roberto Cuoghi - '.the_title_attribute( array( 'echo' => false, ) ).'" class="rc-lazyload" style="width: '.round($multiplier/1).'%; height: auto; @media (min-width: 960px) {width: '.round($multiplier/2).'%;}" />';
+						echo '<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="'.$ThumbImgData[0].'" width="'.$ThumbImgData[1].'" height="'.$ThumbImgData[2].'" alt ="Roberto Cuoghi - '.the_title_attribute( array( 'echo' => false, ) ).'" class="rc-lazyload" style="width: '.round($multiplier/2).'%; height: auto;" />';
 
 						?>
 					</a>

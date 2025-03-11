@@ -54,26 +54,24 @@ if ($_SERVER['HTTP_HOST'] == 'localhost' || $_SERVER['HTTP_HOST'] == 'meuro.dev'
 
 		$generated_code = '';
 		if (!empty($otherphotos_check)) { // più foto: genero swiper con featured alla fine
+			if ($hires_url) {
+				$generated_code .= "\n<figure data-mode=\"swiper\">\n\n<div class=\"swiper-container hires_btn\" id=\"fl_swipercontainer\">\n<div class=\"swiper-wrapper\">";
+			} else {
+				$generated_code .= "\n<figure data-mode=\"swiper\">\n\n<div class=\"swiper-container\" id=\"fl_swipercontainer\">\n<div class=\"swiper-wrapper\">";
+			}
 
-			$generated_code .= "\n<figure data-mode=\"swiper\">\n\n<div class=\"swiper-container\" id=\"fl_swipercontainer\">\n<div class=\"swiper-wrapper\">";
 			foreach ($otherphotos as $otherphoto) {
 				// print_r($otherphoto['art_attached_images']['type']);
 				if (isset($otherphoto['art_attached_images']['type']) && $otherphoto['art_attached_images']['type'] == 'image') {
 					$pic_id = $otherphoto['art_attached_images']['ID'];
-					if ($hires_url) {
-						$generated_code .= "\n<div class=\"swiper-slide\">\n\t<a href=\"".$base_url."/hires-zoomist.php?cb=3&art_code=".$art_code."\" data-lity class=\"zoomable\" title=\"Click to zoom ".get_the_title()."\">\n\t\t<img src=\"".wp_get_attachment_image_src($pic_id,'medium_large')[0]."\" alt=\"".get_the_title()."\" />\n\t<div class=\"swiper-slide-zoom\"><img src=\"".get_template_directory_uri()."/icons/search.png\" width=\"30\" height=\"54\" alt=\"Click to zoom ".get_the_title()."\" /></div></a>\n</div>";
-					} else {
-						$generated_code .= "\n<div class=\"swiper-slide\">\n\t<img src=\"".wp_get_attachment_image_src($pic_id,'medium_large')[0]."\" alt=\"".get_the_title()."\" />\n</div>";
-					}
-					
-					
+					$generated_code .= "\n<div class=\"swiper-slide\">\n\t<a href=\"".wp_get_attachment_image_src($pic_id,'medium_large')[0]."\" data-lity><img src=\"".wp_get_attachment_image_src($pic_id,'medium_large')[0]."\" alt=\"".get_the_title()."\" /></a>\n</div>";
 				}
 			}
 			// aggiungo la featured alla fine (...#@*!)
 			if ($hires_url) {
-				$generated_code .= "\n<div class=\"swiper-slide\">\n\t<a href=\"".$base_url."/hires-zoomist.php?cb=3&art_code=".$art_code."\" data-lity class=\"zoomable\" title=\"Click to zoom ".get_the_title()."\">\n\t\t<img src=\"".wp_get_attachment_image_src($post_thumbnail_id,'medium_large')[0]."\"alt=\"".get_the_title()."\" />\n\t</a>\n</div><div class=\"swiper-slide-zoom\"><img src=\"".get_template_directory_uri()."/icons/search.png\" width=\"30\" height=\"54\" alt=\"Click to zoom ".get_the_title()."\" /></div></a>";
+				$generated_code .= "\n<div class=\"swiper-slide\">\n\t<a href=\"".$base_url."/hires-zoomist.php?cb=3&art_code=".$art_code."\" data-lity class=\"zoomable\" title=\"Click to zoom ".get_the_title()."\">\n\t\t<img src=\"".wp_get_attachment_image_src($post_thumbnail_id,'medium_large')[0]."\"alt=\"".get_the_title()."\" />\n<div class=\"swiper-slide-zoom\"><img src=\"".get_template_directory_uri()."/icons/search.png\" width=\"30\" height=\"54\" alt=\"Click to zoom ".get_the_title()."\" /></div></a></div>";
 			} else {
-				$generated_code .= "\n<div class=\"swiper-slide\">\n\t<img src=\"".wp_get_attachment_image_src($post_thumbnail_id,'medium_large')[0]."\"alt=\"".get_the_title()."\" />\n</div></a>";
+				$generated_code .= "\n<div class=\"swiper-slide\">\n\t<a href=\"".wp_get_attachment_image_src($post_thumbnail_id,'medium_large')[0]."\" data-lity><img src=\"".wp_get_attachment_image_src($post_thumbnail_id,'medium_large')[0]."\"alt=\"".get_the_title()."\" /></a>\n</div>";
 			}
 			$generated_code .= "\n</div>\n<div class=\"swiper-pagination\"></div>\n</div>\n\n</figure>\n\n";
 
@@ -88,16 +86,11 @@ if ($_SERVER['HTTP_HOST'] == 'localhost' || $_SERVER['HTTP_HOST'] == 'meuro.dev'
 
 		} else { // una sola foto: semplice img src
 			
-			if ($is_unlocated == 1 || $is_damaged == 1) {
-				$generated_code .= "<script src=\"".plugins_url()."/catalogo-ragionato/inc/usr_public/three.min.js\"></script>";
-				$generated_code .= "<canvas class=\"p-canvas-webgl\" id=\"canvas-webgl\"></canvas>";
-			} else {
 				if ($hires_url) {
-					$generated_code .= "<a href=\"".$base_url."/hires-zoomist.php?cb=3&art_code=".$art_code."\" data-lity class=\"zoomable\" title=\"Click to zoom ".get_the_title()."\"><img src=\"".wp_get_attachment_image_src($post_thumbnail_id,'medium')[0]."\" alt=\"".get_the_title()."\" /><div class=\"swiper-slide-zoom\"><img src=\"".get_template_directory_uri()."/icons/search.png\" width=\"30\" height=\"54\" alt=\"Click to zoom ".get_the_title()."\" /></div></a>";
+					$generated_code .= "<figure><a href=\"".$base_url."/hires-zoomist.php?cb=3&art_code=".$art_code."\" data-lity class=\"zoomable\" title=\"Click to zoom ".get_the_title()."\"><img src=\"".wp_get_attachment_image_src($post_thumbnail_id,'medium')[0]."\" alt=\"".get_the_title()."\" /><div class=\"swiper-slide-zoom\"><img src=\"".get_template_directory_uri()."/icons/search.png\" width=\"30\" height=\"54\" alt=\"Click to zoom ".get_the_title()."\" /></div></a></figure>";
 				} else {
-					$generated_code .= "<img src=\"".wp_get_attachment_image_src($post_thumbnail_id,'medium_large')[0]."\" alt=\"".get_the_title()."\" />";
+					$generated_code .= "<figure><a href=\"".wp_get_attachment_image_src($post_thumbnail_id,'medium_large')[0]."\" data-lity><img src=\"".wp_get_attachment_image_src($post_thumbnail_id,'medium_large')[0]."\" alt=\"".get_the_title()."\" /></a></figure>";
 				}
-			}
 
 		}
 
@@ -117,7 +110,7 @@ if ($_SERVER['HTTP_HOST'] == 'localhost' || $_SERVER['HTTP_HOST'] == 'meuro.dev'
 						$vidH = $vid['art_attached_video']['height'];
 
 						$vidbtntype = 'play1';
-						if ($_GET["btntype"]) {
+						if (isset($_GET["btntype"])) {
 							$vidbtntype = $_GET["btntype"];
 						}
 
@@ -160,12 +153,10 @@ if ($_SERVER['HTTP_HOST'] == 'localhost' || $_SERVER['HTTP_HOST'] == 'meuro.dev'
 			$public_fields = array(
 				"art_dimensions",
 				"art_materials",
-				//"art_weight",
 				"art_photo_credits",
 				"art_edition",
 				"art_unlocated",
 				"art_notes",
-				//"art_additional_video",
 				"art_exhibitions",
 				"art_bibliography"
 			);
@@ -177,35 +168,21 @@ if ($_SERVER['HTTP_HOST'] == 'localhost' || $_SERVER['HTTP_HOST'] == 'meuro.dev'
 				}
 				$pre_field = $post_field = '';
 
-
 				if ($public_field == 'art_photo_credits') { $pre_field = 'Photo: '; }
-				// if ($public_field == 'art_additional_video') {
-				// 	$vidz = get_field('art_additional_video', get_the_ID());
-				// 	if ($vidz && $vidz!== '') {
-				// 		foreach ($vidz as $vid) {
-				// 			if ($vid['art_attached_video'] && $vid['art_attached_video'] !== NULL) {
-				// 				$vidUrl = $vid['art_attached_video']['url'];
-				// 				$vidCap = $vid['art_attached_video']['description'];
-				// 				$vidW = $vid['art_attached_video']['width'];
-				// 				$vidH = $vid['art_attached_video']['height'];
-				// 				echo '<span class="initvid artwork-videocont" data-video="'.$vidUrl.'"  data-video-width="'.$vidW.'"  data-video-height="'.$vidH.'" data-video-description="'.$vidCap.'" ></span>';
-				// 			};
-				// 		}
-				// 	}
-				// 	continue;
-				// }
+				
 				if ($public_field == 'art_exhibitions') {
 					$pre_field = '<span id="viewmore_txt" class="closed"><span>Exhibitions:</span><br />';
 					$post_field = '</span><hr class="divider" /><button id="viewmore_btn"></button>';
 				}
 
 				if ($public_field == 'art_unlocated' && $public_field_value == 1) { echo '<p class="unlocated-work">UNLOCATED WORK</p>'; continue; }
+
+				if ($public_field == 'art_notes' && $public_field_value == "permanently damaged work") { echo '<p class="unlocated-work">PERMANENTLY DAMAGED WORK</p>'; continue; }
+
 				else if ($public_field_value && !empty($public_field_value)) {
 					echo '<p class="'.$public_field.'">'.$pre_field.nl2br($public_field_value).$post_field.'</p>';
 				}
 			endforeach;
-
-
 
 			// print_r(get_post_custom(get_the_ID()));
 		endif;
@@ -224,6 +201,7 @@ if ($_SERVER['HTTP_HOST'] == 'localhost' || $_SERVER['HTTP_HOST'] == 'meuro.dev'
 
 
 <?php
+/*
 if ($is_unlocated == 1 || $is_damaged == 1) :
 	$pic_data = wp_get_attachment_image_src( get_post_thumbnail_id(), 'medium' );
 ?>
@@ -237,4 +215,6 @@ if ($is_unlocated == 1 || $is_damaged == 1) :
 	<?php else : ?>
 		<script id="glitchJS"></script>
 	<?php endif; ?>
-<?php endif; ?>
+<?php endif; 
+*/ 
+?>
