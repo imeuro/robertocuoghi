@@ -932,7 +932,7 @@ img.rc-lazyload.rc-lazyloaded {
     margin-top: 0;
 }
 @media screen and (max-width: 960px) {
-	img.rc-lazyload.rc-lazyloaded {
+	img.rc-lazyload {
 		width: 100%!important;
 	}
 }
