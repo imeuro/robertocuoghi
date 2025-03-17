@@ -229,7 +229,25 @@ VMbtn.on('click',function(){
 var SForm = jQuery('#rc_searchform');
 SForm.find('.search-field').attr('placeholder','');
 
-
+// IMMAGINI A DIMENSIONI DEFINITE A BE
+var initimgdim = function() {
+	if (document.querySelector('.archive-posts > article')) {
+		let imgs = document.querySelectorAll('.archive-posts > article .post-thumbnail > img');
+		if (imgs.length !== 0) {
+			Array.from(imgs).forEach(el => {
+				let adjust = el.dataset.adjustedSize;
+				//console.debug(adjust);
+				if (sw > 960) {
+					el.style.width = Math.round(adjust/2)+"%";
+				} else {
+					el.style.width = Math.round(adjust/1.333)+"%";
+				}
+				
+			});
+		}
+		
+	}
+}
 
 // INIT F***ing INFINITE SCROLL
 var initinfscroll = function() {
@@ -244,6 +262,7 @@ var initinfscroll = function() {
 		});
 
 		archiveCont.on( 'append.infiniteScroll', function() { 
+			initimgdim();
 			initlazyload() 
 		});
 
@@ -302,6 +321,7 @@ jQuery(document).ready( function() {
 	// });
 
 	initinfscroll()
+	initimgdim();
 	initlazyload();
 
 	var coniglioEffect = document.getElementById("coniglioEffect");

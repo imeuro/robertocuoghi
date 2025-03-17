@@ -52,7 +52,33 @@ get_header();
 						else :
 							$ThumbImgData = wp_get_attachment_image_src( get_post_thumbnail_id(), $picsz );
 						endif;
-						echo '<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="'.$ThumbImgData[0].'" width="'.$ThumbImgData[1].'" height="'.$ThumbImgData[2].'" alt ="'.the_title_attribute( array( 'echo' => false, ) ).'" class="rc-lazyload" />';
+
+
+						// PIC SIZE IS (NOT ANYMORE) BASED ON REAL WORLD DIMENSIONS
+						// BUT YOU CAN STILL APPLY A VARIATION
+						$manage_dimensions = get_field('manage_dimensions');
+						if (!is_null($manage_dimensions)) {
+							$dimensions_override = $manage_dimensions['dimensions_variation'];
+							$dimensions_reset = $manage_dimensions['dimensions_reset'];
+						} else {
+							$dimensions_override = null;
+							$dimensions_reset = null;
+						}
+
+						if ( isset($dimensions_override) && (!isset($dimensions_reset) || $dimensions_reset == '') ) {
+							$multiplier = $dimensions_override;
+						} else {
+							$multiplier = 100;
+
+							$manage_dimensions = array(
+								'dimensions_variation' 	=> round($multiplier),
+								'dimensions_reset'		=> '',
+
+							);
+							// set the dimensions override CPT for future reference 
+							update_field( 'manage_dimensions', $manage_dimensions, get_the_ID() );
+						}
+						echo '<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="'.$ThumbImgData[0].'" width="'.$ThumbImgData[1].'" height="'.$ThumbImgData[2].'" alt ="Roberto Cuoghi - '.the_title_attribute( array( 'echo' => false, ) ).'" class="rc-lazyload"  data-adjusted-size="'.$multiplier.'" />';
 						?>
 					</a>
 				</article>

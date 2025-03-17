@@ -67,7 +67,7 @@ get_header();
 							// );
 							// update_field( 'manage_dimensions', $manage_dimensions, get_the_ID() );
 						} else {
-							// PIC SIZE WAS BASED ON REAL WORLD DIMENSIONS
+							// PIC SIZE *WAS* BASED ON REAL WORLD DIMENSIONS
 							// $dims = get_field('art_dimensions');
 							// //$string = "200 x 554 x 5 cm / 78.74 x 218.11 x 21.65 in";
 							// $pattern = "/(\d+(?:\.\d+)?) (x|×) (\d+(?:\.\d+)?)/";
@@ -91,7 +91,7 @@ get_header();
 						}
 						
 
-						echo '<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="'.$ThumbImgData[0].'" width="'.$ThumbImgData[1].'" height="'.$ThumbImgData[2].'" alt ="Roberto Cuoghi - '.the_title_attribute( array( 'echo' => false, ) ).'" class="rc-lazyload" style="width: '.round($multiplier/2).'%; height: auto;" />';
+						echo '<img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-src="'.$ThumbImgData[0].'" width="'.$ThumbImgData[1].'" height="'.$ThumbImgData[2].'" alt ="Roberto Cuoghi - '.the_title_attribute( array( 'echo' => false, ) ).'" class="rc-lazyload" data-adjusted-size="'.$multiplier.'" />';
 
 						?>
 					</a>
