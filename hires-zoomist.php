@@ -69,7 +69,7 @@
     } else {
         $base_url = '';
     }
-    $hires_url = $base_url."/hires/{$_GET['art_code']}.jpg";
+    $hires_url = $base_url."/hires/{$_GET['art_code']}.jpg?v=".time();
     //print_r($hires_url);
     ?>
     <div id="hiresZoom" class="zoomist-container"  style="background:#fff;">
