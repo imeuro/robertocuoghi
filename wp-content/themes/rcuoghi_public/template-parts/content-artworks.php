@@ -69,7 +69,7 @@ if ($_SERVER['HTTP_HOST'] == 'localhost' || $_SERVER['HTTP_HOST'] == 'meuro.dev'
 			}
 			// aggiungo la featured alla fine (...#@*!)
 			if ($hires_url) {
-				$generated_code .= "\n<div class=\"swiper-slide\">\n\t<a href=\"".$base_url."/hires-zoomist.php?cb=3&art_code=".$art_code."\" data-lity class=\"zoomable\" title=\"Click to zoom ".get_the_title()."\">\n\t\t<img src=\"".wp_get_attachment_image_src($post_thumbnail_id,'medium_large')[0]."\"alt=\"".get_the_title()."\" />\n<div class=\"swiper-slide-zoom\"><img src=\"".get_template_directory_uri()."/icons/search.png\" width=\"30\" height=\"54\" alt=\"Click to zoom ".get_the_title()."\" /></div></a></div>";
+				$generated_code .= "\n<div class=\"swiper-slide\">\n\t<a href=\"".$base_url."/hires-zoomist.php?cb=4&art_code=".$art_code."\" data-lity class=\"zoomable\" title=\"Click to zoom ".get_the_title()."\">\n\t\t<img src=\"".wp_get_attachment_image_src($post_thumbnail_id,'medium_large')[0]."\"alt=\"".get_the_title()."\" />\n<div class=\"swiper-slide-zoom\"><img src=\"".get_template_directory_uri()."/icons/search.png\" width=\"30\" height=\"54\" alt=\"Click to zoom ".get_the_title()."\" /></div></a></div>";
 			} else {
 				$generated_code .= "\n<div class=\"swiper-slide\">\n\t<a href=\"".wp_get_attachment_image_src($post_thumbnail_id,'medium_large')[0]."\" data-lity><img src=\"".wp_get_attachment_image_src($post_thumbnail_id,'medium_large')[0]."\"alt=\"".get_the_title()."\" /></a>\n</div>";
 			}
@@ -87,7 +87,7 @@ if ($_SERVER['HTTP_HOST'] == 'localhost' || $_SERVER['HTTP_HOST'] == 'meuro.dev'
 		} else { // una sola foto: semplice img src
 			
 				if ($hires_url) {
-					$generated_code .= "<figure><a href=\"".$base_url."/hires-zoomist.php?cb=3&art_code=".$art_code."\" data-lity class=\"zoomable\" title=\"Click to zoom ".get_the_title()."\"><img src=\"".wp_get_attachment_image_src($post_thumbnail_id,'medium')[0]."\" alt=\"".get_the_title()."\" /><div class=\"swiper-slide-zoom\"><img src=\"".get_template_directory_uri()."/icons/search.png\" width=\"30\" height=\"54\" alt=\"Click to zoom ".get_the_title()."\" /></div></a></figure>";
+					$generated_code .= "<figure><a href=\"".$base_url."/hires-zoomist.php?cb=4&art_code=".$art_code."\" data-lity class=\"zoomable\" title=\"Click to zoom ".get_the_title()."\"><img src=\"".wp_get_attachment_image_src($post_thumbnail_id,'medium')[0]."\" alt=\"".get_the_title()."\" /><div class=\"swiper-slide-zoom\"><img src=\"".get_template_directory_uri()."/icons/search.png\" width=\"30\" height=\"54\" alt=\"Click to zoom ".get_the_title()."\" /></div></a></figure>";
 				} else {
 					$generated_code .= "<figure><a href=\"".wp_get_attachment_image_src($post_thumbnail_id,'medium_large')[0]."\" data-lity><img src=\"".wp_get_attachment_image_src($post_thumbnail_id,'medium_large')[0]."\" alt=\"".get_the_title()."\" /></a></figure>";
 				}
