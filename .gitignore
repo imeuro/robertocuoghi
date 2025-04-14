@@ -3,6 +3,7 @@
 *.zip
 php_errorlog
 .DS_Store
+.cursor.json
 
 /wp-includes/
 /wp-admin/
