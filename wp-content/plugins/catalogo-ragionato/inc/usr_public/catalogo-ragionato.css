@@ -1062,10 +1062,11 @@ img.rc-lazyload.rc-lazyloaded {
 @media (min-width: 1280px) {
 	.single-artworks .hentry {
 		margin: 0 0 1.5em;
-    display: flex;
-    flex: 0 0 100%;
-    flex-flow: row wrap;
-    align-items: flex-start;
+		max-width: 100%;
+		display: flex;
+		flex: 0 0 100%;
+		flex-flow: row wrap;
+		align-items: flex-start;
 	}
 	.single .artworks .rc-artwork-photos {
 		width: 50%;
