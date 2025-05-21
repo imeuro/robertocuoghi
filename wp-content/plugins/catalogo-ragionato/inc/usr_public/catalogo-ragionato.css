@@ -586,13 +586,22 @@ aside.artworks-navi #cat-filter > li.open {
 @media all and (min-width: 480px) {
 	.single .artworks .entry-content { padding: 10px 60px; }
 }
+@media all and (min-width: 1200px) {
+	.single.single-artworks main {
+		width: 100%;
+		height: calc(100dvh - 160px);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+}
 .single .artworks .rc-artwork-photos {
   display: flex;
   flex-flow: column wrap;
   justify-content: space-evenly;
 }
 .single .artworks .rc-artwork-photos figure {
-	flex: 1 0 480px;
+	flex: 1 0 auto;
 	text-align: center;
 	max-width: 100%;
 }
